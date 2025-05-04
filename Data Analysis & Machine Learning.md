@@ -1,3 +1,26 @@
+# フレームワーク
+## TensorFlow
+- 開発：Google
+- 開発年：2015年
+- 規模が大きいもの向き
+- コミュニティが大きい
+- 習得に時間かかる
+
+## PyTorch
+- 開発：Meta
+- 開発年：2016年
+- 小規模や研究向き
+- コミュニティが大きい
+- GPU上
+- 人気急上昇でTensorFlowを追い抜かすかも
+- 習得に時間かかる
+
+## Keras
+- 初心者向き
+- 構文が分かりやすい
+- ディープラーニングモデルを構築するための高レベルAPI
+- 通常、TensorFlow等の低レベルライブラリ上で動作する（まず、TensorFlowのインストールが必要）
+
 # 活性化関数
 ReLU 関数は
 Play video starting at :5: and follow transcript5:00
