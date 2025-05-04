@@ -1,3 +1,5 @@
+# 注意
+データの商用利用禁止
 # コンペ参加基準
 - メダルあり  
 This competitlon counts towards tiers.
@@ -56,10 +58,108 @@ This competitlon counts towards tiers.
 - 1実験1Notebook（Kaggleで一般的）
 - 1実験1ディレクトリ（実験数が多い人・慣れてきた人向け）
 
+# 実験結果の整理方法
+- 実験IDとファイル名を一致させる
+## 管理表の最低必要項目
+- 実験ID
+- CV(Cross Validation Score)
+- LB(Leaderboard Score)
+- モデル
+- 派生元（コピー元の実験ID）
+- 備考（仮説：何をしたかったか）
+
+## 実験結果の可視化
+- CV/LB散布図
+- 外部ツール利用
+    - WandBが一番人気：LightGBMなどの主要な汎用ライブラリに対応しているため、幅広い用途で使用される(2025年1月時点)
+        - クラウドベースで、ログは自動的にクラウドに保存される。
+        - どこからでもアクセス可能で、チームメンバーと共有できる。
+        - プロジェクト管理ツールとしての側面も強い。
+    - 僅差でTensorBoard:深層学習特化(2025年1月時点)
+        - ローカル環境。
+        - 素早く可視化。
+        - 元々は、TensorFlowのためにGoogleが開発したが、現在は他のフレームワークでも使用可能。
+
+## ハイパーパラメータの管理
+人間が設定する値  
+### CFG(Configurationの略)クラスを用いたハイパーパラメータの管理
+【メリット】
+- 全てのハイパーパラメータを1箇所にまとめて管理しやすくする。
+- 1実験1Notebookの人向き
+
+【デメリット】
+- パラメータを階層的に構造化できないこと
+
+CFGクラスに全てのハイパーパラメータを集約(リスト1.5)
+```Python
+class CFG:
+    learning_rate = 0.001
+    batch_size = 64
+    num_epochs = 10
+    model_type = 'resnet50'
+```
+CFGクラスからハイパーパラメータを取得する例(リスト1.6)
+```Python
+# モデルの定義
+model = build_model(model_type = CFG.model_type)
+
+# 学習ループ
+for epock in range(CFG.num_epocks):
+    for batch in data_loader(CFG.batch_size):
+        # 学習ステップ
+        optimizer.zero_grad()
+        outputs = model(batch['inputs'])
+        loss = loss_fn(outputs, batch['labels'])
+        loss.backward()
+        optimizer.step()
+```
+### YAMLファイルの利用
+### argparseとYAMLの併用によるハイパーパラメータ管理
+
 # 点数アップ手法
 ## シード固定
 - 機械学習の実験には乱数が使用されるため、シードを固定しないと、同じコードを実行しても結果が異なる場合がある。
 - 実験結果の再現性が保証されないため、アルゴリズムやモデルの正しい評価ができない。
+
+### seed_everything関数
+複数の乱数生成器のシードを一括で固定する。
+```Python
+def seed_everything(seed: int):
+    random.seed(seed)
+    os.environ["PYTHONHASHSEED"] = str(seed)
+    np.random.seed(seed)
+```
+1. random.seed(seed)
+    - Pythonの組み込みモジュールrandomのシードを固定する。
+    - randomモジュールを使用した乱数生成が再現可能になる。
+2. os.environ["PYTHONHASHSEED"] = str(seed)
+    - 環境変数PYTHONHASHSEEDを設定する。
+    - Pythonのハッシュ関数のシードを固定し、辞書やセットの順序が再現可能になる。
+3. np.random.seed(seed)
+    - NumPyの乱数生成器のシードを固定する。
+    - NumPyを使用した乱数生成が再現可能になる。
+### seed_torch関数
+PyTorchを使用する場合は、さらにPyTorch固有の乱数生成器のシードを固定する。
+```Python
+def seed_torch(seed = 42):
+    random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.backends.cudnn.daterministic = True
+```
+この関数は、seed_everythingの機能に加えて以下を行います。
+1. torch.manual_seed(seed)
+    - PyTorchのCPU上の乱数生成器のシードを固定する。
+    - モデルの重みの初期化などに影響。
+2. torch.cuda.manual_seed(seed)
+    - PyTorchのCPU上の乱数生成器のシードを固定する。
+    - GPUを使用した計算での再現性を確保。
+3. torch.backends.cudnn.daterministic = True
+    - CuDNNの決定論的アルゴリズムを使用。
+    - 一部の非決定論的な挙動を排除。
+
 ## 複数モデルのアンサンブル
 コンペ終盤に実施。
 - 初心者でも点数を上げやすい。
