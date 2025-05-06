@@ -243,7 +243,7 @@ def seed_torch(seed = 42):
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
-    torch.backends.cudnn.daterministic = True
+    torch.backends.cudnn.deterministic = True
 ```
 この関数は、seed_everythingの機能に加えて以下を行います。
 1. torch.manual_seed(seed)
