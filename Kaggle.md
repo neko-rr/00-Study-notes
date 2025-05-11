@@ -198,9 +198,40 @@ Discussionでの議論を受けて、以下のベースラインの改善案を�
 ```
 
 # 効率化
-## Jupiter Notebook
+## 環境構築
+### Kaggle内
+【メリット】
+- 一番手間が無く、提供データの使用も容易
+【デメリット】
+- 週30～40時間しかGPUが使用できない。
+  ⇒画像系では、死活問題。
+### Google Colaboratory(通称：Colab)
+【メリット】
+- GPU・TPUが使用可能。実験を豊富にしたいならば、ほぼ必須。
+- 無料または安価で使用可能
+- ブラウザベースで利用可能なJupyterノートブック環境
+  ⇒環境的に似てるらしい
+- 実行結果とともにコードを共有できる
+【デメリット】
+- Kaggle環境と違い、提供データを移動させるのに工夫が必要
+  ⇒データを一度自分のPCにダウンロードが必要。
+    画像データ大きい・空き容量。。。オープンなデータセットならば、Githubでダウンロード不要？？  
+【注意点】  
+colab の特徴として，/content.という drive とは別の場所で colab が実行されており，その colab notebook のランタイム(セッション)がリセットされると content内に保存したデータやモデルはすべて消し去られてしまいます．  
+とはいえ，colab で drive をマウントすることで drive にあるフォルダへのデータ保存も簡単にできるので，普通に使うのに支障はほとんどないと思います．  
+【便利URL】  
+[Google ColaboratoryでKaggleや機械学習：ファイル読み込み・保存・ライブラリインストール方法](https://zenn.dev/junko_ai/articles/1883b07e971096)  
+[Kaggle notebookとGoogle Colabのデータ連携](https://qiita.com/nekot0/items/80d903a32ee101b165b6)  
+[Colab で Kaggle (N番煎じ)](https://zenn.dev/mst8823/articles/da505dcf45474f)  
+### Jupiter Notebook
 普段Codeを書くときにJupyter Notebookを使用しているならば、Code全体など複数のセルにまたがるコピペには不向き。
-その場合は、File→Editor TypeでScriptに切り替え、Shiftを押しながら画面を右クリックすると「すべて選択」ができるので、全体をコピペ可能である。
+その場合は、File→Editor TypeでScriptに切り替え、Shiftを押しながら画面を右クリックすると「すべて選択」ができるので、全体をコピペ可能である。  
+### 自分のPC内に仮想環境作成
+【メリット】
+- 縛りが無い  
+【デメリット】
+- 環境構築が全部できる人のみ可能
+- 30万以上するような高性能なPCが必要
 ## 学習と推論のファイルを分ける
 - Kaggleの無料GPUの節約になる
 - 待機時間の節約になる
