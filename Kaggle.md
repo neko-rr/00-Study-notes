@@ -200,26 +200,69 @@ Discussionでの議論を受けて、以下のベースラインの改善案を�
 # 効率化
 ## 環境構築
 ### Kaggle内
-【メリット】
+#### 【メリット】
 - 一番手間が無く、提供データの使用も容易
-【デメリット】
+#### 【デメリット】
 - 週30～40時間しかGPUが使用できない。
   ⇒画像系では、死活問題。
 ### Google Colaboratory(通称：Colab)
-【メリット】
+#### 【メリット】
 - GPU・TPUが使用可能。実験を豊富にしたいならば、ほぼ必須。
 - 無料または安価で使用可能
 - ブラウザベースで利用可能なJupyterノートブック環境
   ⇒環境的に似てるらしい
 - 実行結果とともにコードを共有できる
-【デメリット】
+#### 【デメリット】
 - Kaggle環境と違い、提供データを移動させるのに工夫が必要
   ⇒データを一度自分のPCにダウンロードが必要。
     画像データ大きい・空き容量。。。オープンなデータセットならば、Githubでダウンロード不要？？  
-【注意点】  
-colab の特徴として，/content.という drive とは別の場所で colab が実行されており，その colab notebook のランタイム(セッション)がリセットされると content内に保存したデータやモデルはすべて消し去られてしまいます．  
-とはいえ，colab で drive をマウントすることで drive にあるフォルダへのデータ保存も簡単にできるので，普通に使うのに支障はほとんどないと思います．  
-【便利URL】  
+#### 【注意点】
+- Pythonコードの実行が停止してしまう
+    - 12時間ルール : ノートブックを実行して12時間経過
+    - 90分ルール : ノードブックの使用を止めて90分経過
+- /content.という drive とは別の場所で colab が実行されている。
+  その colab notebook のランタイム(セッション)がリセットされると content内に保存したデータやモデルはすべて消し去られてしまいます。  
+  しかし、Notebookからdriveをマウントして、drive上のフォルダにデータを保存すれば、問題は解決します。  
+#### 【Google Drive上のファイルにアクセスする方法】
+- Authorization codeを入力する方法
+```Python
+from google.colab import drive 
+drive.mount('/content/drive')
+```
+⇒表示されているURLをクリックすると、認証コード取得画面に移動
+- Google Colabのフォルダ画面からGoogle Driveを利用する方法
+#### 【小技】
+##### 実行しているのがColaboratoryかKaggleなのか判別するコード
+```Python
+import sys
+
+# Colaboratory環境ならTrue
+'google.colab' in sys.modules
+# Kaggle Notebook環境ならTrue
+'kaggle_web_client' in sys.modules
+```
+例えば、INPUTの位置を動的に変えるようにして、ColaboratoryでもKaggleでも動くコードにすることができます。
+```Python
+import sys
+from pathlib import Path
+
+if 'google.colab' in sys.modules:  # colab環境
+    INPUT = Path(‘/content/input/’)
+elif 'kaggle_web_client' in sys.modules:  # kaggle環境
+    INPUT = Path(‘../input/’)
+```
+##### 高速化
+- データがKaggleのデータの場合は、MyDriveからのコピーよりも、Kaggle apiでデータをダウンロードした方がやや速い。
+- MyDriveのファイルの読み書きは遅いので、なるべくcontent直下にファイルを移動して読み込んだ方が良い
+##### コード（セル）終了の通知音を鳴らす方法
+```Python
+from google.colab import output
+def notif():
+  output.eval_js('new Audio("https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg").play()')
+```
+あとは、実行したいコードの最後に『notif()』と入力することで、通知音を鳴らすことが可能。
+#### 【便利URL】  
+[Colaboratoryで分析コンペをする時のテクニック集](https://www.currypurin.com/entry/2021/03/04/070000)
 [Google ColaboratoryでKaggleや機械学習：ファイル読み込み・保存・ライブラリインストール方法](https://zenn.dev/junko_ai/articles/1883b07e971096)  
 [Kaggle notebookとGoogle Colabのデータ連携](https://qiita.com/nekot0/items/80d903a32ee101b165b6)  
 [Colab で Kaggle (N番煎じ)](https://zenn.dev/mst8823/articles/da505dcf45474f)  
@@ -227,9 +270,9 @@ colab の特徴として，/content.という drive とは別の場所で colab 
 普段Codeを書くときにJupyter Notebookを使用しているならば、Code全体など複数のセルにまたがるコピペには不向き。
 その場合は、File→Editor TypeでScriptに切り替え、Shiftを押しながら画面を右クリックすると「すべて選択」ができるので、全体をコピペ可能である。  
 ### 自分のPC内に仮想環境作成
-【メリット】
+#### 【メリット】
 - 縛りが無い  
-【デメリット】
+#### 【デメリット】
 - 環境構築が全部できる人のみ可能
 - 30万以上するような高性能なPCが必要
 ## 学習と推論のファイルを分ける
