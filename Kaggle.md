@@ -213,9 +213,11 @@ Discussionでの議論を受けて、以下のベースラインの改善案を�
   ⇒環境的に似てるらしい
 - 実行結果とともにコードを共有できる
 #### 【デメリット】
-- Kaggle環境と違い、提供データを移動させるのに工夫が必要
-  ⇒データを一度自分のPCにダウンロードが必要。
-    画像データ大きい・空き容量。。。オープンなデータセットならば、Githubでダウンロード不要？？  
+- Kaggle環境と違い、提供データダウンロードに工夫が必要（手動）
+  ⇒Kaggle APiを使用
+  ⇒データを一度自分のPCにダウンロードする。
+    画像データ大きい・空き容量。。。
+- Kaggle Datasetsへのアップロードも手動
 #### 【注意点】
 - Pythonコードの実行が停止してしまう
     - 12時間ルール : ノートブックを実行して12時間経過
@@ -231,6 +233,15 @@ drive.mount('/content/drive')
 ```
 ⇒表示されているURLをクリックすると、認証コード取得画面に移動
 - Google Colabのフォルダ画面からGoogle Driveを利用する方法
+#### GPU使用方法
+トップ画面上部のメニュー一覧⇒「ランタイム」⇒「ランタイムのタイプを変更」をクリックします。  
+「ノートブックの設定」というポップアップが表示⇒「ハードウェア アクセラレータ」を「GPU」に変更する（初期設定はNone）。  
+「保存」をクリックしたら、ノートブックの作業スペースに戻り、次のコードを入力する。
+```Python
+import tensorflow as tf
+tf.test.gpu_device_name()
+```
+※無料版のGPUクラスは「標準」のみで、「プレミアム」を使用したい場合は有料版の契約が必須。「保存」をクリックしたら、ノートブックの作業スペースに戻り、次のコードを入力します。
 #### 【小技】
 ##### 実行しているのがColaboratoryかKaggleなのか判別するコード
 ```Python
@@ -262,10 +273,10 @@ def notif():
 ```
 あとは、実行したいコードの最後に『notif()』と入力することで、通知音を鳴らすことが可能。
 #### 【便利URL】  
-[Colaboratoryで分析コンペをする時のテクニック集](https://www.currypurin.com/entry/2021/03/04/070000)
+[Colaboratoryで分析コンペをする時のテクニック集](https://www.currypurin.com/entry/2021/03/04/070000)  
 [Google ColaboratoryでKaggleや機械学習：ファイル読み込み・保存・ライブラリインストール方法](https://zenn.dev/junko_ai/articles/1883b07e971096)  
 [Kaggle notebookとGoogle Colabのデータ連携](https://qiita.com/nekot0/items/80d903a32ee101b165b6)  
-[Colab で Kaggle (N番煎じ)](https://zenn.dev/mst8823/articles/da505dcf45474f)  
+[Colab で Kaggle (N番煎じ)](https://zenn.dev/mst8823/articles/da505dcf45474f)
 ### Jupiter Notebook
 普段Codeを書くときにJupyter Notebookを使用しているならば、Code全体など複数のセルにまたがるコピペには不向き。
 その場合は、File→Editor TypeでScriptに切り替え、Shiftを押しながら画面を右クリックすると「すべて選択」ができるので、全体をコピペ可能である。  
