@@ -2,7 +2,7 @@
 ## [Wappalyzer](https://www.wappalyzer.com/)
 - 無料
 - Chromeの拡張機能
-## [BuiltWith]((https://builtwith.com/)
+## [BuiltWith](https://builtwith.com/)
 - URLを入れるだけでHPの使用技術を調べるだけの簡易的ＨＰ
 ## [WhatCMS](https://whatcms.org/)
 - URLを入れるだけでどのようなCMSを使用しているか調べるだけの簡易的ＨＰ
@@ -15,10 +15,19 @@
 - Googleが提供
 - WEB解析必須ツール
 
+# 表示速度
+- ロード時間が早いほど、離脱が減る
+- ロード時間が遅いと、Googleの検索順位減点
+
 # コンテンツ用ツール
 ## [ラッコキーワード](https://rakkokeyword.com/)
 - 一部無料だが、安いのでも課金しないとほぼ無意味
 - キーワード選定
+
+# 分析
+- アクセス解析データ：訪問者数、直帰率、滞在時間、流入経路など
+- ユーザビリティ：使いやすさ、情報の見つけやすさ、レスポンシブ対応など
+- コンテンツ品質：情報の価値、更新頻度、訴求力など
 
 # SEO
 ## 小技
