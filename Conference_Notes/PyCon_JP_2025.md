@@ -380,6 +380,32 @@ sphinx-revealjsによる事例
 # Day 1 Lightning Talks:皆さんから募集するライトニング・トーク (略してLT。5分以内の短い講演)
 - フェニックスホール
 - 17:00 - 17:45
+## 個人メモ
+### OWGeoの宣伝
+- 地理空間情報
+- 実世界での利用例：スマホの地図アプリ、ハザードマップ、配達経路最適化
+- 座標系の世界：緯度経度だけじゃない
+- ライブラリ：pyproj,py:早すぎて1枚目スクショ撮れず
+### キャリアボット
+- 研究室でのPython活用事例
+  - テーマ：人間とAIの共創
+  - Streamlit + Python + Gemma3：求人のレコメンド（自然言語で関連を出す）
+  - ffmpeg + whisper.cpp + Llama3：AI面接練習と教師へのアドバイス
+- 今後、ハロワークと連携して、他大学に広げたい
+### レガシーな制御コードへのasyncioの活用事例
+- 個人ソフトウェア開発者：独立
+- 天文学者
+- 天文観測装置制御
+  - AIRTReCS（2009～）
+    - 大学の教授が使うので、測定しながら改造できるようにマクロタスク
+    - 当時は、複数機で計算
+    - ⇒AsyncMacroTask：計算機1つのシンプルな構成に対応するために構成変更
+### JetBrains
+- Java/Laravel歴10年以上。Python歴1年
+- 健康保険組合向けの
+- Junie：AI開発アシスタント
+  - 成功パターンを蓄積
+  - guideline.mdでAIにプロジェクトの開発方針をAIに伝えるための設定ファイル
 
 # 【Day 1 Keynote】　Sebastián Ramírez 氏 Behind the scenes of FastAPI and friends for developers and builders(Sebastián Ramírez 氏 開発者とビルダーのためのFastAPIとその仲間の舞台裏)
 - フェニックスホール
