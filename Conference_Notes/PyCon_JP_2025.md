@@ -1,5 +1,6 @@
 # PyCon JP 2025参加メモ
 # 総括
+## 個人ブログ向け：Python Webフレームワーク比較表(2025/9/29 Copilot出力)
 | 観点 | Streamlit | Dash | Gradio | Panel | ReactPy | Voila |
 |------|-----------|------|--------|--------|----------|--------|
 | **開発のしやすさ** | ◎ 初心者向け | ○ 柔軟だが複雑 | ◎ 超簡単 | ○ 柔軟だがやや複雑 | △ React知識が必要 | ○ Jupyterベース |
@@ -253,23 +254,7 @@ Python 3.13 でのフリースレッドの初期リリースでは、シング�
 GILの事
 
 # Django NinjaによるAPI開発の効率化とリプレースの実践
-- ラン
-- 中級
-- 日本語
-- 15:00 - 15:30
-- Be PROUD社　connpass・PyQ・の開発・運営している人：全てDjango使用している
-## 発表の構成（予定）
-はじめに
-
-自己紹介・会社紹介
-発表の背景とゴール
-想定する聞き手
-Django Ninjaとは何か
-
-Django REST frameworkやFastAPIとの比較
-Django Ninjaの特徴（型ヒント、OpenAPI連携、FastAPI互換の設計思想など）
-なぜDjango Ninjaを選んだのか
-
+- [スライド](https://speakerdeck.com/kashewnuts/django-ninja-pyconjp2025?slide=4)
 比較検討した選択肢（独自実装・DRF・FastAPIなど）
 パフォーマンス、学習コスト、開発効率、保守性の観点からの選定理由
 Django Ninjaを用いた実践例
