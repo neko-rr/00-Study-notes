@@ -1,4 +1,7 @@
 # PyCon JP 2025参加メモ
+- 参加日：2025年9月26日（金）・9月27日（土）
+- 参加形態：個人参加（プライベート）
+- 聴講セッション数：13個（各30分）、2個（各60分）
 # 総括
 ## 個人ブログ向け：Python Webフレームワーク比較表(2025/9/29 Copilot出力)
 | 観点 | Streamlit | Dash | Gradio | Panel | ReactPy | Voila |
@@ -15,12 +18,12 @@
 | **開始時期** | 2019年 | 2017年 | 2021年 | 2019年 | 2022年 | 2018年 |
 
 # 1日目(9/26)
-# 【招待講演】PEP 750 の共同著者 青野高大 氏による Python3.14の新機能の紹介
+## 【招待講演】PEP 750 の共同著者 青野高大 氏による Python3.14の新機能の紹介
 - 日本語
 - 10:30 - 11:00
 - 青野　高大
-## 講演資料[(https://github.com/koxudaxi/pyconjp_2025.git)](https://github.com/koxudaxi/pyconjp_2025.git)
-## Python 3.14 には新機能 t-strings（Template Strings）が導入されます。青野さんは、この仕様をまとめた PEP 750 の共同著者です。
+### 講演資料[(https://github.com/koxudaxi/pyconjp_2025.git)](https://github.com/koxudaxi/pyconjp_2025.git)
+### Python 3.14 には新機能 t-strings（Template Strings）が導入されます。青野さんは、この仕様をまとめた PEP 750 の共同著者です。
 Python 3.14 の最終リリースは 2025 年 10 月に予定されています。青野さんは、OpenAPI／JSON Schema から型安全なコードを生成する datamodel-code-generator や、Ruff・Pydantic 向けの PyCharm プラグイン など、現場で役立つ OSS を数多く開発されています。PyCon US や EuroPython など国際カンファレンスでの登壇実績も豊富です。
 Python の文字列機能は、% 演算子、str.format()、f-strings と発展してきました。次の一歩となる t-strings が、あるいは将来の Python が、どんな世界を作ろうとしているのか。私自身もお話を伺うのを楽しみにしています。どうぞご期待ください。
 ## 個人メモ
@@ -56,14 +59,14 @@ Python の文字列機能は、% 演算子、str.format()、f-strings と発展�
 - まとめ
 - セキュリティ：SQLインジェクションやXSSを防止
 
-# Pythonic Finance: Analyze Company Fundamentals with SEC EDGAR APIs(Python ファイナンス: SEC EDGAR API で企業の基礎情報を分析)
-- ダリア2
+## Pythonic Finance: Analyze Company Fundamentals with SEC EDGAR APIs(Python ファイナンス: SEC EDGAR API で企業の基礎情報を分析)
 - 初級
 - 英語
 - 11:15 - 11:45
-## Pythonと定量分析を用いて、米国証券取引委員会（SEC）EDGARシステムのファンダメンタル財務データにアクセスし、検証・分析します。SECのJSON APIは、財務報告の国際標準であるeXtensible Business Reporting Language（XBRL）で報告された企業提出書類から抽出された構造化された財務データを提供します。堅牢なデータ検証にはPydanticが用いられます。
+### GitHub[https://github.com/lauslim12/analyze-company-fundamentals-with-sec-edgar-api.git](https://github.com/lauslim12/analyze-company-fundamentals-with-sec-edgar-api.git)
+### Pythonと定量分析を用いて、米国証券取引委員会（SEC）EDGARシステムのファンダメンタル財務データにアクセスし、検証・分析します。SECのJSON APIは、財務報告の国際標準であるeXtensible Business Reporting Language（XBRL）で報告された企業提出書類から抽出された構造化された財務データを提供します。堅牢なデータ検証にはPydanticが用いられます。
 参加者は、XBRL 言語の概要、SEC EDGAR の API からデータを取得するための実践的なテクニックcompanyfacts、データ サイエンスとソフトウェア エンジニアリングを組み合わせて Pydantic でデータを検証する方法、API 応答から重要な基本指標を抽出する方法、基本的な財務比率を計算する方法、財務トレンドを視覚化する方法について学習し、国際的な公開財務データ API の操作の詳細について学ぶことができます。
-##プレゼンテーションの予定概要：
+###プレゼンテーションの予定概要：
 
 はじめにと免責事項（約3分）
 簡単な自己紹介と重要な免責事項：私はファイナンシャルアドバイザーではなく、この講演はファイナンシャルアドバイスではありません
@@ -90,7 +93,7 @@ Pydantic を選ぶ理由と API レスポンスの Pydantic モデルの概要
 他の国（例：日本EDINET）は異なるシステムを持っていますが、同じXBRLデータ構造を持ち、スキルと知識が移転可能であることを証明します。
 主なポイント、要約、まとめ（約2分）
 プロセス、ツール、将来の探究に向けた提案の概要
-## 個人メモ
+### 個人メモ
 - 10Kレポートと20Kレポートがある。
 - どちらも年次報告書
 - 10Kは、アメリカ企業に提供義務あり。会社向け
@@ -103,13 +106,13 @@ Pydantic を選ぶ理由と API レスポンスの Pydantic モデルの概要
 - jsonデータ（API)⇒表に変換⇒グラフ化
   - これなら、私も発表できそう。
 
-# ReactPyを使ってreact likeにUIをPythonで実装する
+## ReactPyを使ってreact likeにUIをPythonで実装する
 - ダリア1
 - 中級
 - 日本語
 - 12:00 - 12:30
 - モノタロウ勤務
-## 1. ReactPyとは何か？
+### 1. ReactPyとは何か？
 「フロントエンド苦手だけど、こんなのあったら便利だよね」な話
 JavaScript書かずにReactっぽいことがPythonでできる
 HTMLテンプレートよりもっと柔軟にUIが作れる
@@ -134,7 +137,7 @@ reactpy-djangoを使った既存Djangoプロジェクトでの活用例
 従来のHTMLテンプレートとの比較
 ReactPyで実装した動的コンポーネントの例
 
-## 個人メモ
+### 個人メモ
 - モノタロウ：Reactによる画面開発（ReactPyは、使用してない）。AI工藤開発も積極的にやっている。
 - ReactPy：UI構築ツール
   - 他にもStreamlit、Dash、Gradio、Panelと同じ立ち位置
@@ -228,12 +231,12 @@ graphlibの使い方
   - タスクランナー：並列実行しやすいアルゴリズム
   - 最適解とは、別問題！？最適解にするには、また別の仕組みが必要
 
-# Beyond Multiprocessing: A Real-World ML Workload Speedup with Python 3.13+ Free-Threading(マルチプロセスを超えて: Python 3.13+ のフリースレッドによる実際の ML ワークロードの高速化)
-- ラン
+## Beyond Multiprocessing: A Real-World ML Workload Speedup with Python 3.13+ Free-Threading(マルチプロセスを超えて: Python 3.13+ のフリースレッドによる実際の ML ワークロードの高速化)
 - 中級
 - 英語
 - 14:15 - 14:45
-## PyCon JP 2024では、実験的なフリースレッドモードの素晴らしい導入を目にしました。あれから1年が経ちましたが、実際にこのモードを使って実世界の問題を解決した人はどれくらいいるでしょうか？マルチプロセスのシリアル化ボトルネックに既に悩まされている方、あるいはデータ量の多いタスクが思ったほど速くないことに不満を感じている方、この講演はまさにうってつけです。
+### 講演資料[https://speakerdeck.com/kitsuya0828/beyond-multiprocessing-a-real-world-ml-workload-speedup-with-python-3-dot-13-plus-free-threading](https://speakerdeck.com/kitsuya0828/beyond-multiprocessing-a-real-world-ml-workload-speedup-with-python-3-dot-13-plus-free-threading)
+### PyCon JP 2024では、実験的なフリースレッドモードの素晴らしい導入を目にしました。あれから1年が経ちましたが、実際にこのモードを使って実世界の問題を解決した人はどれくらいいるでしょうか？マルチプロセスのシリアル化ボトルネックに既に悩まされている方、あるいはデータ量の多いタスクが思ったほど速くないことに不満を感じている方、この講演はまさにうってつけです。
 
 風景は変化している
 Python 3.13 でのフリースレッドの初期リリースでは、シングルスレッドパフォーマンスのトレードオフが知られていましたが、状況は変化しています。この問題を軽減し、並列ワークロードにおいてフリースレッドをこれまで以上に強力で現実的な選択肢にする Python 3.14 の重要な改善点について詳しく説明します。
@@ -249,12 +252,12 @@ Python 3.13 でのフリースレッドの初期リリースでは、シング�
 
 この強力な新しいPython が要求の厳しい ML ワークロードとどのように統合され、新しいレベルのパフォーマンスを実現し、コードを真に強化できるかを一緒に見ていきましょう。
 
-## 個人メモ
+### 個人メモ
 英語と内容の難しさで分からん。
 GILの事
 
-# Django NinjaによるAPI開発の効率化とリプレースの実践
-- [スライド](https://speakerdeck.com/kashewnuts/django-ninja-pyconjp2025?slide=4)
+## Django NinjaによるAPI開発の効率化とリプレースの実践
+### 講演資料[[https://speakerdeck.com/kashewnuts/django-ninja-pyconjp2025?slide=4](https://speakerdeck.com/kashewnuts/django-ninja-pyconjp2025?slide=4)
 比較検討した選択肢（独自実装・DRF・FastAPIなど）
 パフォーマンス、学習コスト、開発効率、保守性の観点からの選定理由
 Django Ninjaを用いた実践例
@@ -274,7 +277,7 @@ Django Ninjaを用いた実践例
 得られた効果と課題
 今後の展望（型安全な開発・APIクライアント自動生成など）
 
-## 個人メモ
+### 個人メモ
 - 過去django-piston⇒独自実装（サポート切れで）⇒文脈負債
 - 要件：型＝ドキュメントの一元管理＆自動化
   - 既存Djangoアプリに最小の影響で導入
@@ -324,18 +327,12 @@ Django Ninjaを用いた実践例
   - ファットコントローラー気味⇒ビジネスロジックの呼び出しがすっきり
 - 結果：開発効率が上がり、
 
-
-# コーヒーブレイク & ポスターセッション
-- サクラ
-- 15:30 - 16:15
-
-# OSS≒盆栽 〜個人的趣味として無理なくOSS開発をするときに意識したいこと〜
-- ダリア1
+## OSS≒盆栽 〜個人的趣味として無理なくOSS開発をするときに意識したいこと〜
 - 中級
 - 日本語
 - 16:15 - 16:45
 - ニジボックス(仕事中にこのスライドを作成した) の人：Sphinx大好きの人
-## 予定アウトライン
+### 予定アウトライン
 自己紹介
 「OSS≒盆栽」とは？
 Pythonライブラリにおける利用者規模
@@ -348,7 +345,7 @@ sphinx-revealjsによる事例
 プロダクトソースコード上の変化
 開発する基盤に起きた変化
 周囲にある環境で起こっていた変化
-## 個人メモ
+### 個人メモ
 - 鑑賞趣味としての盆栽≒個人OSS開発
   - 小さな目標から始められる
   - 意外とランニングコストが低い
@@ -375,22 +372,21 @@ sphinx-revealjsによる事例
   - 数人でも使用してくれたら、有難い
 - 「型」を作っておく
 
-# Day 1 Lightning Talks:皆さんから募集するライトニング・トーク (略してLT。5分以内の短い講演)
-- フェニックスホール
+## Day 1 Lightning Talks:皆さんから募集するライトニング・トーク (略してLT。5分以内の短い講演)
 - 17:00 - 17:45
-## 個人メモ
-### OWGeoの宣伝
+### 個人メモ
+#### OWGeoの宣伝
 - 地理空間情報
 - 実世界での利用例：スマホの地図アプリ、ハザードマップ、配達経路最適化
 - 座標系の世界：緯度経度だけじゃない
 - ライブラリ：pyproj,py:早すぎて1枚目スクショ撮れず
-### キャリアボット
+#### キャリアボット
 - 研究室でのPython活用事例
   - テーマ：人間とAIの共創
   - Streamlit + Python + Gemma3：求人のレコメンド（自然言語で関連を出す）
   - ffmpeg + whisper.cpp + Llama3：AI面接練習と教師へのアドバイス
 - 今後、ハロワークと連携して、他大学に広げたい
-### レガシーな制御コードへのasyncioの活用事例
+#### レガシーな制御コードへのasyncioの活用事例
 - 個人ソフトウェア開発者：独立
 - 天文学者
 - 天文観測装置制御
@@ -398,18 +394,17 @@ sphinx-revealjsによる事例
     - 大学の教授が使うので、測定しながら改造できるようにマクロタスク
     - 当時は、複数機で計算
     - ⇒AsyncMacroTask：計算機1つのシンプルな構成に対応するために構成変更
-### JetBrains
+#### JetBrains
 - Java/Laravel歴10年以上。Python歴1年
 - 健康保険組合向けの
 - Junie：AI開発アシスタント
   - 成功パターンを蓄積
   - guideline.mdでAIにプロジェクトの開発方針をAIに伝えるための設定ファイル
 
-# 【Day 1 Keynote】　Sebastián Ramírez 氏 Behind the scenes of FastAPI and friends for developers and builders(Sebastián Ramírez 氏 開発者とビルダーのためのFastAPIとその仲間の舞台裏)
-- フェニックスホール
+## 【Day 1 Keynote】　Sebastián Ramírez 氏 Behind the scenes of FastAPI and friends for developers and builders(Sebastián Ramírez 氏 開発者とビルダーのためのFastAPIとその仲間の舞台裏)
 - 17:55 - 18:55
-## FastAPI作者 Sebastián Ramírez 氏のキーノート / 同時通訳あり：ウーパールーパー大好き
-## 個人メモ
+- FastAPI作者 Sebastián Ramírez 氏のキーノート / 同時通訳あり：ウーパールーパー大好き
+### 個人メモ
 - FastAPI
   - WebAPI
   - オープンソース
@@ -484,13 +479,13 @@ sphinx-revealjsによる事例
     - 「何かマスコットが必要よ！」と手伝ってくれる人が言うから、使用している。実は、コロンビア関係ない生き物です。
 
 # 2日目
-# Python×信号処理入門！スペクトログラムで視る音の世界
-- ダリア1
+## Python×信号処理入門！スペクトログラムで視る音の世界
 - 初学者向け
 - 日本語
 - 10:20 - 10:50
 - 職業は、電機メーカーの機械設計者（普段、実験やシミュレーションをやっている）
-## 目次
+### 講演資料[https://docs.google.com/presentation/d/184hJzgrZ42vpjbcxcw6HuMguMYc16x78/edit?slide=id.p1#slide=id.p1](https://docs.google.com/presentation/d/184hJzgrZ42vpjbcxcw6HuMguMYc16x78/edit?slide=id.p1#slide=id.p1)
+### 目次
 自己紹介
 このトークについて
 Pythonで信号処理をするメリット
@@ -516,7 +511,7 @@ NumPyの.fft
 この音なんでしょう？
 この音はどんな要素でできている？
 スペクトログラムの応用
-## 個人メモ
+### 個人メモ
 - 技術ブログ300記事くらいで書籍化の話が来た
 - 世の中は「信号」で溢れている（波形のデータに変換できるもの）
   - 「こんなことができるかな？」と思ったことは、大抵Pythonで可能
@@ -540,13 +535,12 @@ NumPyの.fft
   - STFT：全体時間波形からフレームを抽出⇒フレーム単位でフーリエ変換⇒スペクトログラムにデータを蓄積
   - 
 
-# 【招待講演】広島から世界へ ― Pythonで描くデータサイエンスの新しい未来
-- フェニックスホール
+## 【招待講演】広島から世界へ ― Pythonで描くデータサイエンスの新しい未来
 - 日本語
 - 11:05 - 11:35
 - 広島での高校生向けPython教育の事例を中心に、学びが地域課題解決へと広がる可能性を示し、教育×Pythonから始まる未来を展望します。
 - 作者が広島出身で、企業して地元へ。完全、データ分析畑の女性。
-## 個人メモ
+### 個人メモ
 - 高校におけるデータサイエンス教育
   - 国際的にデータサイエンス能力が遅れているという結果があった。しかし、数学能力が高いが、自分に自信がない。（2013年頃）
   - 2025年に大学入試共通テストで「情報Ⅰ」が必要に
@@ -578,12 +572,12 @@ NumPyの.fft
   - 広島人は、野球（カープ）が一番
 - データサイエンティスト求人は、東京1極集中が問題！！
     
-# タスクって今どうなってるの？3.14の新機能 asyncio ps と pstree でasyncioのデバッグを
+## タスクって今どうなってるの？3.14の新機能 asyncio ps と pstree でasyncioのデバッグを
 - ダリア2
 - 中級
 - 日本語
 - 11:50 - 12:20
-## 予定稿
+### 予定稿
 Python asyncio と既存のプロファイラの紹介 10分
 
 pyspy
@@ -598,7 +592,7 @@ ps, pstreeで何ができるのか 10分
 
 Python Web Frameworkとの連携
 グローバルバックエンドである anyio / trio における応用可能性
-## 自分メモ
+### 自分メモ
 - 3.14に追加される
 - オーバーロードがない
 - 決定的プロファイル
@@ -619,15 +613,11 @@ Python Web Frameworkとの連携
     - しかし、気づきにくそう（私は分からん）
 - グローバルバックエンドな話
 
-# Lunch
-12:20 - 13:20
-
-# Weaponizing MCP Servers: Production-Ready AI Agent Infrastructure with Python(MCP サーバーの武器化: Python を使用した本番環境対応 AI エージェント インフラストラクチャ)
-- ダリア2
+## Weaponizing MCP Servers: Production-Ready AI Agent Infrastructure with Python(MCP サーバーの武器化: Python を使用した本番環境対応 AI エージェント インフラストラクチャ)
 - 中級
 - 英語
 - 13:20 - 13:50
-## トーク詳細 / Description
+### トーク詳細 / Description
 MCPサーバーのチュートリアルの多くは、基本的なサンプルの構築方法を紹介していますが、実際のユーザーがサーバーにアクセスし始めたときに何が起こるかまでは説明していません。この講演では、そのギャップを埋め、MCPサーバーを本番環境で運用可能な状態にするためのPythonパターンとアーキテクチャ上の決定事項を紹介します。
 
 まず、MCPサーバーが高負荷時にクラッシュしたり、メモリリークしたり、応答しなくなったりする原因など、よくある障害要因を検証します。次に、大規模環境でも実際に機能する非同期パターン、連鎖的な障害を防ぐエラー処理、サーバーの応答性を維持するためのパフォーマンス最適化など、実用的な解決策を詳しく見ていきます。
@@ -707,15 +697,15 @@ API統合サービス: AIエージェントの外部API呼び出しの管理
 キーパターン:信頼性の高い MCP サーバーに不可欠なアーキテクチャ上の決定
 よくある落とし穴: MCP インフラストラクチャを拡張する際に避けるべき間違い
 コミュニティ リソース: MCP 開発へのサポートや貢献を得る場所
-## 個人メモ
+### 個人メモ
 - AVテスト
 
-# Streamlit は社内ツールだけじゃない！PoCの速さで実現する"商用品質"の分析SaaSアーキテクチャ
-- ダリア1
+## Streamlit は社内ツールだけじゃない！PoCの速さで実現する"商用品質"の分析SaaSアーキテクチャ
 - 中級
 - 日本語
 - 14:05 - 14:35
-## トーク詳細 / Description
+### 講演資料[https://speakerdeck.com/kdash/streamlit-hashe-nei-turudakeziyanai-poc-nosu-sadeshi-xian-surushang-yong-pin-zhi-nofen-xi-saas-akitekutiya](https://speakerdeck.com/kdash/streamlit-hashe-nei-turudakeziyanai-poc-nosu-sadeshi-xian-surushang-yong-pin-zhi-nofen-xi-saas-akitekutiya)
+### トーク詳細 / Description
 イントロダクション
 
 自己紹介
@@ -742,7 +732,7 @@ PoC の速さ × SaaS の品質 を両立する設計Tips
 
 発表内容のサマリー（持ち帰ってほしいこと）
 質疑応答
-## 個人メモ
+### 個人メモ
 - 業務：ECショップの配送等の後工程を自動化
   - 配送追跡
   - 返品交換
@@ -793,13 +783,12 @@ PoC の速さ × SaaS の品質 を両立する設計Tips
       - st.session_state()への唯一のアクセスポイントを作る
   - 対話は一度に
  
-# PythonとLLMで挑む、4コマ漫画の構造化データ化
-- ラン
+## PythonとLLMで挑む、4コマ漫画の構造化データ化
 - 初級
 - 日本語
 - 14:50 - 15:20
 - 仕事：健康診断の非構造化データのLLM
-## トーク詳細 / Description
+### トーク詳細 / Description
 イントロダクション：なぜ 4 コマ漫画なのか？
 
 4 コマ漫画は「画像」「テキスト」「連続性」が凝縮された、非構造化データ処理の格好の題材
@@ -849,7 +838,7 @@ LLM は万能ではない。しかし、既存の Python エコシステムと�
 「自動化（LLM/DL）」と「人間による確認・修正（UI/UX）」のサイクルをいかに効率的に回すかが、実用的なシステムの鍵。
 AI エージェントの活用は、この開発サイクルを劇的に加速させる。
 今後の挑戦：動画、音声など、他の非構造化データへの応用。
-##   個人メモ
+###   個人メモ
 - 非構造化データをLLMでデータ化したいという例⇒最近は、発達してきてGPTとかでできるようになった（実際、会社でも注文書とか可能だった）
   - レシート
 - 実際にシステムで使うなら、生成AIに細かく定義してあげる
@@ -879,33 +868,27 @@ AI エージェントの活用は、この開発サイクルを劇的に加速�
       - 精度は70～80％程度
       - しっぽのベクトルを伸ばして、人物検出に当たれば話者とした
 
-# Day 2 Poster Session
-サクラ
-15:20 - 16:05
-
-# Day 2 Lightning Talks
-- フェニックスホール
+## Day 2 Lightning Talks
 - 16:05 - 16:50
-## Snowflake社の宣伝
-## 2026年卒　Flask5年
+### Snowflake社の宣伝
+### 2026年卒　Flask5年
 - 18言語対応（韓国からアクセス増えて、調子に乗ってやった！？）
 - ローカライズ：flask_label
 - カーソル
 - テキスト抽出
   - HTML
   - Gemini APIやDeeple APIとかで翻訳　＋ polib
-## 宇宙の話
-## ローカルRAGをClaude Codeに作ってもらった（広島のイベント宣伝目的）
+### 宇宙の話
+### ローカルRAGをClaude Codeに作ってもらった（広島のイベント宣伝目的）
 - SQLのコマンドのHPを3層読み込んでもらってから、作ってもらった
-## SWE-Bench
+### SWE-Bench
 - AIモデルベンチマーク結果：Pythonが一番
 - AIモデルは英語が良くて、GPTは日本語が良い。
 
-# 【Day 2 Keynote】　プログラミングの未来を駆ける！~2年間の挑戦が見せてくれた、プログラミングのこれから~
-- フェニックスホール
+## 【Day 2 Keynote】　プログラミングの未来を駆ける！~2年間の挑戦が見せてくれた、プログラミングのこれから~
 - 17:00 - 18:00
 - 「生成AIに育てられた第一世代」を掲げ、大学４年時にChatGPTを武器に100日で100本のアプリを公開する“#100日チャレンジ”を完遂。
-## 自分メモ
+### 自分メモ
 - 教授に褒められ、海外論文が認められ、ソフトウェアエンジニアとして就職できた
 - ゲームをするために宿題をさぼるとか怠け者。
   - 教授が「ChatGPTがあるけれど、宿題に使用してはダメ」と言われて、サボれるの！？と使い方を調べ始めた
@@ -960,3 +943,12 @@ AI エージェントの活用は、この開発サイクルを劇的に加速�
   - 文字を書いとけば、予定を考えた事は、履歴で残る。感情が動いた事とか、なんでもかんでも記録している
   - 残っている文字の面白い所だけをピックアップして良質の所だけを集めて、本を作った
   - 周りから、教えてと言われてるので、Note書いたけれど、誰も理解してくれない！！だから、自分が欲しいメモアプリ作ったので、同じようにしてみてください
+ 
+# ポスターセッション
+## 「まっすぐ行って、右！」って言ってラズパイカーを動かしたい 〜生成AI × Raspberry Pi Pico × Gradioの試作メモ〜
+- 初級
+### ポスター[https://speakerdeck.com/komofr/pyconjp2025-poster](https://speakerdeck.com/komofr/pyconjp2025-poster)
+
+## そのグラフに「魂」は宿っているか？ ～生成AI全盛期におけるデータ可視化手法とライブラリ比較～
+- 初学者向け
+### ポスター[https://speakerdeck.com/negi111111/sonogurahuni-hun-hasu-tuteiruka-sheng-cheng-aiquan-sheng-qi-niokerudetake-shi-hua-shou-fa-toraiburaribi-jiao](https://speakerdeck.com/negi111111/sonogurahuni-hun-hasu-tuteiruka-sheng-cheng-aiquan-sheng-qi-niokerudetake-shi-hua-shou-fa-toraiburaribi-jiao)
