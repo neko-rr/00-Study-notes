@@ -1,3 +1,27 @@
+# 仮想環境作成
+```Python
+python -m venv .venv  # Windowsの場合
+```
+
+# 必要なものをインポートまとめ
+```Python
+pip freeze > requirements.txt
+```
+```Python
+pip install dash pandas
+```
+```Python
+import dash
+import pandas as pd
+
+print(dash.__version__)
+print(pd.__version__)
+```
+## pipファイル、不審なファイル扱いエラー
+- 管理者権限で PowerShell / VS Code を開く
+- VS Code を右クリック → 「管理者として実行」
+- その状態で再度コマンドを実行
+
 # Ruff
 ## [https://qiita.com/nuco_nn/items/fe06c815bb776737e94a](https://qiita.com/nuco_nn/items/fe06c815bb776737e94a)
 PythonのLinterとしてはFlake8、コード整形ツールとしてはBlack、importのsortingはisortが主流ではありますが、これら全てを兼ね備えているのがRuffです。
