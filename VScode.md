@@ -25,7 +25,8 @@ print(pd.__version__)
 
 # GitHubへ
 ## 初めて
-ターミナルで
+GitHubで新規リポジトリを作成して、URLをメモ  
+VScode等のターミナルで
 ```
 git init
 git add .
@@ -39,6 +40,22 @@ git branch -M main
 git push -u origin main
 
 ```
+
+## 2回目以降
+```
+git add .
+```
+```
+git commit -m "fix: カメラ機能を追加等" 
+
+```
+```
+git push
+```
+
+# Renderへのデプロイ方法
+Renderを利用して自分だけのWebサービスをデプロイする  
+[https://zenn.dev/pwrengineer/articles/a4e159aa3e103e](https://zenn.dev/pwrengineer/articles/a4e159aa3e103e)
 
 # Ruff
 ## [https://qiita.com/nuco_nn/items/fe06c815bb776737e94a](https://qiita.com/nuco_nn/items/fe06c815bb776737e94a)
