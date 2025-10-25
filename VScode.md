@@ -21,6 +21,24 @@ print(pd.__version__)
 - 管理者権限で PowerShell / VS Code を開く
 - VS Code を右クリック → 「管理者として実行」
 - その状態で再度コマンドを実行
+- セキュリティソフトのリアルタイムスキャンを無効化
+
+# GitHubへ
+## 初めて
+ターミナルで
+```
+git init
+git add .
+git commit -m "first commit"
+```
+```
+git remote add origin https://github.com/username/リポジトリ名
+```
+```
+git branch -M main
+git push -u origin main
+
+```
 
 # Ruff
 ## [https://qiita.com/nuco_nn/items/fe06c815bb776737e94a](https://qiita.com/nuco_nn/items/fe06c815bb776737e94a)
