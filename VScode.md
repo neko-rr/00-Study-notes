@@ -67,6 +67,13 @@ git push origin main --force
 # Renderへのデプロイ方法
 Renderを利用して自分だけのWebサービスをデプロイする  
 [https://zenn.dev/pwrengineer/articles/a4e159aa3e103e](https://zenn.dev/pwrengineer/articles/a4e159aa3e103e)
+# ローカルでDashを確認する方法
+```
+pip install -r requirements.txt
+```
+```
+python app.py
+```
 
 # Ruff
 ## [https://qiita.com/nuco_nn/items/fe06c815bb776737e94a](https://qiita.com/nuco_nn/items/fe06c815bb776737e94a)
