@@ -74,7 +74,9 @@ pip install -r requirements.txt
 ```
 python app.py
 ```
-
+```
+.\venv\Scripts\python app.py
+```
 # Ruff
 ## [https://qiita.com/nuco_nn/items/fe06c815bb776737e94a](https://qiita.com/nuco_nn/items/fe06c815bb776737e94a)
 PythonのLinterとしてはFlake8、コード整形ツールとしてはBlack、importのsortingはisortが主流ではありますが、これら全てを兼ね備えているのがRuffです。
