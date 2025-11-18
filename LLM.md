@@ -1,11 +1,48 @@
 # ハッカソン対策用
+# 事前準備
+- 自己紹介・チーム入れてアピールの資格リストと未経験注意表示の印刷1枚
+- 使いそうなAPIの登録
+- Google ColabでもGitHubが使えるようにする(使う可能性あり??)
+- Cursor指示用の空フォーマット整理
+  - ⇒便利そうなの見つけましたが、ただ1個のMarkdownファイル指定して伝えてたときより難しそうです。。。
+  - [Spec Kit](https://github.com/github/spec-kit)
+- GitHubの教科書を読む
+- [LangChainアカデミー](https://academy.langchain.com/)を見る
+- Streamlitで応答確認用の簡易チャット作る
+# アイデア案2個(今回、極力発案者にならないようにしてチームに入る(｀・ω・´)ｷﾘｯ)
+- 日本的な工場VS営業や営業VS事務等対立と棲み分けを緩く交流可視化して、建設的な意見に繋げようマインドマップ
+  - 議事録や日報からマインドマップ
+  - マインドマップへ、匿名コメント投稿
+  - マインドマップから自動で議題提起or類似成功例や失敗例提示⇒匿名意見で広がる繋がり&匿名1人1意見1票投票
+    - 独裁的上司が意見潰すの防止。
+    - 過激発言連投禁止。
+    - 仕事の渡し手or受け手、管理職、実務者、担当外部署人員、完全な部外者部署、効率化専門家等の立場で投票に任意の重み付け版と単純投票比較して、｢誰｣のために業務をどのように変更するかを検討&説明資料とする
+- エゴサーチ効率化
+  - 登録ロゴ画像や製品画像からトレンド集計
+  - キーワードや社名、製品名からトレンド集計
+  - ポジティブ&ネガティブ(本当の投稿見るのは任意で精神防御)
+# 推奨スキル（全て満たさなくても可）
+- ​Webアプリ／API実装（Python/Javascript 等、目安2–3年）
+- 生成AIの基礎（LoRA/SFT/評価のいずれか）
+- 大規模言語モデル (LLM) の基礎（ファインチューニング、RAG、量子化）
+# 推奨スキル関連HP
+- [LoRA（ローラ）](https://ledge.ai/articles/LoRA)
+  - LoRAとは”Low-Rank Adaptation”の略で、特に大規模な事前学習済みモデルのファインチューニングに関連する技術
+  - 計算量を減らしてファインチューニングを行う技術
+  - 元のモデルのパラメータを直接変更する代わりに、低ランクの行列を導入して、パラメータの変更を行うことができる。少ない計算量で元のモデルに修正を加えることが可能になった。
+  - 事前学習されたモデルの重みを固定し、変換器アーキテクチャの各層に低ランクの分解行列を注入することで、下流のタスク用の訓練可能なパラメータの数を大幅に削減する。例えば、GPT-3 175Bモデルにおいて、LoRAは訓練可能なパラメータを10,000倍減らし、GPUメモリ要件を3倍削減することを実現している。
+  - 事例
+    - カスタマイズされたチャットボット
+    - AI写真集・AIモデル
+- SFT(Supervised Fine-Tuning（教師ありファインチューニング）の略) 
+# 主催者推奨初心者講座
 [Prompt Engineering with Llama 2 & 3]
 (https://www.deeplearning.ai/short-courses/prompt-engineering-with-llama-2/)  
 [Introducing Multimodal Llama 3.2]
 (https://www.deeplearning.ai/short-courses/introducing-multimodal-llama-3-2/)  
 [Building with Llama 4]
 (https://www.deeplearning.ai/short-courses/building-with-llama-4/)
-
+# 初心者講座抜粋
 ```Python
 # import llama helper function
 from utils import llama
@@ -59,6 +96,7 @@ response_eval = llama(prompt,
 
 print(response_eval)
 ```
+
 # メモ
 ## 最大トークン>入力トークン+出力トークン
 - 入出力のどちらかが長い場合は、もう一方の量が減るので、注意
@@ -104,7 +142,7 @@ response_2 = llama(chat_prompt,
 ```Python
 print(response_2)
 ```
-```Python
+
 ## 出力内容の調整
 - モデルにより、学習パラメータ数が異なる。 
   - 大きいほど、推論が遅く、複雑な事に対処可能
@@ -125,6 +163,8 @@ What is the meaning of life?
 response = llama(prompt)
 print(response)
 ```
+### llama_guard
+
 ### その他
 ゼロショットや例とか、要約や段階的には、自然言語の時と変わらないみたい
 
