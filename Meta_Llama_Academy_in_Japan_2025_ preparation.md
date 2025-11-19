@@ -1,5 +1,8 @@
 # ハッカソン対策用
 # 事前準備
+## 準備済
+
+## 準備前
 - 自己紹介・チーム入れてアピールの資格リストと未経験注意表示の印刷1枚
 - 使いそうなAPIの登録
   - Together API
@@ -164,6 +167,17 @@ print(response_eval)
 *   **Llama 4系**：超長文（最大10M）、マルチモーダルネイティブ、MoEで低コスト高性能
 
 ***
+# LangChain
+- 大規模言語モデルの機能拡張を効率的に実装するためのライブラリ
+- LangChain: OpenAI社のChatGPTに限らず、GoogleのGemini・Meta社のLlama・Anthropic社のClaudeなど、大規模言語モデルを使い分ける（切り替える）ことが容易になります。
+- Retrievalとは「言語モデルが学習していない事柄に関して、外部データを用いて、回答を生成するための機能」
+- Chainsは「複数のプロンプト入力を実行する機能」
+- Memoryとは「ChainsやAgentsの内部における状態保持をする機能」
+- Agentsとは「言語モデルに渡されたツールを用いて、モデル自体が、次にどのようなアクションを取るかを決定・実行・観測・完了するまで繰り返す機能」
+- Callbacksとは「大規模言語モデルのアプリケーションのロギング、モニタリング、非同期処理などを効率的に管理する機能」
+## 参考
+- [AWS：LangChain とは?](https://aws.amazon.com/jp/what-is/langchain/)
+- [LangChainの概要と使い方](https://zenn.dev/umi_mori/books/prompt-engineer/viewer/langchain_overview)
 # メモ
 ## 最大トークン>入力トークン+出力トークン
 - 入出力のどちらかが長い場合は、もう一方の量が減るので、注意
