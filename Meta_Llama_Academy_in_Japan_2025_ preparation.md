@@ -175,6 +175,12 @@ print(response_eval)
 - Memoryとは「ChainsやAgentsの内部における状態保持をする機能」
 - Agentsとは「言語モデルに渡されたツールを用いて、モデル自体が、次にどのようなアクションを取るかを決定・実行・観測・完了するまで繰り返す機能」
 - Callbacksとは「大規模言語モデルのアプリケーションのロギング、モニタリング、非同期処理などを効率的に管理する機能」
+## LangGraph
+- 並列して高速化
+- 信頼性
+  - 長時間（数分）実行するほど、失敗した時の影響が大きくなる
+    - 短く分けて実行(Chains）
+    - チェックポイントを活用・失敗した所から実行
 ## 参考
 - [AWS：LangChain とは?](https://aws.amazon.com/jp/what-is/langchain/)
 - [LangChainの概要と使い方](https://zenn.dev/umi_mori/books/prompt-engineer/viewer/langchain_overview)
