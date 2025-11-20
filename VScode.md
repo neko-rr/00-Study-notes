@@ -140,4 +140,15 @@ VSCodeのテーマやフォントサイズをカスタマイズする設定で�
     "editor.guides.bracketPairs": true,
 }
 ```
+# ダウンロード済（永久のため今後必要無し）
+## spec-kit
+https://qiita.com/tsalva/items/ee6883aeb7b58babeffc
+```Python
+pip install uv
+```
+```Python
+uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+```
+
+
 
