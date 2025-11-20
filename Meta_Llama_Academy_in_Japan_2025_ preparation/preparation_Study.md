@@ -4,6 +4,8 @@
 - 自己紹介スライド入力・チーム入れてアピールの資格リストと未経験注意表示
 - [LangChainアカデミー](https://academy.langchain.com/)を見る
 - 主催者推奨初心者講座を見る
+- 使いそうなAPIの登録
+  - LangSmith
 ## 準備前
 - 使いそうなAPIの登録
   - Together API
