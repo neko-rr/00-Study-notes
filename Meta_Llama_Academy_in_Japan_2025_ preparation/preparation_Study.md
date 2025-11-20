@@ -6,6 +6,7 @@
 - 主催者推奨初心者講座を見る
 - 使いそうなAPIの登録
   - LangSmith
+    - [API説明書](https://api.smith.langchain.com/redoc?_gl=1*13x2mlh*_gcl_au*MjM3NzM3MjgzLjE3NjM1NTIyNDU.*_ga*ODEzODQyMzkxLjE3NjM1NTIyNDc.*_ga_47WX3HKKY2*czE3NjM1OTkxNDkkbzQkZzEkdDE3NjM2MDA5MDIkajYkbDAkaDA.#section/Host)
 ## 準備前
 - 使いそうなAPIの登録
   - Together API
