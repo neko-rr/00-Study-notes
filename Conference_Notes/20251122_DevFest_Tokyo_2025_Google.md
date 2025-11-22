@@ -51,6 +51,26 @@
     - 16:30 - 16:45
     - smly(Google Developer Expert (Kaggle))
     - 世界最初のKaggle Grandmasterの一人で、Kaggleを続けて14年目となります。2025年より Google Developer Expert for Kaggle。
+- DevFest Tokyo LT大会
+    - 17:00 - 17:50
+  - [LT] あの州って何？/ What's That State?
+    - BATBAATAR ANKHBOLD(IPUT, 東京国際工科専門職大学 情報工学科AI戦略コース)
+  - [LT]「即戦力」を考える：システムUIを2週間でWeb/Appを同時展開してみた & まだキーボード使って開発？古いよ笑 〜指の運動、そろそろ卒業しません？〜
+    - 砂川優治(名古屋国際工科専門職大学 学生)
+  - [LT] AR × Android OS で描く高齢者介護のビジョン駆動型デザイン（仮）
+    - 高橋 和輝（大阪国際工科専門職大学 工科学部 情報工学科 AI戦略コース 4年, 学生）
+  - [LT] 数理最適化MCPをつくったよ！
+    - おおたまん(Machine Learning Engineer, Ubie, Inc.)
+  - [LT] 開発経験1年、そろそろAI駆動やめたい。（仮）
+    - りおちん(津田塾大学 情報科学科 2年 学生)
+  - [LT] How to catch up on latest futures in Go
+    - sivchari(newmo株式会社 ソフトウェアエンジニア)
+  - [LT] プロダクトの死角をなくす技術としての多様性
+    - Suu(お茶の水女子大学 バックエンドエンジニア)
+  - [LT] Goでエンジニアキャリア開拓序章
+    - 三島萌花
+  - [LT] Android ライブラリアンの回顧録
+    - 荒木佑一(Google で Android 向けライブラリを開発してきました)
 # Opening - Google デベロッパー コミュニティと共に成長しよう
 - DevFestの概要・メリット映像
 - Gemini2の映像
@@ -137,7 +157,7 @@
 - 広告代理店
 - Googleアナリストを使用していたら、ビックデータが気になりGoogleクラウドにのめりこむ
 - ML女子部
-- 名のバナナ
+- nano-banana 
   - 構成案⇒プロンプト⇒生成結果がスライド最初の猫
 - 動画を作るとどういう事（ビジネス）
   - 情報収集や監査が厳しい
@@ -165,6 +185,16 @@
     - 顧客は、勝手に独自でやる事を嫌うので、こういう公式の権威を借りましょう！
   - 動画を縦型に変換する
 ## Flutterで実現する「120％ネイティブ」なLiquid Glassエフェクト
+- この人24歳
+- Flutterチームが大きな決断
+  - MaterialとCuoertinoが別リポジトリに分離
+    - SNSで良くない反応もあったけれど、私は良いと思う。
+    - 実際に会社のアプリで試してみた動画
+    - SNSに投稿する前に自分で試してみよう！
+- android API 23+が必要
+## XLS：半導体デジタル設計をもっと早く！
+- この人の会社は、オープンソースの支援をしている？
+- XLS（Rust風のプログラミング言語）
 # 【実践】ADK による AI エージェント開発
 ## 今から追いつくADK 〜 ADKの概要と過去、現在、未来 〜
 ## adk-samples に学ぶデータ分析 LLM エージェント開発
@@ -173,6 +203,9 @@
 ## AI エージェントの振る舞いを読み解く！Vertex AI Agent Engine と OpenTelemetry によるオブザーバビリティの実現
 ## デジタル庁におけるダッシュボード活用
 ## 生成AI時代のKaggleの姿
+
+
+
 
 
 
