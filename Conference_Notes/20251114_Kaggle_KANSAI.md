@@ -1,5 +1,6 @@
 # 関西Kaggler会 交流会 in Osaka 2025#3参加メモ
 - 公式HP[https://kansaikaggler.connpass.com/event/360825/](https://kansaikaggler.connpass.com/event/360825/)
+-スライドリンク集あり報告HP[https://kansaikaggler.studio.site/posts/event_202511](https://kansaikaggler.studio.site/posts/event_202511)
 - 参加日：2025年11月14日（金）
 - 13:20～18:30
 - 参加形態：個人参加（プライベート）
