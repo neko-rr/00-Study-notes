@@ -1,4 +1,4 @@
-# Meta_Llama_Academy_in_Japan_2025　チーム参加のための「風ねこ」資格情報
+# ハッカソン用　チーム参加のための「風ねこ」資格情報
 - 2012年12月　	文部科学省後援　ビジネス文書技能検定試験　2級　合格
 - 2014年12月　	Microsoft Office Specialist Word 2013　合格
 - 2015年2月　 	Microsoft Office Specialist Excel 2013　合格
@@ -20,8 +20,9 @@
 - 2025年10月	AWS資格:CLF-C02 (Foundational)、DEA-C01 (Associate)　合格
 
 # その他活動
-- [オープンバッジ](https://www.credly.com/users/username.f5e1f223)
 - [Kaggle（データ分析コンペティション）](https://www.kaggle.com/kazeneko77)
   - ⇒銀メダル1個（76/2240位）：「NeurIPS - Open Polymer Prediction 2025」　2025年9月16日
-- 初ハッカソンでCursorで辛うじて動くWebアプリ作成
 
+# ハッカソン
+- 大阪AIハッカソンん：初ハッカソンでCursorで辛うじて動くWebアプリ作成
+- Meta Llama Academy in Japan 2025：優勝
