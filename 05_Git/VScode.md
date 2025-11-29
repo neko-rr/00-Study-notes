@@ -1,3 +1,6 @@
+# 便利URL
+## ショートカット
+[https://assets.ctfassets.net/pppgbgujcovf/2p9KU1Wo4AoJJGAEveQHia/c5dcca59cfa3c6614313eabb1b0c1e09/VSCode_______________________Windows.pdf](https://assets.ctfassets.net/pppgbgujcovf/2p9KU1Wo4AoJJGAEveQHia/c5dcca59cfa3c6614313eabb1b0c1e09/VSCode_______________________Windows.pdf)
 # 仮想環境作成
 ```Python
 python -m venv .venv  # Windowsの場合
