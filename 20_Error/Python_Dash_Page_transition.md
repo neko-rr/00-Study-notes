@@ -199,5 +199,79 @@ def go_about(n, nav):
 - **長処理で画面が固まる** → Loadingコンポーネントや中間Storeで段階的に更新。
 
 ---
+# Dashで「新しいページ」を追加する場合、どのファイルを触れば良いかを初心者向けに整理しますね。  
 
-必要なら、理紗さんの具体的なコード構造に合わせて「安全なルーティングとガードの挿入ポイント」を一緒に洗い出します。現在のフォルダ構成とDashのバージョンを教えてもらえたら、最短で直せる修正パッチを書きます。
+---
+
+## 📝 ページ追加の方法は2種類あります
+
+### ① **Dashの `pages` 機能を使う場合（推奨）**
+Dash 2.5以降では「pages」フォルダにファイルを置くだけでページが増えます。  
+
+#### 手順
+1. **`pages/` フォルダを作成**（既にある場合はそのまま使う）  
+   ```
+   app.py
+   pages/
+     home.py
+     about.py
+   ```
+
+2. **新しいページファイルを追加**（例：`pages/contact.py`）
+   ```python
+   from dash import register_page, html
+
+   # ページを登録
+   register_page(__name__, path="/contact", name="Contact")
+
+   # ページのレイアウト
+   layout = html.Div([
+       html.H1("お問い合わせページ"),
+       html.P("ここにフォームや説明を置けます")
+   ])
+   ```
+
+3. **app.py に変更は不要**  
+   - `app = Dash(__name__, use_pages=True)` としていれば、自動で新しいページが認識されます。  
+   - `dash.page_container` が現在のURLに応じてページを表示します。  
+
+👉 この方法なら「新しいページを作る＝`pages/` にファイルを追加する」だけです。
+
+---
+
+### ② **手動でルーティングする場合**
+`pages` 機能を使わない場合は、`app.py` のコールバックに「新しいURLとレイアウト」を追加します。  
+
+#### 例：`app.py`
+```python
+from dash import Dash, html, dcc, Input, Output
+
+app = Dash(__name__, suppress_callback_exceptions=True)
+
+app.layout = html.Div([
+    dcc.Location(id="url"),
+    html.Div(id="page-content")
+])
+
+@app.callback(Output("page-content", "children"),
+              Input("url", "pathname"))
+def display_page(pathname):
+    if pathname == "/":
+        return html.Div([html.H1("Home")])
+    elif pathname == "/about":
+        return html.Div([html.H1("About")])
+    elif pathname == "/contact":   # ← 新しいページを追加
+        return html.Div([html.H1("Contact")])
+    else:
+        return html.Div([html.H1("404 Not Found")])
+```
+
+👉 この場合は **`app.py` のコールバック関数に新しい条件分岐を追加**する必要があります。
+
+---
+
+## 🌱 初心者向けまとめ
+- **pages機能を使うなら** → `pages/` フォルダに新しいファイルを作るだけ。  
+- **手動ルーティングなら** → `app.py` のコールバックに `elif pathname == "/newpage": ...` を追加。  
+
+---
