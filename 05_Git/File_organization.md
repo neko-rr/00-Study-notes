@@ -18,6 +18,8 @@ grep -r "import" .
 - 例えば、`pyreverse`というツールを使うと、Pythonのコードからクラス図を生成できます。
   - 参考: [https://pylint.readthedocs.io/en/latest/pyreverse.html](https://pylint.readthedocs.io/en/latest/pyreverse.html)
   - このツールを使うことで、ファイル間の依存関係を視覚的に把握し、どのファイルが他のファイルから参照されているかを簡単に確認できます。
+  - [https://progzakki.sanachan.com/program-lang/python/how-to-generate-image-of-class-structure/](https://progzakki.sanachan.com/program-lang/python/how-to-generate-image-of-class-structure/)
+- ※ページ遷移図は、作れない模様
 # ログファイルの確認
 - ログファイルを確認することで、どのファイルが実際に使用されているかを把握できます。
 - 特に、エラーログを確認することで、存在しないファイルをimportしようとしている箇所を見つけられるかもしれません。
