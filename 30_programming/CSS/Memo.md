@@ -57,3 +57,32 @@ p {
 # 枠線：border
 borderで指定した太さの数値は、初期状態だとブロック要素のwidth、heightに加算されるため、意図せずレイアウトが崩れる可能性があります。 
 box-sizingの値であるborder-boxを合わせて指定することで、ブロックの横幅と高さにborderのサイズを含めることができます。
+# 要素の横幅を指定：width
+- ブロック要素への指定
+  - display: blockが指定されている要素（divタグ、pタグなど）の場合、widthを指定しないと初期値のautoが適用され、自動的に横幅いっぱいになります。
+- インラインブロック要素への指定
+  - display: inline-blockが指定されている要素の場合、中身の長さに対して幅が決まります。
+  - 横幅を変更したい場合はwidthを指定する必要があります。
+- インライン要素への指定
+  - 通常、display: inlineが指定されている要素（aタグ、spanタグなど）には、widthを指定することができません。（例外として、imgタグはインライン要素ですが、widthを指定できます）
+  - 横幅を変更したい場合、あらかじめdisplay: blockまたはdisplay: inline-blockを指定しておきましょう。
+# 要素の内側の余白：padding
+- padding-top: 上側
+- padding-right: 右側
+- padding-bottom: 下側
+- padding-left: 左側
+```CSS
+padding: 10px; /* 要素内の上下左右10px */
+padding: 10px 20px; /* 要素内の上下に10px・左右に20px */
+padding: 10px 20px 30px; /* 要素内の上10px・左右20px・下30px */
+padding: 10px 20px 30px 40px; /* 要素内の上・右・下・左(時計回り)で指定 */
+```
+# 要素の外側の余白を指定：margin
+```CSS
+margin: 10px; /* 上下左右に10px */
+margin: 10px 20px; /* 上下に10px・左右に20px */
+margin: 10px 20px 30px; /* 上10px・左右20px・下30px */
+margin: 10px 20px 30px 40px; /* 上・右・下・左(時計回り)で指定 */
+```
+- ボックスを画面の水平方向で中央に配置する
+  - 文章や画像を水平方向で中央に配置したいときには、margin: autoを使います。ただし、ボックスの幅を設定する必要があります。なぜなら、ボックスの幅が設定されていないと、ボックスは全幅を占め、margin: autoは効果がないからです。
