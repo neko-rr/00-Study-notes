@@ -98,6 +98,7 @@
   - 統計学
 - （話者）今の所感だと、プロンプトエンジニアリングは、要約されちゃうので、個別エージェントを使用した方が成績が良い
  # Mastra × Bedrock AgentCore × x402準拠の次世代金融エージェントを作ってみよう！
+ ## 資料[https://speakerdeck.com/mashharuki/amazon-bedrock-agentcore-x-aws-cdk-x-mastra-x-x402-deci-shi-dai-jin-rong-ai-agentwozuo-rou](https://speakerdeck.com/mashharuki/amazon-bedrock-agentcore-x-aws-cdk-x-mastra-x-x402-deci-shi-dai-jin-rong-ai-agentwozuo-rou)
  - 「x402」：HTTPステータスコード402
    - 特定のエンドポイントにアクセスする際にステーブルコイン決済処理を挟み込める
    - 簡単に言うと、APIの有料化が簡単にできる
