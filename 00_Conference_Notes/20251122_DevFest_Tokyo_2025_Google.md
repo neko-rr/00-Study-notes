@@ -32,9 +32,11 @@
 - 【実践】ADK による AI エージェント開発
     - トラックB
   - 今から追いつくADK 〜 ADKの概要と過去、現在、未来 〜
+    - 資料[https://docs.google.com/presentation/d/13bhaxSeQMnZuBviCAXajNgoJ1ZZIYW2jzUhBmSSwVXw/edit](https://docs.google.com/presentation/d/13bhaxSeQMnZuBviCAXajNgoJ1ZZIYW2jzUhBmSSwVXw/edit)
     - 14:40 - 15:00
     - 大橋啓介(株式会社カブク CTO)
   - adk-samples に学ぶデータ分析 LLM エージェント開発
+    - 資料[https://speakerdeck.com/na0/adk-samples-nixue-budetafen-xi-llm-ezientokai-fa](https://speakerdeck.com/na0/adk-samples-nixue-budetafen-xi-llm-ezientokai-fa)
     - 15:00 - 15:20
     - na0(株式会社メルカリ アナリティクスエンジニア)
   - ADKによる音声と動画ストリーミングAPI解説
@@ -73,6 +75,17 @@
     - 三島萌花
   - [LT] Android ライブラリアンの回顧録
     - 荒木佑一(Google で Android 向けライブラリを開発してきました)
+# 参加していない分の資料
+- MediaPipeを用いたイラストのトレーニングの自動化
+  - [https://docs.google.com/presentation/d/1ufYFzVIRe_s0d1ze5LTSW7mPAxgvHql-s6NYPPJZ9S8/edit?slide=id.p1#slide=id.p1](https://docs.google.com/presentation/d/1ufYFzVIRe_s0d1ze5LTSW7mPAxgvHql-s6NYPPJZ9S8/edit?slide=id.p1#slide=id.p1)
+- エージェントが生活をどう変えるのか
+  - [https://docs.google.com/presentation/d/17ZYucQ6qQQr1RdeI40LngbxpBan-jkSzeCNROsWUt2Y/edit](https://docs.google.com/presentation/d/17ZYucQ6qQQr1RdeI40LngbxpBan-jkSzeCNROsWUt2Y/edit)
+- プロダクトの死角をなくす 技術としての多様性
+  - [https://speakerdeck.com/suu_mire0726/purodakutonosi-jiao-wonakusu-ji-shu-tositenoduo-yang-xing](https://speakerdeck.com/suu_mire0726/purodakutonosi-jiao-wonakusu-ji-shu-tositenoduo-yang-xing)
+- 学術的根拠から読み解くNotebookLMの音声活用法
+  - [https://speakerdeck.com/shukob/xue-shu-de-gen-ju-karadu-mijie-kunotebooklmnoyin-sheng-huo-yong-fa](https://speakerdeck.com/shukob/xue-shu-de-gen-ju-karadu-mijie-kunotebooklmnoyin-sheng-huo-yong-fa)
+- 『星の世界の地図の話: Google Sky MapをAI Agentで
+  - [https://speakerdeck.com/taniiicom/google-developers-devfest-tokyo-2025](https://speakerdeck.com/taniiicom/google-developers-devfest-tokyo-2025)
 # Opening - Google デベロッパー コミュニティと共に成長しよう
 - DevFestの概要・メリット映像
 - Gemini2の映像
