@@ -65,6 +65,19 @@ font-family:Arial, Helvetica, sans-serif;
 ```
 左から順番に、Webブラウザが最初に表示可能だと判断されたフォントが使用されます。
 全てのフォントが表示できない場合には、代替フォントが使用されます。
+# テキストの半角スペース、タブ、改行をどのように表示させるかを指定：white-space
+```CSS
+element {
+  white-space: nowrap;
+}
+```
+- normal: 初期値。テキスト内の連続するスペースやタブは1つの空白として扱われ、行は自動的に折り返されます。
+- nowrap: 行の折り返しを防ぎ、一行で表示します。連続する空白文字はnormalと同様に1つにまとめられます。
+  - ※<p>要素内のテキストがどんなに長くても改行されずに一行で表示されます。スクロールが必要になることがあります。
+    - overflow-x: scroll;
+- pre: テキスト内のすべての空白文字（スペース、タブ、改行）がそのまま表示されます。行の折り返しは行われません。
+- pre-wrap: preと同様に空白文字をそのまま表示しますが、行は要素の幅に応じて自動的に折り返されます。
+- pre-line: 改行はそのまま表示されますが、連続する空白文字は1つにまとめられます。行は自動的に折り返されます。
 # 背景色：background-color
 - rgba関数で透明度を指定する
 ```CSS
@@ -92,6 +105,25 @@ box-sizingの値であるborder-boxを合わせて指定することで、ブロ
 box-shadow: 5px 5px 20px -5px #cdcdcd;
 ```
 右下に影を追加する
+# 要素に透明度をつける：opacity
+値は0から1までの小数で指定します。
+0に近いほど透明度が高く、1に近いほど不透明度が高くなります。
+- 表示させた要素を透明にします
+```CSS
+<div class='opacity-ex'>
+  <p> 透明になります</p>
+</div>
+
+<style>
+  .opacity-ex {
+    background: rgba (132, 127, 127, 1);
+    opacity: 0;
+  }
+/* 要素全体が透明になるので、p要素「透明になります」や背景色が見えなくなる。rgba()との違いに注意 */
+</style>
+```
+- opacityは要素全体の透明度を指定します。そのため、要素内の背景や文字だけを薄くしたい場合は、個別にrgba()で記述する必要があります。
+- opacity: 0;とdisplay:none;も似ていますが、opacityは非表示でなく透明になるだけなので、 要素の領域は残ります。 そのため、クリックなどのアクションができるといった違いがあります。
 # 要素の角を丸くする：border-radius
 ```CSS
 border-radius: 10px;
@@ -105,6 +137,29 @@ border-radius: 10px;
 - インライン要素への指定
   - 通常、display: inlineが指定されている要素（aタグ、spanタグなど）には、widthを指定することができません。（例外として、imgタグはインライン要素ですが、widthを指定できます）
   - 横幅を変更したい場合、あらかじめdisplay: blockまたはdisplay: inline-blockを指定しておきましょう。
+# 要素の最大幅：max-width
+主にレスポンシブ対応で使用し、閲覧環境によって要素が大きくなりすぎたり、収縮しすぎてしまうことを防ぎます。
+要素の高さは幅に合わせて調節されるため、縦横比を維持するためにheight: auto;をセットで指定します。
+- 例1：画面幅が変わっても500px以上にならないようにする場合
+  - 画面幅に合わせて親要素の80%で伸縮しますが、500px以上は大きくなりません。
+```CSS
+.box {
+    親要素の80%の幅width: 80%;
+    最大幅を500pxに制限max-width: 500px;
+    height: 100px;
+    background-color: #74992e;
+  }
+```
+```HTML
+<div class="box"></div>
+```
+- 例2：画像をブラウザ画面の幅に収める場合
+```CSS
+img {
+    max-width: 100%; 
+    height: auto;
+  }
+```
 # 要素の内側の余白：padding
 - padding-top: 上側
 - padding-right: 右側
@@ -125,3 +180,240 @@ margin: 10px 20px 30px 40px; /* 上・右・下・左(時計回り)で指定 */
 ```
 - ボックスを画面の水平方向で中央に配置する
   - 文章や画像を水平方向で中央に配置したいときには、margin: autoを使います。ただし、ボックスの幅を設定する必要があります。なぜなら、ボックスの幅が設定されていないと、ボックスは全幅を占め、margin: autoは効果がないからです。
+# 箇条書きの設定
+<ul>,<ol>,<li>の箇条書きリストのスタイルを一括指定できます。
+値は半角スペースで区切って記述するか、個々に記述したい場合は次のプロパティを使用します。
+
+- list-style-type：リストの先頭についているマーカーの見た目を変更する際に使用します。
+  - disc：黒丸（ulとliの初期値）
+  - decimal：数字（olの初期値）
+  - circle：中空円
+  - none：表示しない
+- list-style-image：マーカーを画像で指定します。url(画像パス）で記述します。
+- list-style-position:マーカーの位置を指定します。
+- outside：リストボックスの外側に配置します。（初期値）
+- inside：リストボックスの内側に配置します。
+# 擬似クラス
+## 特定の順番にある要素を選択する：:nth-child()
+- evenは、偶数の要素を表します。
+- oddは、奇数の要素を表します。
+- nを使って、倍数番目の要素を選択することもできます。
+  - 例えば、2の倍数番目の要素を選択する場合は2n、3の倍数番目の要素を選択する場合は3nとなります。
+```HTML
+<style>
+li:nth-child(even) {
+  color: red;
+}
+li:nth-child(odd) {
+  color: blue;
+}
+</style>
+<ul>
+  <li>List1</li>
+  <li>List2</li>
+  <li>List3</li>
+  <li>List4</li>
+</ul>
+```
+## 要素の最初の子要素と最後の子要素を選択する：:first-childと:last-child
+## 特定の条件を満たさない要素を選択する：:not()
+```CSS
+p:not(.not-blue) {
+  color: #0066ff;
+}
+```
+## 特定の要素が他の要素を含んでいるかどうかをチェックする：:has()
+:has()と隣接兄弟結合子の+を使うと直後に特定の要素を持つ要素に対してスタイルを適用することができます。
+```HTML
+<style>
+h3:has(+p) {
+  color: red;
+}
+</style>
+<h2>ここの文字色は変わりません。</h2>
+<p>ここはh2要素の兄弟要素になります。</p>
+
+<h3>ここの文字色は赤くなります。</h3>
+<p>ここはh3要素の兄弟要素になります。</p>
+```
+## 複数のセレクタ（選択子）をまとめて書くための便利な機能：:is()
+- :is()の中に複数のセレクタをカンマ,で区切って書くと、そのどれかに当てはまる要素全てに対してスタイルを適用できます。
+- 一般的には、可読性を保つために適切な数にまとめることが推奨されます。実用的には、数十個程度までなら問題なく使えるでしょう。
+```CSS
+section > h1,
+section > h2,
+section > h3 {
+  color: #333333;
+}
+
+↓↓ コードを省略
+
+section:is(h1, h2, h3) {
+  color: #333333;
+}
+```
+## 複数の選択肢から一つを選ぶ：:where()
+ただし、:where() 内のセレクターは詳細度が 0 になります。
+これは、他のスタイルの優先順位が:where()の中のルールよりも強くなることを防ぐためです。
+:is()
+:where()
+これらは、どちらも複数のセレクタをグループ化するための便利な関数です。
+ただし、これらの関数の大きな違いはスタイルの優先順位です。
+
+:is()は引数内のセレクタの優先度を保持します。
+一方、:where()はその優先度を 0 にリセットします
+```HTML
+<style>
+/* :is()では全部ピンクに設定 */
+.isContent :is(.text1, .text2) {
+  color: pink;
+}
+
+/* :where()では全部オレンジに設定 */
+.whereContent :where(.text1, .text2) {
+  color: orange;
+}
+
+/* .text2を緑色に上書き */
+.text2 {
+  color: green;
+}
+</style>
+
+<div class="isContent">
+  <p class="text1">:is()のText1</p>
+  <p class="text2">:is()のText2</p>
+</div>
+<div class="whereContent">
+  <p class="text1">:where()のText1</p>
+  <p class="text2">where()のText2</p>
+</div>
+```
+## マウスカーソル（マウスポインター）を要素の上でかざした時に指定したスタイルを反映させる：:hover
+リンクを作成するaタグと一緒に使われることが多い擬似クラスです。
+```CSS
+a:hover {
+    color: red;
+}
+```
+例1: ボタンにマウスカーソルを合わせると色が変わります
+```CSS
+<style>
+.button {
+  border: 1px solid #000;
+  color: #fff;
+  background-color: blue;
+  padding: 10px;
+  border-radius: 20px;
+  text-decoration: none;
+}
+.button:hover {
+  background-color: red;
+}
+</style>
+<a class="button" href="#">ボタン</a>
+```
+## 要素が選択されたとき：:focus
+例えば、テキストボックスをクリックすると、そのボックスの枠が強調されることがあります。
+## 個別の辺（上、下、左、右）に対してボーダーの幅、スタイル、色を指定するための便利なショートハンド：border-[上下左右]
+```HTML
+<style>
+div  {
+  width: 100px;
+  height: 100px;
+  border-top: 1px solid red;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+  border-left: 1px solid #333;
+}
+</style>
+<div></div>
+```
+# レイアウト
+# カード型レイアウト
+ブログ記事や商品紹介などの情報を見やすく整理するためのレイアウト
+- 画像: 記事の内容を視覚的に示す役割を果たします。
+- タイトル: 各カードのタイトルを表示します。
+- 概要: 記事の短い概要や抜粋を表示します。
+- 詳細リンク: 「続きを読む」や「詳細を見る」などのリンクを設置し、ユーザーが完全な記事にアクセスできるようにします。
+```HTML
+<div class="card">
+  <img src="https://picsum.photos/200/150" alt="ブログ画像">
+  <div class="container">
+    <h4><b>ブログタイトル</b></h4>
+    <p>ブログの概要説明文</p>
+    <a href="article.html">続きを読む</a>
+  </div>
+</div>
+
+<style>
+ .card {
+   border: 1px solid #ccc;
+   padding: 16px;
+   margin: 16px;
+   border-radius: 8px;
+   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+   width: 200px;
+   text-align: center;
+ }
+ .card img {
+   max-width: 100%;
+   height: auto;
+ }
+</style>
+```
+# HTML要素の表示方法を指定するプロパティ:display
+block,inline,inlineblock,noneの4種類
+## display: block;
+要素をブロックに指定します。（<div>や <h1> はデフォルトでblock）
+## display: inline;
+要素をインラインに指定します。（ <a> <img> はデフォルトでinline）
+## display: inline-block;
+要素をインラインブロックに指定します。
+## display: none;
+要素をブラウザ上で非表示にします。
+レスポンシブで表示切り替えしたい時などに使用します
+```CSS
+.element{
+ display: none;
+}
+```
+# 装飾
+## <span>タグ
+<span>タグで囲まれたテキストに、特定のスタイルを適用
+- 文字に下線を引く
+```HTML
+<span>対象</span>
+```
+```HTML
+<style>
+  span{
+ text-decoration: underline;
+}
+</style>
+```
+# 表の装飾
+## テーブルのセルの境界線（ボーダー）をどのように表示するかを指定：border-collapse
+<table>タグに対し、border-collapseプロパティを指定します。
+テーブルのセルの境界線を表示する方法には、
+- border-collapse: collapse;
+- border-collapse: separate;
+
+- border-collapse: collapse;を指定することで、テーブルのセルの境界線を重ねて表示することができます。
+```CSS
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+```
+- border-collapse: separate;を指定することで、テーブルのセルの境界線を分けて表示することができます。
+```CSS
+  table {
+    border-collapse: separate;
+    width: 100%;
+  }
+```
+## 罫線の装飾
+- border: テーブルやセルの境界線の太さ、スタイル、色を指定します。
+- border-spacing: border-collapse: separate;の場合、セル間のスペースを設定します。
+- padding: セル内のコンテンツと境界線の間の余白を調整します。
