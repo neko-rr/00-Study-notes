@@ -35,46 +35,6 @@ code .
 ```powershell
 explorer .
 ```
-# GitHubへ
-## 初めて
-GitHubで新規リポジトリを作成して、URLをメモ  
-VScode等のターミナルで
-```
-git init
-git add .
-git commit -m "first commit"
-```
-```
-git remote add origin https://github.com/username/リポジトリ名
-```
-```
-git branch -M main
-git push -u origin main
-
-```
-
-## 2回目以降（通常）
-```
-git add .
-```
-```
-git commit -m "fix: カメラ機能を追加等" 
-
-```
-```
-git push
-```
-## 2回目以降パターン
-リモートの変更を取り込んでから push（推奨）
-```
-git pull origin main --rebase
-git push origin main
-
-```
-「GitHub 側の変更は不要で、ローカルの内容で完全に上書きしたい」場合のみ：チームでしている時は、避ける
-```
-git push origin main --force
-```
 
 # Renderへのデプロイ方法
 Renderを利用して自分だけのWebサービスをデプロイする  
