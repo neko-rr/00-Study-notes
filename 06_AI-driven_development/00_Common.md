@@ -1,3 +1,4 @@
+仕様駆動開発のツールとしては、Amazonの「Kiro」、GitHubの「Spec Kit」、OSSの「cc-sdd」など多くのツールがあります。
 # 【整理前】被りあり
 #
 チェック項目
