@@ -125,3 +125,6 @@ Cursor は、ignore files（例: .gitignore, .cursorignore）に含まれるも�
 ## Project Rules
 ```md
 ```
+# 設定済
+## Cursorエージェントで .env.example を操作可能にする方法
+[https://qiita.com/ymtdir/items/630dfb8d029f732c54dc](https://qiita.com/ymtdir/items/630dfb8d029f732c54dc)
