@@ -93,4 +93,52 @@ console.log(5 === '5'); // false（型変換なし）
 ```
 - 最初の値が偽である場合
   - &&は最初に偽があるとそこで評価を止める
+```JavaScript
+const value = true && 'false' && 5;
+console.log(value);
+```
+全て真値なので最後の5が出力されます。'false'は文字列であり真値とみなされます。
+# 論理和：||
+左から右に順番に値を見ていき、最初に見つけた真（true）とされる値を返します。もし全てが偽（false）とされる場合は、最後の値を返します。
+```JavaScript
+条件1 || 条件2
+```
+- 真と評価される値
+  - 任意のゼロでない数値（1、-1、100など）
+  - 空でない文字列（"hello"、'world'など）
+  - 空でないオブジェクト（{}、[]を含む）
+- 偽と評価される値
+  - false：論理的な偽
+  - 0：数値のゼロ
+  - ""または''：空の文字列
+  - null：何もない、空の値
+  - undefined：値が未定義
+  - NaN：数値ではない（Not a Number）
+# 論理否定：!
+ある条件が「真」であるか「偽」であるかを反転させたいときに使います。具体的には、真（true）を偽（false）に、偽（false）を真（true）に変換します。
+```JavaScript
+!条件
+```
+```JavaScript
+console.log(!true);
+console.log(!false);
+```
+false  
+true
+```JavaScript
+console.log(!'hoge');
+console.log(!undefined);
+```
+false  
+true
+# if
+```JavaScript
+if (条件) {
+  // 条件が真の場合に実行されるコード
+}
+```
+
+
+
+
 
