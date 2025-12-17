@@ -138,6 +138,85 @@ if (条件) {
 }
 ```
 
+# 関数
+- いくつかの処理をまとめたもの
+- 関数宣言の特徴は、コード順番に関係なく実行されます
+```JavaScript
+function 関数名 (仮引数1, 仮引数2) {実行処理}
+```
+例：引数に渡された数値を2倍する関数doubleを宣言より先に呼び出す
+```JavaScript
+double( 5 ) // 実行結果:  10
+function double(num){  console.log( num * 2) }
+// 関数宣言のため、エラーとならず呼び出せる
+```
+# アロー関数
+- 関数式をより短く記述できる構文。省略形がある。
+- アロー関数は、functionキーワードを使わずに関数を定義し、=>を使って関数の処理を記述
+```JavaScript
+// アロー関数の基本構文
+const 関数名 = (引数1, 引数2, ...) => {
+  // 関数の処理
+};
+```
+例1: 引数に個数と単価を渡し金額を計算するアロー関数を定義する
+```JavaScript
+const payment = (count, price) => {  return count * price };
+```
+例2: 引数が1つの場合()を省略できる。追加：処理が1文の場合、returnも省略できる
+```JavaScript
+const double = count => count * 2;
+```
+例3: 引数に1を足して、コンソールに出力
+```JavaScript
+const onePlusCount = (val) => {
+  val++;
+  console.log(val);
+};
+onePlusCount(0);
+onePlusCount(10);
+```
+1  
+11
+# 分割代入
+## オブジェクトの分割代入
+オブジェクトを分割（分解）し、プロパティを取り出して、個別の変数に代入すること
+```JavaScript
+const myFavoriteAnimal = {
+  name: 'たま',
+  type: 'cat'
+}
+
+// オブジェクトの分割代入
+const { name, type} = myFavoriteAnimal
+
+// 分割代入を使用した結果
+console.log(name) // 'たま'
+console.log(type) // 'cat'
+```
+## 配列の分割代入
+変数定義の右辺に配列を、左辺に配列の値を代入したい変数名を書きます。
+基本的に、右辺の配列の要素は、左辺の対応するインデックスをもつ変数に代入されます。
+```JavaScript
+// 配列の定義
+const myFavoriteAnimal = ['たま', 'cat']
+
+// 配列の分割代入
+const [name, type] = myFavoriteAnimal
+
+// 分割代入を使用した結果
+console.log(name) // 'たま'
+console.log(type) // 'cat'
+```
+インデックスの途中までしか必要ない場合は、以降の要素を省略できます。
+配列のインデックス（index）とは、配列の要素の順番を指します。
+配列の先頭の要素を0番目とし、要素が増えるごとにインデックスも1,2,3,..。と増えていきます。
+```JavaScript
+// 1つ目のみ必要な場合は以下のように指定できます。
+const [name] = myFavoriteAnimal
+console.log(name) // 'たま'
+```
+# スプレッド構文
 
 
 
