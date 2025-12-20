@@ -17,3 +17,14 @@ service_role key（必要に応じてSUPABASE_SERVICE_ROLE_KEYに設定。サー
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
 NEXT_PUBLIC_SUPABASE_URL=（SupabaseのProject URL）
 NEXT_PUBLIC_SUPABASE_ANON_KEY=（Supabaseのanon public key）
+
+Supabase セットアップ
+■ Supabase CLI インストール
+bash
+npm install supabase --save-dev
+■ 初期化
+bash
+npx supabase init
+■ ローカル起動
+bash
+npx supabase start
