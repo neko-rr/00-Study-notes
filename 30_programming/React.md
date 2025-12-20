@@ -18,3 +18,19 @@ npx create-next-app@latest nextjs-tailwind-tutorial --typescript --tailwind --es
 - tailwind.config.ts: Tailwind CSSのカスタマイズを行う設定ファイルです。
 - app/globals.css: Tailwind CSSの基本的なディレクティブ（@tailwind base;など）が記述されています。
 - app/layout.tsx: app/globals.cssがインポートされ、アプリケーション全体に適用されています。
+```PowerShell
+npx create-next-app@latest 作成予定のフォルダ `
+    --ts `
+    --eslint `
+    --app `
+    --src-dir `
+    --tailwind `
+    --import-alias "@/*" `
+    --no-turbopack
+```
+既存フォルダに作成
+```PowerShell
+cd 既存フォルダパス
+npx create-next-app@latest . --ts --tailwind --eslint --app --src-dir --import-alias "@/*"
+```
+
