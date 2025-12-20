@@ -33,4 +33,11 @@ npx create-next-app@latest 作成予定のフォルダ `
 cd 既存フォルダパス
 npx create-next-app@latest . --ts --tailwind --eslint --app --src-dir --import-alias "@/*"
 ```
-
+# ローカルサーバ起動
+```PowerShell
+npm run dev
+```
+変更確認時等にすでに動いている Next.js を止める
+```PowerShell
+taskkill /F /IM node.exe
+```
