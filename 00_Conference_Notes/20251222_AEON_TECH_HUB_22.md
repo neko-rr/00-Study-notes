@@ -1,5 +1,5 @@
 # モダンデータ基盤の最前線：現場から学ぶ実践と挑戦
-- [https://classmethod.connpass.com/event/376624/](https://classmethod.connpass.com/event/376624/)
+- [https://aeon.connpass.com/event/375097/](https://aeon.connpass.com/event/375097/)
 - 参加日：2025年12月22日（月）
 - 12:00～13:00
 - 参加形態：個人参加（プライベート）
