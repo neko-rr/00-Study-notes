@@ -217,6 +217,30 @@ const [name] = myFavoriteAnimal
 console.log(name) // 'たま'
 ```
 # スプレッド構文
+# 配列の各要素をチェックして条件に合うものだけを新しい配列として返す:filter
+配列の各要素をチェックして条件に合うものだけを新しい配列として返す
+```JavaScript
+console.log([1, 2, 3, 4, 5, '1'].filter((number) => number !== '1'));
+```
+[1, 2, 3, 4, 5]
+# 三項演算子
+条件に当てはまるかどうかを判定して、条件式が真（true）の時はコロンの前の値 、偽（false）の時はコロンの後の値を返します。
+```JavaScript
+条件 ? 真の場合の値 : 偽の場合の値
+```
+```JavaScript
+let age = 10;
+
+// IF文
+if (age >= 20) {
+  console.log('私は20歳以上です');
+} else {
+  console.log('私は20歳未満です');
+}
+// 三項演算子
+console.log(age >= 20 ? '私は20歳以上です' : '私は20歳未満です');
+```
+私は20歳未満です
 
 
 
