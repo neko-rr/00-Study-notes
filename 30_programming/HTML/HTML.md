@@ -115,6 +115,12 @@ Webページ内のHTML文書を、ヘッダーやフッター、ナビゲーシ�
   <p>Copyright ©2024 Code Lesson All Rights Reserved.</p>
 </footer>
 ```
+## div
+「div」は「division」の略で、要素をグループ化するために使用
+```HTML
+<div>
+</div>
+```
 # 表：table
 ```HTML
 <table border="1" style="border-collapse: collapse">
