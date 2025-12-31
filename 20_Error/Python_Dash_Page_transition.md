@@ -295,3 +295,186 @@ def display_page(pathname):
 - **手動ルーティングなら** → `app.py` のコールバックに `elif pathname == "/newpage": ...` を追加。  
 
 ---
+# コールバック重複調査：Duplicate callback outputs というエラー
+「registration-store.data を Output に持つ callback を全部探す」という目的例
+```
+cd アプリの場所
+python -c "from app import app; m=app.callback_map; 
+import inspect
+for k,v in m.items():
+    outs = v['output'] if isinstance(v['output'], (list,tuple)) else [v['output']]
+    if any(getattr(o,'component_id',None)=='registration-store' and getattr(o,'component_property',None)=='data' for o in outs):
+        print('\\n', k)
+        for o in outs:
+            print('  ', o, 'allow_dup=', getattr(o,'allow_duplicate',None))"
+```
+このコードは Dash アプリの内部構造（callback_map）を直接調べて、
+特定の Output（registration-store.data）を使っているコールバックを一覧表示するための “診断スクリプト” です。
+
+つまり：
+
+「registration-store の data を更新しているコールバックが複数ないか？」
+を Python から直接チェックするツール
+
+です。
+
+Duplicate callback outputs（重複 Output）を探すための “裏技” ですね。
+【解説】
+```
+python -c "
+from app import app
+m = app.callback_map
+import inspect
+```
+✔ Dash アプリを読み込み、callback_map を取得
+- app.callback_map は Dash が内部で持っている 全コールバックの辞書
+- キー：callback の ID
+- 値：callback の Input / Output / State 情報
+```
+for k, v in m.items():
+```
+全コールバックを1つずつ調べる
+```
+    outs = v['output'] if isinstance(v['output'], (list,tuple)) else [v['output']]
+```
+- Output が単体でも複数でも、必ず「リスト化」する
+- Output が1つ → [output]
+- Output が複数 → そのままリスト
+```
+    if any(getattr(o,'component_id',None)=='registration-store'
+           and getattr(o,'component_property',None)=='data'
+           for o in outs):
+```
+✔ Output の中に
+component_id = "registration-store"  
+component_property = "data"  
+があるかチェック
+
+つまり：
+
+この callback は registration-store.data  を更新しているか？
+
+目的	内容
+①	Dash アプリの全コールバックを取得
+②	registration-store.data を更新している callback を探す
+③	それらの callback の ID を表示
+④	allow_duplicate=True が設定されているか確認
+# コールバック重複対策
+
+方法	安全性	説明
+① Output は1つの callback に統合	⭐⭐⭐⭐⭐	最も一般的で安全
+② callback をまとめる	⭐⭐⭐⭐	triggered_by で分岐
+③ Store を分割する	⭐⭐⭐⭐	大規模アプリで必須
+④ pages 機能でページ分離	⭐⭐⭐⭐	構造が整理される
+⑤ allow_duplicate=True	⭐⭐	例外的に使う
+🎯 結論：Dash で重複 Output を避ける一般的な方法（ベストプラクティス）
+① 1つの Output は 1つの callback だけが担当する（最重要）
+Dash の基本ルール：
+
+同じ Output を複数の callback が更新してはいけない
+
+なので、
+
+registration-store.data
+
+url.pathname
+
+page-content.children  
+などは 1つの callback にまとめるのが基本。
+
+② 複数の処理を 1つの callback に統合する
+重複が起きる典型例：
+
+python
+@app.callback(Output("store", "data"), ...)
+def save_a(...): ...
+
+@app.callback(Output("store", "data"), ...)
+def save_b(...): ...
+これを 1つにまとめる：
+
+python
+@app.callback(Output("store", "data"),
+              [Input("btn-a", "n_clicks"),
+               Input("btn-b", "n_clicks")])
+def save(a, b):
+    if triggered_by("btn-a"):
+        return save_a_logic()
+    if triggered_by("btn-b"):
+        return save_b_logic()
+こうすると Output の重複がゼロになります。
+
+③ allow_duplicate=True を使う（例外的に許可）
+Dash 2.9+ では、どうしても Output を共有したい場合に使えます。
+
+python
+Output("registration-store", "data", allow_duplicate=True)
+ただし注意：
+
+本当に必要なときだけ
+
+UI が壊れないように設計できる人向け
+
+初心者には推奨されない
+
+理紗さんのプロジェクトでは、
+「どうしても必要なときだけ使う」
+という方針が安全です。
+
+④ Store を分割する（1つの Store に詰め込みすぎない）
+重複が起きる理由の1つは：
+
+1つの Store に複数の機能が書き込もうとする
+
+例：
+
+registration-store に
+
+登録情報
+
+画像情報
+
+ページ状態
+を全部入れている
+
+こういう場合は Store を分割するのが一般的。
+
+コード
+registration-store
+photo-store
+ui-state-store
+こうすると、各 Store の Output が独立し、重複しにくくなります。
+
+⑤ ページごとに callback を分離する（pages 機能）
+Dash の pages 機能を使うと：
+
+各ページが独立した callback を持つ
+
+Output の重複が起きにくい
+
+コードが整理される
+
+理紗さんの oshi-app のようにページ数が多い場合は、
+pages 機能は重複防止に非常に有効です。
+
+⑥ callback_map を使って重複を検査する（開発時）
+理紗さんが実行したこのスクリプト：
+
+python
+m = app.callback_map
+これは Dash 内部の callback 一覧を取得する方法で、
+重複 Output を探すときにプロがよく使います。
+
+⑦ Output を “まとめて返す” 設計にする
+複数の UI 要素を更新したいときに、
+Output を分散させると重複しやすい。
+
+例：
+
+python
+@app.callback([Output("a", "children"),
+               Output("b", "children")], ...)
+def update(...):
+    return a_value, b_value
+こうすると 1つの callback が複数 Output を担当するので、
+重複が起きにくくなります。
