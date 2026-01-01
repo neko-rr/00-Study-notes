@@ -1,4 +1,27 @@
 # 基本
+# 要素説明
+## ブロック要素：<div>タグなど
+- width, height：✅指定できる
+- margin, padding：✅指定できる
+- 配置：縦並び
+## インラインブロック要素
+- width, height：✅指定できる
+- margin, padding：✅指定できる
+- 配置：横並び
+## インライン要素<a>タグなど
+- width, height：❌指定でない
+- margin, padding：🔼左右のみ指定できる
+- 配置：縦並び
+# クラス指定：class="クラス名"
+```HTML
+<div class="クラス名"></div>
+```
+- クラスの複数指定：共通の部分があるが、それぞれ小さい変化をつけたい時に便利
+- 例：ボタンの色違いとか
+```HTML
+<div class="クラス名 別のクラス名"></div>
+```
+クラス名毎の間は、半角スペース
 # HTML文書の宣言をする
 ```HTML
 <!DOCTYPE html>
@@ -189,6 +212,11 @@ colspan属性の値は、結合したい列の数を指定します。例えば�
 ```HTML
 <img src="URLそのまま" alt="視覚補助用の説明">
 ```
+# ボタン：<a>
+- インライン要素：widthやheightが指定できない
+```HTML
+
+```
 # 入力欄
 複数のセレクタをコンマ（,）で区切ることで、それらに同じCSSを適用することができます。
 これを用いて、<input>要素と<textarea>要素には同じCSSを適用していきましょう。
@@ -203,5 +231,12 @@ value属性に任意の値を指定することで、ボタンに表示される
 ```
 ## 複数行のテキスト入力を受け取るための要素：<textarea>
 
-
+# ウェブフォント使用：Font Awesome
+```HTML
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+```
+アイコン使用例
+```HTML
+<span class = "fa fa-facebook"></span>
+```
 
