@@ -443,13 +443,60 @@ class クラス名{
 ### プロパティを追加
 - コンストラクタの中で、生成したインスタンスに関する情報を追加
 - コンストラクタの中で「this.プロパティ名 = 値」とすることで、生成されたインスタンスにプロパティと値を追加することができる
-## インスタンスの生成
-クラスから生成したオブジェクトは、インスタンスと呼ぶ
 ```JavaScript
 class Season{
+  constructor() {
+  this.name = "spring";
+  }
 }
 const season = new Season();
+console.log(season.name);
 ```
+出力：spring
+### コンストラクタの引数：値を自由に入れれるようにする
+- 「constructor」の後の括弧「( )」内に引数名を記述することで、その引数をコンストラクタの処理内で使用可能
+- コンストラクタに引数として値を渡すには、「new クラス名()」の括弧「( )」内に値を追加
+```JavaScript
+class Season{
+  constructor(name, quarter) {
+  this.name = name;
+  this.quarter = quarter;
+  }
+}
+const season = new Season("spring", 1);
+console.log(season.name);
+```
+出力：spring
+## インスタンスの生成
+- クラスから生成したオブジェクトは、インスタンスと呼ぶ
+- コンストラクタの中で追加した値はオブジェクトと同様に「インスタンス.プロパティ名」とすることでクラスの外で使用することができる
+```JavaScript
+class Season{
+  constructor() {
+  this.name = "spring";
+  }
+}
+const season = new Season();
+console.log(season.name);
+```
+出力：spring
+## メソッド
+- メソッドは、そのインスタンスの「動作」のようなもの
+- メソッドはクラスの中で定義する：「メソッド名() { }」
+```JavaScript
+class Season{
+  constructor(name, quarter){
+  this.name = name;
+  this.quarter = quarter;
+  }
+  introduction(){
+    cosole.log(`季節は${season.name}!第${season.quarter}四半期の開始です!!`);
+  }
+const season = new Season("spring", 1);
+season.introduction();
+```
+出力：季節はspring!第1四半期の開始です!!
+
 
 
 # 未整理
