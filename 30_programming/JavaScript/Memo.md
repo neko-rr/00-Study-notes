@@ -483,6 +483,8 @@ console.log(season.name);
 ## メソッド
 - メソッドは、そのインスタンスの「動作」のようなもの
 - メソッドはクラスの中で定義する：「メソッド名() { }」
+- メソッドの中でも「this.プロパティ名 = 値」とすることで、プロパティと値を追加することができる
+- メソッドでは、関数と同じように戻り値を使用可能
 ```JavaScript
 class Season{
   constructor(name, quarter){
@@ -490,12 +492,47 @@ class Season{
   this.quarter = quarter;
   }
   introduction(){
-    cosole.log(`季節は${season.name}!第${season.quarter}四半期の開始です!!`);
+    cosole.log(`季節は${this.name}!第${this.quarter}四半期の開始です!!`);
   }
 const season = new Season("spring", 1);
 season.introduction();
 ```
 出力：季節はspring!第1四半期の開始です!!
+### メソッド内でメソッドを使う
+メソッド内で「this.メソッド名()」とすることで、同じクラスの他のメソッドを使うことができる
+## 継承
+- すでにあるクラスをもとに、新しくクラスを作成する方法
+  - 全ての機能を引き継いでいる
+- 継承では元となるクラスを親クラス、新しく作成するクラスを子クラスと呼ぶ
+  - class 子クラス extends 親クラス{}
+- 継承して作成したクラスにも、これまでと同じようにメソッドを追加可能
+- 子クラスで定義した独自のメソッドは、親クラスから呼び出すことは不可
+```JavaScript
+class Season{
+  constructor(name, quarter){
+  this.name = name;
+  this.quarter = quarter;
+  }
+  introduction(){
+    cosole.log(`季節は${this.name}!第${this.quarter}四半期の開始です!!`);
+  }
+class Task extends Season{
+}
+```
+### 継承したメソッドの使用
+```JavaScript
+class Task extends Season{
+}
+const task = new Task("spring", 1);
+task.introduction();
+```
+出力：季節はspring!第1四半期の開始です!!
+### オーバーライド
+- 親クラスと同じ名前のメソッドを子クラスに定義すると、子クラスのメソッドが優先して使用される。
+- 子クラスのメソッドが親クラスのメソッドを上書きしていることから、オーバーライドと呼ぶ。
+- コンストラクタもオーバーライド可能
+  - コンストラクタをオーバーライドする際は1行目に「super()」と記述する必要がある
+  - 親クラスのコンストラクタが引数を受け取る場合には、「super」の後ろの丸括弧「( )」に引数を渡す必要がある
 
 
 
