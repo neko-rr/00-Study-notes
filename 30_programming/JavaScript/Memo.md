@@ -256,7 +256,7 @@ console.log(定数名[0]);
 一度定義した定数には、配列自体を再度代入することはできませんが、配列の要素を更新することはできます
 ```JavaScript
 const 定数名= [値1, 値2, 値3];
-定数名[0] = 値4
+定数名[0] = 値4;
 ```
 出力：[値4, 値2, 値3]
 ## 配列の取り出し：for
@@ -271,6 +271,92 @@ for (let i = 0; i < 配列の変数.length; i++){
 ## オブジェクトを要素に持つ配列（逆も可能）
 - コードが横に長くなることを防ぐために、要素ごとに改行することがよくある
 - 配列の中のオブジェクトのプロパティの値を取り出すには、「配列[インデックス番号].プロパティ名」
+## 配列の最後に新しい要素を追加：.pushメソッド
+```JavaScript
+const 定数名= [値1, 値2, 値3];
+定数名.push(値4);
+```
+[値1, 値2, 値3, 値4]になる
+## 配列の中の要素を1つずつ取り出して、全ての要素に繰り返し同じ処理を行う：.forEachメソッド
+- 配列内の要素が1つずつ順番にアロー関数の引数に代入され、処理が繰り返し実行される
+- 引数に入っている関数はコールバック関数と呼ぶ
+```JavaScript
+const characters = ["みけにゃん", "はちわれ", "白猫";
+
+characters.forEach((character) => {
+  console.log(character);
+});
+```
+出力：みけにゃん　はちわれ　白猫
+## 配列の全ての要素に同じ処理をして新しい配列を作る：.mapメソッド
+呼び出し元の配列の各要素に対して処理を行い、元の配列を変更せずに新しい配列を作成
+- ループ（forの代わり）に使用可能
+```JavaScript
+let 新しい配列 = array.map((element, index, array) => {
+  // 処理
+  return element;
+});
+```
+- element: 現在処理中の要素
+- index: 現在処理中の要素のインデックス（省略可能）
+- array: 元の配列（省略可能）
+```JavaScript
+const users = [
+  { name: 'Smith' },
+  { name: 'Johnson' },
+  { name: 'Williams' },
+  { name: 'Brown' }
+];
+console.log(users.map((user) => 'Mr. ' + user.name));
+```
+['Mr. Smith', 'Mr. Johnson', 'Mr. Williams', 'Mr. Brown']
+### forEachメソッドとの違い
+forEachメソッドは各要素に処理を実行するだけであるのに対して、 mapメソッドは新しい配列を返します。
+新しい配列を必要としない場合や値を返す必要がない場合は、forEachメソッドを使用
+```JavaScript
+const arr = [1,2,3];
+
+const forEachValue = arr.forEach(value => {
+  return value * 100;
+})
+console.log(forEachValue);
+
+const mapEachValue = arr.map(value => {
+  return value * 100;
+})
+console.log(mapEachValue);
+```
+出力
+undefined
+[100, 200, 300]
+## 条件式に合う1つ目の要素を配列の中から取り出す：.findメソッド
+- コールバック関数の中は { return 条件 } と書くことで、条件に合う要素が戻り値となる
+- indメソッドは条件に合う要素が見つかった時に終了するので、条件に合う最初の1つの要素しか取り出せない
+- 配列の要素がオブジェクトの場合もfindメソッドを使うことが可能
+  - オブジェクトのプロパティを条件として使用する場合、そのプロパティを持っているオブジェクトそのものを取り出す
+```JavaScript
+const numbers = [1, 3, 5, 7, 9];
+
+const foundNumber = numbers.find((number) => {
+  return number % 3 === 0;
+});
+
+console.log(foundNumber);
+```
+出力：3
+## 条件に合う要素のみを取り出して新しい配列を作成する：.filterメソッド
+配列の要素がオブジェクトの場合もfilterメソッドを使うことが可能
+```JavaScript
+const numbers = [1, 3, 5, 7, 9];
+
+const filterNumbers = numbers.filter((number) => {
+  return number > 3;
+});
+
+console.log(filterNumbers);
+```
+出力：[3, 5, 7, 9]
+
 # オブジェクト
 - 配列は複数の値を並べて管理するのに対して、オブジェクトはそれぞれの値にプロパティと呼ばれる名前をつけて管理
 - オブジェクトも定数に代入することができる
@@ -533,6 +619,41 @@ task.introduction();
 - コンストラクタもオーバーライド可能
   - コンストラクタをオーバーライドする際は1行目に「super()」と記述する必要がある
   - 親クラスのコンストラクタが引数を受け取る場合には、「super」の後ろの丸括弧「( )」に引数を渡す必要がある
+# ファイルの分割
+- 機能が増えてくると管理しにくいので、ファイルを分割する
+- ファイル名をクラス名にする事が多い
+- 文字列や数値や関数など、どんな値でもexport・import可能
+## クラスを他のファイルでも使用できるようする：export
+-クラスの定義の後で「export default クラス名」とすることで、そのクラスをエクスポート（出力）し、他のファイルへ渡すことが可能
+- export defaultは**デフォルトエクスポート**と呼ばれ、そのファイルがインポートされると自動的に「export default 値」の値がインポートされます。そのためエクスポート時の値の名前と、インポート時の値の名前に違いがあっても問題ありません。
+  - デフォルトエクスポートは1ファイル1つの値のみ使えます
+```JavaScript
+export default クラス名;
+```
+複数の値をエクスポートしたい場合は、「名前付きエクスポート」を使用
+```JavaScript
+export {クラス名1,クラス名2};
+```
+## 他のファイルのクラスを読み込む：import
+他のファイルで定義されているクラスを使用するにはインポート（読込）をする必要があります。使用するファイルの先頭で「import クラス名 from "./ファイル名"」と書くことでインポートすることができます。
+なお、ファイル名の拡張子の「.js」は省略することが
+```JavaScript
+import クラス名 from "./ファイル名";
+```
+名前付きエクスポートした値をインポートする場合
+```JavaScript
+import {クラス名1,クラス名2} from "./ファイル名";
+```
+## パッケージ
+誰かが作った便利なプログラム
+```JavaScript
+import 定数名 from "パッケージ名";
+```
+# コールバック関数とは
+- 引数に渡される関数をコールバック関数と呼ぶ
+- 関数は、関数名の後ろに()をつけると呼び出され、()をつけなければ関数そのものを指す
+- 関数を直接引数の中で定義することも可能
+- コールバック関数では、普通の関数と同じように引数を渡すことが可能
 
 
 
@@ -575,50 +696,4 @@ console.log(updatedUser) // { id: 1, age: 20, job: 'teacher' }
   - レンダリングコスト高、コード複雑化
 - 仮想DOMを噛ます事で、変更差分のみをDOMに反映させる
 
-
-
-# .map
-呼び出し元の配列の各要素に対して処理を行い、元の配列を変更せずに新しい配列を作成
-- ループ（forの代わり）に使用可能
-```JavaScript
-let 新しい配列 = array.map((element, index, array) => {
-  // 処理
-  return element;
-});
-```
-- element: 現在処理中の要素
-- index: 現在処理中の要素のインデックス（省略可能）
-- array: 元の配列（省略可能）
-```JavaScript
-const users = [
-  { name: 'Smith' },
-  { name: 'Johnson' },
-  { name: 'Williams' },
-  { name: 'Brown' }
-];
-console.log(users.map((user) => 'Mr. ' + user.name));
-```
-['Mr. Smith', 'Mr. Johnson', 'Mr. Williams', 'Mr. Brown']
-
-## forEachメソッドとの違い
-forEachメソッドは各要素に処理を実行するだけであるのに対して、 mapメソッドは新しい配列を返します。
-新しい配列を必要としない場合や値を返す必要がない場合は、forEachメソッドを使用
-```JavaScript
-const arr = [1,2,3];
-
-const forEachValue = arr.forEach(value => {
-  return value * 100;
-})
-console.log(forEachValue);
-
-const mapEachValue = arr.map(value => {
-  return value * 100;
-})
-console.log(mapEachValue);
-```
-出力
-undefined
-[100, 200, 300]
-
-# .filter
 
