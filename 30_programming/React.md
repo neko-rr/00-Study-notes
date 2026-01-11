@@ -1,10 +1,27 @@
 # Reactとは
-- コンポーネント:小さな部品(HTML・CSS・JavaScript一纏め)を階層構造で組み立てる
-- コンポーネント1つに付き1ファイルにする
-- インポートとエクスポート必須
-- コンポーネントとファイル名を揃えるのが基本
-# コンポーネント
-exportを前に付ける事で他のファイルから参照可能
+- App.jsに書かれているJSXは最終的にHTMLに変換されて、ブラウザに表示される。Reactのコードを実際にブラウザに表示するには、App.js以外にもindex.jsとindex.htmlというファイルが必要
+- index.js内で「ReactDOM.render(<App />, ...」と書くことで、App.jsのJSXが、HTMLに変換される（定型文）
+  - さらに「..., document.getElementById('id名'));」と書くことで、変換されたHTMLがindex.htmlの指定したid名の要素の中に挿入される。今回は、id名rootを指定しています。最終的に、index.htmlの内容がブラウザに表示される。
+  - index.html内でstylesheet.cssを読み込むことで、CSSを適用することが可能
+- 表示の流れ：コンポーネント.js⇒app.js（挿入）⇒index.js（変換）⇒index.html（挿入）
+```
+.
+└── React
+    ├── src
+    │   ├── components
+    │   │   ├── app.js
+    │   │   └── コンポーネント毎の.js
+    │   └── index.js
+    └── index.html
+```
+## index.js定型文
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
 # JXS記法
 - returnの中は、1つのタグで囲う必要がある（return内に複数の要素があるとエラーになる）
   - ```<div></div>```や```<h1></h1>```
@@ -19,6 +36,13 @@ exportを前に付ける事で他のファイルから参照可能
 ## imgタグの注意点
 - imgタグは、HTMLでは、```<img src='画像のURL'>```のように閉じタグが必要ありませんでした。
 一方、JSXでは閉じタグが必要になります。```<img src='画像のURL' />```のように、タグの終わりにスラッシュ「/」を記述します。
+## JSXとクラス名
+- JSXにクラス名をつける場合、HTMLと書き方が異なる
+- クラス名は、「className='クラス名'」とします。
+- CSSの指定方法は変わりません。
+```js
+<タグ className='クラス名'></タグ>
+```
 # App.jsの構成
 - App.jsファイル
 - JSXとJS ( JavaScript ) の記述部分は分かれている。renderメソッドのreturn内のみ、JSXで記述する必要がある。JSXで記述された要素はブラウザに表示される
@@ -63,11 +87,182 @@ class App extends React.Component {
 
 export default App;
 ```
+# イベント
+- 「何かが起きたときに、処理を実行するように指定」する
+- アロー関数を使って、タグ内に「イベント名={() => { 処理 }}」
+  - アロー関数はJavaScriptなので、{}で囲む
+## onClickイベント
+- 「クリックされた時に処理を実行する」
+- イベント名にonClickを指定
+```js
+<button onClick={() => {処理}}>ボタン表示</button>
+```
 # state
+- Step1：stateの定義をしてstateを利用できるようにする
+  - constructorの中で、オブジェクトとして定義する
+  - ここで定義したオブジェクトがstateの初期値となる
+  - その他の部分の、「constructor(props)」や「super(props);」といった処理はいつも同じ記述をするため、定型文
+- Step2：stateを表示
+  - this.stateはオブジェクトなので、this.state.プロパティ名とすることで、指定したstateのプロパティ名に対応する値を取得可能
+- Step3：stateの変更
+  - this.setState({プロパティ名: 変更する値})とすることで、指定されたプロパティに対応するstateの値が変更されます。その結果、「this.state.name」で表示できる値も変更されます。
+  - 今回はボタンがクリックされた時に、名前の表示を変えるために、右の図のようにsetStateをonClick内で行う
+  - Reactでは、下図のように「stateの値に直接代入することで値を変更してはいけない」という決まりがある
+    - 値を変更したい場合は、setStateを使用
+```js
+import React from 'react';
 
-# props
-動的情報
+class App extends React.Component {
+  // Step1：定型文
+  constructor(props) {
+    super(props);
+    // Step1：stateを定義
+    this.state = {name:"ねこ"}
+    
+  }
 
+  render() {
+    return (
+    	<div>
+        // Step2：stateを表示
+    	  <h1>こんにちは、{this.state.name}さん！</h1>
+        {/* Step3：onClickの処理に、stateを変更する処理 */}
+        <button onClick={() => {this.setState({name:"ねこ"})}}>ねこ</button>
+        <button onClick={() => {this.setState({name:"人間"})}}>人間</button>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+## stateのメソッド化
+- メソッドの作成
+  - メソッドはイベント内で呼び出すことも可能
+  - onClick={() => {this.メソッド名()}}とすることで、クリックされたときに、App.js内の指定したメソッドを実行することができる
+
+【App.js】
+```js
+import React from 'react';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {name:"ねこ"}
+    
+  }
+
+  // handleClickメソッドを定義
+  handleClick(name){
+    this.setState({name: name});
+  }
+
+  render() {
+    return (
+    	<div>
+    	  <h1>こんにちは、{this.state.name}さん！</h1>
+        {/* onClickイベント内の処理を、handleClickメソッドを呼び出す処理に変更：変更前this.setState({name:"ねこ"}) */}
+        <button onClick={() => {this.handleClick("ねこ")}}>ねこ</button>
+        <button onClick={() => {this.handleClick("人間")}}>人間</button>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+# コンポーネント
+- コンポーネント:小さな部品(HTML・CSS・JavaScript一纏め)を階層構造で組み立てる
+- 一度作れば何度でも呼び出すことが可能
+- コンポーネント1つに付き1ファイルにする
+- インポートとエクスポート必須
+- コンポーネントとファイル名を揃えるのが基本
+- まず、Reactをインポートします。そして、React.Componentを継承するLanguageクラスを作成します。このクラスがコンポーネントとなる
+  - 作成したクラスの中で、renderメソッドを定義し、return内にJSXを記述する。
+
+【個別コンポーネント.js】
+```js
+import React from 'react';
+
+class Language extends React.Component{
+  render(){
+    return(
+      <div className='language-item'>
+        <div className='language-name'>HTML & CSS</div>
+        <img className='language-image' src='画像URL' />
+      </div>
+      )
+  }
+}
+```
+## コンポーネントの表示
+- 1:App.js内でLanguageコンポーネントを呼び出すには、作成したコンポーネントをコンポーネントファイル内でexportする必要がある
+- 2:App.jsで、コンポーネントをインポート
+- 3:App.jsで、JSX内に「<コンポーネント名 />」と書く
+# 変えたい部分の表示を変更：props
+- 動的情報
+- App.jsから、各言語の名前と画像のデータを個別コンポーネントに渡すことによって、言語ごとに表示を変えることができます。App.jsから渡すこのデータをprops（プロップス）という
+- propsは、「props名=値」という形で、コンポーネントを呼び出す箇所で渡す
+
+【App.js】
+```js
+  render() {
+    return (
+    	<div>
+        <button
+          name="ねこ"
+        />
+      </div>
+    );
+  }
+}
+```
+- 渡されたpropsは、this.propsで取得可能
+- this.propsは{ props名: 値}というオブジェクトになる
+  - 「this.props.props名」とすることでpropsの値を取得可能
+
+【個別コンポーネント.js】
+```js
+import React from 'react';
+
+class Language extends React.Component{
+  render(){
+    return(
+      <div className='language-item'>
+        <div className='language-name'>{this.props.name}</div>
+        <img className='language-image' src={this.props.image} />
+      </div>
+      )
+  }
+}
+```
+## 繰り返しコンポーネントを利用：.map
+- JSXをmapを用いて効率的に表示している例
+- mapメソッドで配列fruitListの各要素に対して順に処理を行い、各要素を<p>タグで囲んで表示しています。mapメソッドの戻り値はJSXなので、引数であるfruitItemは中括弧{}で囲むことに注意
+
+【App.js】
+```js
+const =[マップで使用したい配列定義]
+（中略）
+    return (
+      <div>
+        <h1>言語一覧</h1>
+        <div className='language'>
+          {languageList.map((languageItem) => {
+            return (
+              <Language
+                name = {languageItem.name}
+                image = {languageItem.image}
+              />
+            )
+          })}
+          
+        </div>
+      </div>
+    );
+  }
+}
+```
 
 
 # 実装
