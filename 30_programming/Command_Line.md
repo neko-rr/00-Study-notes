@@ -105,3 +105,16 @@ ripgrep で全固定色を抽出
 Tailwind / CSS変数に置き換える計画を立てる
 
 PR で段階的にリファクタリング
+# 何がローカル起動を重複させているか確認してストップ（更新されていない時）
+8050のLISTENを掴んでいるPIDを取得（PowerShell推奨）
+```bash
+Get-NetTCPConnection -LocalPort 8050 -State Listen | Select-Object LocalAddress,LocalPort,OwningProcess
+```
+そのPIDが何か確認
+```bash
+Get-Process -Id 13684,21060,8304,16184,16836,23316 | Format-Table Id,ProcessName,Path
+```
+停止（python/gunicorn 等、8050を掴んでるものを全部止める）
+```bash
+Stop-Process -Id 13684,21060,8304,16184,16836,23316 -Force
+```
