@@ -14,7 +14,23 @@
     │   └── index.js
     └── index.html
 ```
-## index.js定型文
+## index.jsx定型文
+- React 18 で導入された新しいルート API（createRoot）を使っている
+- createRootは画面の特定の部分を管理するための準備をし、root.renderはその部分に実際に表示したい内容を描き出します。
+```jsx
+import React from 'react';
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+```
+【アプリケーションの更新】
+- ウェブアプリケーションの内容を更新したいときに、どの部分を新しくするかを指定して、効率よく画面を変えるために使います。
+- ウェブページの中のidがappという部分にMyComponentという新しい内容を表示します。これにより、ページ全体を再読み込みすることなく、特定の部分だけを更新できます。
+```jsx
+import React from 'react';
+const root = ReactDOM.createRoot(document.getElementById('app'));
+root.render(<MyComponent />);
+```
+React 17 以前の古いレンダリング方式（ReactDOM.render）（非推奨）
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -29,7 +45,32 @@ ReactDOM.render(<App />, document.getElementById('root'));
   - 回避のためにReact限定の空タグがある<></>
 - BABELが、本来JavaScriptで無いコードをJavaScriptに変換してくれている(**HTMLのように書ける**)
 - ```<br />```のような自己終了タグは明示的に閉じる必要がある
-- コンポーネントは、単一のトップレベル要素しか返せない
+- コンポーネントは、単一のトップレベル要素しか返せない  
+
+関数コンポーネントと組み合わせると関数ベースでコンポーネントを定義可能
+```jsx
+const ComponentName = () => {
+  return (
+    <div>
+      <h1>Hello, World!</h1>
+    </div>
+  );
+};
+```
+- React.Fragmentや<>は、複数の要素を一つにまとめる機能をしますが、実際のHTMLには何も出力されません。
+  - 複数の要素を一つの親要素で包む必要があるとき、不要なHTMLタグを追加したくない場合です。
+  - <React.Fragment>の短縮形である<>
+```jsx
+<React.Fragment>
+  <ChildComponent1 />
+  <ChildComponent2 />
+</React.Fragment>
+
+<>
+  <ChildComponent1 />
+  <ChildComponent2 />
+</>
+```
 ## JXSのコメント
 - JSXを{/* */}で囲むと、その部分はコメントになる
 - 正しくコメントにできている場合は、囲んだ部分が灰色になる
@@ -97,6 +138,20 @@ export default App;
 ```js
 <button onClick={() => {処理}}>ボタン表示</button>
 ```
+# フック関数
+Reactのフック関数は、関数コンポーネントで状態やライフサイクルの機能を使うための仕組みです。これにより、よりシンプルで再利用可能なコードを書くことができます。フック関数は通常、useで始まる名前で定義され、Reactの組み込み関数として提供されています。
+- stateは現在の状態を表し、setStateは状態を更新するための関数です。initialStateは初期値
+```jsx
+import { useState } from 'react';
+
+const [state, setState] = useState(initialState);
+```
+フック関数は、Reactの関数コンポーネントで状態やライフサイクル機能を使うための特別な関数です。フックを使うことで、クラスコンポーネントを使わずにシンプルで再利用可能なコードが書けます。状態を持つコンポーネントを簡単に作成できるため、開発が効率的になる
+- useStateは状態管理
+- useEffect: コンポーネントのライフサイクルに応じて副作用（データ取得やDOM操作など）を管理します。
+- useContext: コンテキストAPIを使って、コンポーネント間でデータを共有します。
+- useReducer: 複雑な状態管理を行うために、Reduxのようなリデューサーを使います。
+- useRef: DOM要素や値を保持するための参照を作成します。
 # state
 - Step1：stateの定義をしてstateを利用できるようにする
   - constructorの中で、オブジェクトとして定義する
@@ -135,6 +190,23 @@ class App extends React.Component {
 }
 
 export default App;
+```
+状態管理
+- ユーザーの入力やアプリケーションの動作に応じて表示を変えるために重要
+- useStateを使ってcountという状態を管理しています。ボタンをクリックするたびにsetCountが呼ばれ、countが1ずつ増加します
+```jsx
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>現在のカウント: {count}</p>
+      <button onClick={() => setCount(count + 1)}>カウントアップ</button>
+    </div>
+  );
+}
 ```
 ## stateのメソッド化
 - メソッドの作成
@@ -180,8 +252,8 @@ export default App;
 - まず、Reactをインポートします。そして、React.Componentを継承するLanguageクラスを作成します。このクラスがコンポーネントとなる
   - 作成したクラスの中で、renderメソッドを定義し、return内にJSXを記述する。
 
-【個別コンポーネント.js】
-```js
+【個別コンポーネント.jsx】
+```jsx
 import React from 'react';
 
 class Language extends React.Component{
@@ -193,6 +265,45 @@ class Language extends React.Component{
       </div>
       )
   }
+}
+```
+【個別コンポーネント.jsx】
+- functionは関数を定義するためのキーワード
+- 関数コンポーネントの名前は大文字で始めるのが一般的
+- 利用したい箇所で関数コンポーネント<ComponentName />と記述することで関数コンポーネントを利用する
+- 同じデザインのボタンを何度も使いたいときに、関数コンポーネントを使ってボタンを一つの部品として作る
+```jsx
+function ButtonComponent() {
+  return (
+    <button>Click me!</button>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <ButtonComponent />
+    </div>
+  );
+}
+```
+アロー関数による記法
+- アロー関数を使って function の表記を省略
+```jsx
+const MyComponent = () => {
+  return (
+    <div>
+      <h1>Hello, World!</h1>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <MyComponent />
+    </div>
+  );
 }
 ```
 ## コンポーネントの表示
