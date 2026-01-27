@@ -1,4 +1,5 @@
 # RAKUS AI Meetup Vol.2
+- [https://rakus.connpass.com/event/378121/](https://rakus.connpass.com/event/378121/)
 - 参加日：2026年1月21日（水）
 - 19:00～20:30
 - 参加形態：個人参加（プライベート）
