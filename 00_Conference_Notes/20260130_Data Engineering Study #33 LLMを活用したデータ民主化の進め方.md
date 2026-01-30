@@ -1,6 +1,6 @@
 # Data Engineering Study #33 LLMを活用したデータ民主化の進め方
 - [https://forkwell.connpass.com/event/377153/](https://forkwell.connpass.com/event/377153/)
-- 参加日：2026年1月29日（木）
+- 参加日：2026年1月30日（金）
 - 19:00～21:05
 - 参加形態：個人参加（プライベート）
 - オンライン
