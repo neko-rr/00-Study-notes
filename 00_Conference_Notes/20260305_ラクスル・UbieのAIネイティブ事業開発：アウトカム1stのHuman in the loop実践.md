@@ -1,6 +1,6 @@
 # ラクスル・UbieのAIネイティブ事業開発：アウトカム1stのHuman in the loop実践
 - [https://findy.connpass.com/event/384691/](https://findy.connpass.com/event/384691/)
-- 参加日：2026年3月5日（火）
+- 参加日：2026年3月5日（木）
 - 12:00～13:00
 - 参加形態：個人参加（プライベート）
 - オンライン
