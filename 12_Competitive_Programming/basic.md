@@ -47,6 +47,15 @@ cnt = Counter(l)
 print(cnt[0])
 # 2
 ```
+## リストのインデックスを単純に
+リストで隣合う数字をビット処理するためにインデックスで指定
+```Python
+ans = []
+n = len(nums)
+  for i in range(n - 1):
+    ans.append(nums[i] | nums[i + 1])
+print(ans)
+```
 ## インデックスにアクセスする
 Pythonのループ内で特定の条件が満たされたときにアイテムのインデックス番号を出力するためには、enumerate関数を使うのが便利です。enumerate関数は、ループ中にインデックスとアイテムの両方を提供してくれます。
 ```Python
