@@ -1,20 +1,23 @@
 # 競技プログラミングメモ
-- [AtCoder](https://atcoder.jp/home)
-  - 日本で運営、日本語
-  - レート対象以外のコンテストに参加しても順位変わらない
-- [LeetCode](https://leetcode.com/)
-  - 英語
-  - コインでグッズがもらえるみたい？
-  - 毎日、タスク（1日1問）でコインもらえる
-    - 朝9時が切り替わり時間
-  - ランクの仕組は、累計問題回答数
-    - [競プロ初心者がLeetCodeを150日間継続した話](https://qiita.com/kabuakantech/items/fce603dc9a764a60b967)
-  - コンテスト：参加でもコイン貰える（1問は回答必須）
-    - Weekly Contest(毎週 日曜日11:30-13:00)
-    - Biweekly Contest(隔週 土曜日23:30-25:00)
-    - 生成AI使用不可
-  - 有名企業の面接対策とかが課金で可能
-  - 有名なのは、ここ
+## [AtCoder](https://atcoder.jp/home)
+- 日本で運営、日本語
+- レート対象以外のコンテストに参加しても順位変わらない
+## [LeetCode](https://leetcode.com/)
+- 英語
+- コインでグッズがもらえるみたい？
+- 毎日、タスク（1日1問）でコインもらえる
+ - 朝9時が切り替わり時間
+- ランクの仕組は、累計問題回答数
+  - [競プロ初心者がLeetCodeを150日間継続した話](https://qiita.com/kabuakantech/items/fce603dc9a764a60b967)
+- コンテスト：参加でもコイン貰える（1問は回答必須）
+  - Weekly Contest(毎週 日曜日11:30-13:00)
+  - Biweekly Contest(隔週 土曜日23:30-25:00)
+  - 生成AI使用不可
+- バッジ一覧[https://github.com/ChinemeremChigbo/LeetCode-Badges](https://github.com/ChinemeremChigbo/LeetCode-Badges)
+  - 毎月、毎日提出バッジ
+  - 年間異なる日付の提出バッジの最大日数は、300日
+- 有名企業の面接対策とかが課金で可能
+- 有名なのは、ここ
 # 競技プログラミングの習慣
 - AI禁止が多いが、検索や本の参照OKが多いみたい
   - AI禁止でも自動補完がOK等、微妙な違いがあるから確認してから参加する事
