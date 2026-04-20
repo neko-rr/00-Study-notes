@@ -4,6 +4,13 @@
 - [Pandas DataFrameで条件に基づく行と列の選択方法](https://qiita.com/zum-m/items/35e39696382545d05c68)
 - 重複は、ここより、これを見る
   - [pandas.DataFrame, Seriesの重複した行を抽出・削除](https://note.nkmk.me/python-pandas-duplicated-drop-duplicates/)
+- [pandasのデータ型dtype一覧とastypeによる変換（キャスト）](https://note.nkmk.me/python-pandas-dtype-astype/#pandasdataframedtype_1)
+- [pandas.DataFrameを結合するmerge, join（列・インデックス基準）](https://note.nkmk.me/python-pandas-merge-join/)
+- データ連結
+  - [Pythonデータ分析 | pandasテーブル結合メソッド早見表](https://qiita.com/kakiuchis/items/9624437fc57aff149774)
+  - [pandas.DataFrameを結合するmerge, join（列・インデックス基準）](https://note.nkmk.me/python-pandas-merge-join/)
+- [【pandas】melt, pivot：縦横変換【データフレーム処理】](https://datasciencemore.com/python-pandas-melt-pivot/)
+- [pandas.DataFrame, Seriesをソートするsort_values, sort_index](https://note.nkmk.me/python-pandas-sort-values-sort-index/)
 # 列名
 パラメータを使用して、カスタム列名を設定できますcolumns。まず、データフレームに表示される順序で列名のリストを作成します。
 ```Python
@@ -126,6 +133,34 @@ def modifySalaryColumn(employees: pd.DataFrame) -> pd.DataFrame:
     employees['salary'] = employees['salary'] * 2
     return employees
 ```
+# 列の型変更
+```Python
+import pandas as pd
+
+def changeDatatype(students: pd.DataFrame) -> pd.DataFrame:
+    students = students.astype({'grade': 'int64', 'average': 'float64'})
+    return students
+```
+```Python
+データ型dtype	型コード	説明
+int8	i1	符号あり8ビット整数型
+int16	i2	符号あり16ビット整数型
+int32	i4	符号あり32ビット整数型
+int64	i8	符号あり64ビット整数型
+uint8	u1	符号なし8ビット整数型
+uint16	u2	符号なし16ビット整数型
+uint32	u4	符号なし32ビット整数型
+uint64	u8	符号なし64ビット整数型
+float16	f2	半精度浮動小数点型（符号部1ビット、指数部5ビット、仮数部10ビット）
+float32	f4	単精度浮動小数点型（符号部1ビット、指数部8ビット、仮数部23ビット）
+float64	f8	倍精度浮動小数点型（符号部1ビット、指数部11ビット、仮数部52ビット）
+float128	f16	四倍精度浮動小数点型（符号部1ビット、指数部15ビット、仮数部112ビット）
+complex64	c8	複素数（実部・虚部がそれぞれfloat32）
+complex128	c16	複素数（実部・虚部がそれぞれfloat64）
+complex256	c32	複素数（実部・虚部がそれぞれfloat128）
+bool	?	ブール型（True or False）
+object	O	Pythonオブジェクト型
+```
 # 列名行名変更
 ```Python
 df_copy.rename(columns={'A': 'Col_1'}, index={'ONE': 'Row_1'}, inplace=True)
@@ -145,12 +180,62 @@ def renameColumns(students: pd.DataFrame) -> pd.DataFrame:
     )
     return students
 ```
+# 欠損値の補完例
+列指定の欠損値を「０」にする
+```Python
+import pandas as pd
 
+def fillMissingValues(products: pd.DataFrame) -> pd.DataFrame:
+    products.fillna({'quantity': 0 }, inplace=True)
+    return products
+```
+速度が速いのは、これ
+```Python
+import pandas as pd
 
+def fillMissingValues(products: pd.DataFrame) -> pd.DataFrame:
+    products['quantity'].fillna(0, inplace=True)
+    return products
+```
+# 表を縦に連結
+```Python
+import pandas as pd
 
+def concatenateTables(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:
+    return pd.concat([df1, df2], ignore_index=True)
+```
+# ピポット
+```Python
+import pandas as pd
 
+def pivotTable(weather: pd.DataFrame) -> pd.DataFrame:
+    ans = weather.pivot(index='month', columns='city', values='temperature')
+    month_order = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    ans = ans.reindex(month_order)
+    return ans
+```
+# .melt（縦変換・ピポットの反対）
+```Python
+import pandas as pd
 
-# 
+def meltTable(report: pd.DataFrame) -> pd.DataFrame:
+    ans = report.melt(
+        id_vars="product", 
+        value_vars=["quarter_1", "quarter_2", "quarter_3", "quarter_4"],
+        var_name="quarter",
+        value_name="sales" 
+    )
+    return ans
+```
+# 並び替えして列降順の別列のみ表示
+```Python
+import pandas as pd
+
+def findHeavyAnimals(animals: pd.DataFrame) -> pd.DataFrame:
+    return animals[animals['weight'] > 100].sort_values(by='weight', ascending=False)[['name']]
+```
+
+#
 ```Python
 
 ```
