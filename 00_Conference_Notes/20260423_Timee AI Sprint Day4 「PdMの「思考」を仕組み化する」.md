@@ -1,6 +1,6 @@
 # Timee AI Sprint Day4 「PdMの「思考」を仕組み化する
 - [https://timeedev.connpass.com/event/390333/](https://timeedev.connpass.com/event/390333/)
-- 参加日：2026年4月22日（水）
+- 参加日：2026年4月23日（木）
 - 12:05～12:50
 - 参加形態：個人参加（プライベート）
 - オンライン
