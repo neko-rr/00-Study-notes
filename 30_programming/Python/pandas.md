@@ -11,6 +11,9 @@
   - [pandas.DataFrameを結合するmerge, join（列・インデックス基準）](https://note.nkmk.me/python-pandas-merge-join/)
 - [【pandas】melt, pivot：縦横変換【データフレーム処理】](https://datasciencemore.com/python-pandas-melt-pivot/)
 - [pandas.DataFrame, Seriesをソートするsort_values, sort_index](https://note.nkmk.me/python-pandas-sort-values-sort-index/)
+- SQL
+  - [SQL ⇄ Pandas 変換チートシート（上級対応）](https://qiita.com/triple4649/items/6443cedcb85c0a8510f1)
+  - [Pandas: SQLを書くようにデータ分析](https://zenn.dev/datasciencekun/articles/f3f804f65231cf)
 # 列名
 パラメータを使用して、カスタム列名を設定できますcolumns。まず、データフレームに表示される順序で列名のリストを作成します。
 ```Python
@@ -233,6 +236,66 @@ import pandas as pd
 
 def findHeavyAnimals(animals: pd.DataFrame) -> pd.DataFrame:
     return animals[animals['weight'] > 100].sort_values(by='weight', ascending=False)[['name']]
+```
+# 条件指定して出力：複数条件・複数列
+- pandasは'or'と'and'表現不可
+  - ORは、'|'
+  - ANDは、'&'
+```Python
+import pandas as pd
+
+def big_countries(world: pd.DataFrame) -> pd.DataFrame:
+    ans = world.loc[(world['area'] >= 3000000) | (world['population'] >= 25000000), ['name', 'population', 'area']]
+    return ans
+```
+```Python
+# and
+df[(df['sex'] == 'Female') & (df['total_bill'] > 20)]
+# or
+df[(df['sex'] == 'Female') | (df['total_bill'] > 20)]
+# in
+df[df['total_bill'].isin([21.01, 23.68, 24.59])]
+# not
+df[-(df['sex'] == 'Male')]
+df[-df['total_bill'].isin([21.01, 23.68, 24.59])]
+# string function
+df[(-df.sex.str.contains('ema'))]
+```
+## 2つの表を結合して、条件指定1列を列名変更
+```Python
+import pandas as pd
+
+def find_customers(customers: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
+    ans = pd.merge(customers, orders, left_on=['id'], right_on=['customerId'], how='left')
+    ans = ans.loc[ans['customerId'].isna(), ['name']]
+    ans = ans.rename(columns={'name': 'Customers'})
+    return ans
+```
+```
+Input: 
+Customers table:
++----+-------+
+| id | name  |
++----+-------+
+| 1  | Joe   |
+| 2  | Henry |
+| 3  | Sam   |
+| 4  | Max   |
++----+-------+
+Orders table:
++----+------------+
+| id | customerId |
++----+------------+
+| 1  | 3          |
+| 2  | 1          |
++----+------------+
+Output: 
++-----------+
+| Customers |
++-----------+
+| Henry     |
+| Max       |
++-----------+
 ```
 
 #
