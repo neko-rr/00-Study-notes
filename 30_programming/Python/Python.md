@@ -244,6 +244,70 @@ for fruit_key in fruits:
 ```Python
 辞書名[新しいキー名] = 値
 ```
+# linked list（連結リスト）
+連結リストは、データ（ノード）が次のノードを指す形でつながっているデータ構造です。
+例えば,1→2→3→4というデータを連結リストで表す
+```Python
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val  # ノードの値
+        self.next = next  # 次のノードへの参照
+
+# 連結リストの作成例
+node1 = ListNode(1)
+node2 = ListNode(2)
+node3 = ListNode(3)
+node4 = ListNode(4)
+
+node1.next = node2
+node2.next = node3
+node3.next = node4
+
+# 連結リストの値を表示する関数（4で終了）
+def print_linked_list_to_4(head):
+    current = head
+    while current:
+        print(current.val, end=" -> ")
+        if current.val == 4:
+            break  # 4が出たらループを終了
+        current = current.next
+    print("End")  # 終了を示す"End"を表示
+
+# 連結リストの値を表示
+print_linked_list_to_4(node1)
+```
+出力：1 -> 2 -> 3 -> 4 -> End
+### ListNodeの形
+```
+┌──────────────┐
+│  val（値）    │ 例: 3
+│  next（次）→  │ 次のノードへの矢印
+└──────────────┘
+```
+- head は ノードそのものではなく、「最初のノードへの矢印」 だと思ってください。
+- head = head.next をすると、矢印が 次のノードに移動 します
+### Optional[ListNode]　：LeetCodeだけ？
+Optional[ListNode] とは、「ListNode型のオブジェクト、または None を取る可能性がある」 ことを示します。つまり、None を許容することを意味します。
+- Optional[ListNode]を使用するメリット
+  - 他の人がコードを読んだときに、「ここは None も入るんだな」とすぐに理解できる。
+  - コードの可読性が向上する
+  - None を考慮しないバグを減らせる
+## ノード数を数える
+```Python
+count = 0
+dummy_head = head
+while dummy_head is not None:
+  count += 1
+  dummy_head = dummy_head.next
+```
+## ListNode⇒リストへの変換
+```Python
+res = []
+while head:
+    res.append(head.val)
+    head = head.next
+print(res)  # [1, 2, 3]
+```
 # 繰り返し：for
 変数には、リストの要素が先頭から順に1つずつ入っていき、その上でfor文の中の処理が実行されます。処理はリストの要素の数だけ繰り返し行われます（繰り返し処理）。
 また、変数名は自由ですが、リスト名の単数形にすることが慣習上多い
