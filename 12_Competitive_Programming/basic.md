@@ -1,3 +1,12 @@
+# 参考URL
+## 個数数える
+- [PythonのCounterでリストの各要素の出現個数をカウント](https://note.nkmk.me/python-collections-counter/#count)
+## 含む・位置
+- [Pythonで文字列を検索（〜を含むか判定、位置取得）](https://note.nkmk.me/python-str-search/)
+## 辞書
+- [Pythonの辞書（dict）のforループ処理（keys, values, items）](https://note.nkmk.me/python-dict-keys-values-items/#items-for)
+## 出力
+- [Pythonの真偽値bool型（True, False）と他の型との変換・判定](https://note.nkmk.me/python-bool-true-false-usage/)
 # リスト
 ## リストを出力する
 ```Python
