@@ -3,8 +3,15 @@
 - [PythonのCounterでリストの各要素の出現個数をカウント](https://note.nkmk.me/python-collections-counter/#count)
 ## 含む・位置
 - [Pythonで文字列を検索（〜を含むか判定、位置取得）](https://note.nkmk.me/python-str-search/)
+- [Pythonで文字列を抽出（位置・文字数、正規表現）](https://note.nkmk.me/python-str-extract/)
+- [Pythonのリスト（配列）の特定の要素を抽出、置換、変換](https://note.nkmk.me/python-list-select-replace/)
+## 削除
+- [Pythonでリスト（配列）の要素を削除するclear, pop, remove, del](https://note.nkmk.me/python-list-clear-pop-remove-del/)
 ## 辞書
 - [Pythonの辞書（dict）のforループ処理（keys, values, items）](https://note.nkmk.me/python-dict-keys-values-items/#items-for)
+## 集合
+- [Pythonで階乗、順列・組み合わせを計算、生成](https://note.nkmk.me/python-math-factorial-permutations-combinations/)
+- [Pythonで複数のリストの直積（デカルト積）を生成するitertools.product](https://note.nkmk.me/python-itertools-product/)
 ## 出力
 - [Pythonの真偽値bool型（True, False）と他の型との変換・判定](https://note.nkmk.me/python-bool-true-false-usage/)
 # リスト
