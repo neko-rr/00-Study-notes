@@ -243,6 +243,42 @@ def sieve_of_eratosthenes(x):
 
   return set(nums)
 ```
+# 文字列
+## 先頭を一番後ろに持っていく
+```Python
+s = 'test'
+s = s[1:] + s[0]
+```
+## 回転文
+力尽く(´;ω;｀)
+```Python
+class Solution:
+    def rotateString(self, s: str, goal: str) -> bool:
+        ans = bool(0)
+        new_s = s
+        for i in range(len(s)):
+          if new_s == goal:
+            ans = bool(1)
+          new_s = new_s[1:] + new_s[0]
+        return ans
+```
+- 回転文の特徴攻略
+  - したがって、goalを回転させることで得られる場合s、それはの部分文字列でなければなりませんs + s。これを実装するには、が連結された文字列の部分文字列であるかどうかをチェックするだけですgoal。部分文字列であればを返しtrue、そうでなければを返しますfalse。
+```Python
+class Solution:
+    def rotateString(self, s: str, goal: str) -> bool:
+        # Check if the lengths are different
+        if len(s) != len(goal):
+            return False
+
+        # Create a new string by concatenating 's' with itself
+        doubled_string = s + s
+
+        # Use find to search for 'goal' in 'doubledString'
+        # If find returns an index that is not -1
+        # then 'goal' is a substring
+        return doubled_string.find(goal) != -1
+```
 
 # 参考URL
 - [[Python]Atcoderで入茶するために使ったチートシート](https://zenn.dev/rabbit_penguin0/articles/bcc95f7703124a)
