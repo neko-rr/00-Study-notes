@@ -225,6 +225,8 @@ def divs_list(num):
   return divs
 ```
 ## 素数の列挙
+- なぜか、「1」より大きいで、「1」含まないに引っかかったから条件確認要
+  - 対策：if のandで「1」除外した
 ```Python
 
 def sieve_of_eratosthenes(x):
