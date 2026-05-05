@@ -161,6 +161,9 @@ set('aabdceabdae')
 set({'apple' : 3, 'pen' : 5})
 # {'apple', 'pen'}
 ```
+# 連結リスト
+- [連結リストを学ぶ -Python-](https://qiita.com/tsudaryo1715/items/12c4848028716ab015bb)
+- [4.2   連結リスト](https://www.hello-algo.com/ja/chapter_array_and_linkedlist/linked_list/)
 # 計算
 ## 小数の計算
 - 小数の計算では、小数を整数に変換、計算後にもとに戻す処理を行う
