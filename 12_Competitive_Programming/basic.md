@@ -7,6 +7,9 @@
 - [Pythonのリスト（配列）の特定の要素を抽出、置換、変換](https://note.nkmk.me/python-list-select-replace/)
 ## 削除
 - [Pythonでリスト（配列）の要素を削除するclear, pop, remove, del](https://note.nkmk.me/python-list-clear-pop-remove-del/)
+## 多次元配列変換
+- [【Python】二次元配列を自在に操れ。【初期化・参照・抽出・計算・転置】](https://qiita.com/sho11hei12-1998/items/2458aa0822cc6e7268fa)
+- [`append`と`extend`の違いを知らないと、思わぬバグを生むことになる](https://zenn.dev/ykesamaru/articles/73958e64c226bb)
 ## 辞書
 - [Pythonの辞書（dict）のforループ処理（keys, values, items）](https://note.nkmk.me/python-dict-keys-values-items/#items-for)
 ## 集合
@@ -14,6 +17,8 @@
 - [Pythonで複数のリストの直積（デカルト積）を生成するitertools.product](https://note.nkmk.me/python-itertools-product/)
 ## 出力
 - [Pythonの真偽値bool型（True, False）と他の型との変換・判定](https://note.nkmk.me/python-bool-true-false-usage/)
+## エラー
+- [【AtCoder】RE,MLEが出た時の対処法(灰色コーダー向け)【競技プログラミング】](https://qiita.com/sano192/items/2da11eaeeeea3daab944)
 # リスト
 ## リストを出力する
 ```Python
@@ -51,8 +56,34 @@ print(a[-3])
 for s in A[::-1]:
     print(s)
 ```
-# 特定のものを特定
-## リストの各要素の出現回数を得る
+## リストに追加
+appendとextendの違い
+### append()
+引数に渡された値をリストの末尾に追加
+```Python
+lst = [1, 2, 3]
+lst.append(4)  # [1, 2, 3, 4]
+```
+誤用
+```Python
+lst1 = [1, 2, 3]
+lst2 = [4, 5, 6]
+lst1.append(lst2)  # [1, 2, 3, [4, 5, 6]]
+```
+### extend()　リストにリストを追加する場合
+引数に渡された別のリストを追加してリストを拡張
+```Python
+lst1 = [1, 2, 3]
+lst2 = [4, 5, 6]
+lst1.extend(lst2)  # [1, 2, 3, 4, 5, 6]
+```
+誤用
+```Python
+lst = [1, 2, 3]
+lst.extend(4)  # TypeError: 'int' object is not iterable
+```
+## 特定のものを特定
+### リストの各要素の出現回数を得る
 ```Python
 from collections import Counter
 l = [0, 0, 1, 1, 3, 3, 3]
@@ -63,7 +94,7 @@ cnt = Counter(l)
 print(cnt[0])
 # 2
 ```
-## リストのインデックスを単純に
+### リストのインデックスを単純に
 リストで隣合う数字をビット処理するためにインデックスで指定
 ```Python
 ans = []
@@ -72,7 +103,7 @@ n = len(nums)
     ans.append(nums[i] | nums[i + 1])
 print(ans)
 ```
-## インデックスにアクセスする
+### インデックスにアクセスする
 Pythonのループ内で特定の条件が満たされたときにアイテムのインデックス番号を出力するためには、enumerate関数を使うのが便利です。enumerate関数は、ループ中にインデックスとアイテムの両方を提供してくれます。
 ```Python
 A = [[0, 1, 2], [3, 1, 4], [1, 5, 6]]  # 例としてのリスト
@@ -82,7 +113,7 @@ for a in A:
         if item == 1:
             print(f"itemのインデックス番号: {index}")
 ```
-## リストの中に、特定の文字が何番目（インデックス番号）にあるかを返す
+### リストの中に、特定の文字が何番目（インデックス番号）にあるかを返す
 ```Python
 P = [1, 3, 5, 2, 7, 9]  # 例としてのリスト
 
@@ -135,6 +166,10 @@ print(result)  # [2, 3, 5, 6, 7, 8]など
 class Solution:
     def differenceOfSums(self, n: int, m: int) -> int:
         return sum(x if x % m != 0 else -x for x in range(1, n + 1))
+```
+## 多次元配列
+```
+a = [[1,2,3],[4,5,6]]
 ```
 ### リストの豆知識
 - nums =  元のリストの要素を置き換えません。
