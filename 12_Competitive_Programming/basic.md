@@ -1,12 +1,22 @@
 # 参考URL
 ## 個数数える
 - [PythonのCounterでリストの各要素の出現個数をカウント](https://note.nkmk.me/python-collections-counter/#count)
+## 判定・正規表現・文字列
+- [Pythonで文字列が数字か英字か英数字か判定・確認](https://note.nkmk.me/python-str-num-determine/)
+- [Pythonの正規表現で漢字・ひらがな・カタカナ・英数字を判定・抽出・カウント](https://note.nkmk.me/python-re-regex-character-type/)
+- [Python - 文字列から最後の文字を削除する](https://www.curict.com/item/09/09c27e4.html)
+- [Pythonで文字列の一部を削除（stripなど）](https://note.nkmk.me/python-str-remove-strip/)
+- [分かりやすいpythonの正規表現の例](https://qiita.com/luohao0404/items/7135b2b96f9b0b196bf3)
 ## 含む・位置
 - [Pythonで文字列を検索（〜を含むか判定、位置取得）](https://note.nkmk.me/python-str-search/)
 - [Pythonで文字列を抽出（位置・文字数、正規表現）](https://note.nkmk.me/python-str-extract/)
+- [Pythonで文字列のリスト（配列）の条件を満たす要素を抽出、置換](https://note.nkmk.me/python-list-str-select-replace/)
 - [Pythonのリスト（配列）の特定の要素を抽出、置換、変換](https://note.nkmk.me/python-list-select-replace/)
 ## 削除
 - [Pythonでリスト（配列）の要素を削除するclear, pop, remove, del](https://note.nkmk.me/python-list-clear-pop-remove-del/)
+## 処理
+- [Pythonリスト内包表記の使い方](https://note.nkmk.me/python-list-comprehension/)
+- [[Python]リストの要素全てに処理を行いたいメモ](https://qiita.com/zhengxi__/items/15f1941f53204f40f30d#%E4%B8%8A%E3%81%AE%E6%93%8D%E4%BD%9C%E3%82%92%E3%83%AB%E3%83%BC%E3%83%97%E3%81%A7%E8%A1%8C%E3%81%86)
 ## 多次元配列変換
 - [【Python】二次元配列を自在に操れ。【初期化・参照・抽出・計算・転置】](https://qiita.com/sho11hei12-1998/items/2458aa0822cc6e7268fa)
 - [`append`と`extend`の違いを知らないと、思わぬバグを生むことになる](https://zenn.dev/ykesamaru/articles/73958e64c226bb)
