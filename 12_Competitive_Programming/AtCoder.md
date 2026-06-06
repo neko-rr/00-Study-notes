@@ -137,6 +137,11 @@ x, y = [list(i) for i in zip(*xy)]
 >>>print(x[1]+y[1])
 7
 ```
+#### コード例2（xy1セットで2次元配列）
+```Python
+N = int(input())
+xy = [list(map(int, input().split())) for _ in range(N)]
+```
 # 出力_print文
 ## ゼロ埋め・幅寄せ
 ```Python
@@ -156,6 +161,28 @@ print(1,end=' ')
 print(2,end=' ')
 
 # 出力
-1 2 
+1 2
+#楽な方法 Python3系 から出ないと使えません
+nums = [1, 2, 3, 4, 5]
+print(*nums)
+>>> 1 2 3 4 5
+```
+## 改行区切りの出力
+```Python
+a = [9, 9, 7, 3]
+
+# a の要素を空白区切りで出力する
+print(*a)
+
+# a の要素を改行区切りで出力する
+for x in a:
+    print(x)
+
+# 出力
+9 9 7 3
+9
+9
+7
+3
 ```
 
