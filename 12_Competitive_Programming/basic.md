@@ -1,4 +1,6 @@
 # 参考URL
+## リスト
+- [K - 1.10.リスト](https://atcoder.jp/contests/APG4bPython/tasks/APG4bPython_k)
 ## 個数数える
 - [PythonのCounterでリストの各要素の出現個数をカウント](https://note.nkmk.me/python-collections-counter/#count)
 ## 判定・正規表現・文字列
@@ -17,7 +19,10 @@
 ## 処理
 - [Pythonリスト内包表記の使い方](https://note.nkmk.me/python-list-comprehension/)
 - [[Python]リストの要素全てに処理を行いたいメモ](https://qiita.com/zhengxi__/items/15f1941f53204f40f30d#%E4%B8%8A%E3%81%AE%E6%93%8D%E4%BD%9C%E3%82%92%E3%83%AB%E3%83%BC%E3%83%97%E3%81%A7%E8%A1%8C%E3%81%86)
-## 多次元配列変換
+## 多次元
+### 多次元のソート
+- [Pythonで2次元配列（リストのリスト）をソート](https://note.nkmk.me/python-list-2d-sort/#google_vignette)
+### 多次元配列変換
 - [【Python】二次元配列を自在に操れ。【初期化・参照・抽出・計算・転置】](https://qiita.com/sho11hei12-1998/items/2458aa0822cc6e7268fa)
 - [`append`と`extend`の違いを知らないと、思わぬバグを生むことになる](https://zenn.dev/ykesamaru/articles/73958e64c226bb)
 ## 辞書
@@ -151,6 +156,11 @@ print(a)
 # a を反転する。a は [5, 4, 3, 1, 1] になる。
 a.reverse()
 print(a)
+```
+### 2次元配列を並び替える
+[[0,1][0,1]]のindex1を降順で並び替え
+```Python
+a_sorted = sorted(a, key=lambda x: x[1], reverse=True)
 ```
 ## リストの重複を排除する
 ```Python
