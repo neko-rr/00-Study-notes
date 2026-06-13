@@ -97,6 +97,13 @@ lst1.extend(lst2)  # [1, 2, 3, 4, 5, 6]
 lst = [1, 2, 3]
 lst.extend(4)  # TypeError: 'int' object is not iterable
 ```
+## リストに変換
+文章を1文字ずつ判定したい時に使用
+```Python
+S = "00_sample"
+SS = list(S)  # ["0","0","_","s","a","m","p","l","e"]
+print("".join(ans))  # "00_sample"に戻る
+```
 ## 特定のものを特定
 ### リストの各要素の出現回数を得る
 ```Python
@@ -196,6 +203,36 @@ a = [[1,2,3],[4,5,6]]
 - nums[:] = 要素をその場で置き換えます。
 - つまり、 がなければ[:]、新しいリストオブジェクトが作成されてしまいますが、これはこの問題の要求に反します。
   - 「別の配列のために余分な領域を割り当てないでください。入力配列をその場で変更し、O(1)の追加メモリを使用することで、これを実現する必要があります。」
+### 2次元配列の空配列作成
+```Python
+n = "空配列必要な個数の整数"
+empty_matrix = [[] for _ in range(n)]
+```
+n = 3ならば、[[], [], []]
+### 2次元配列に値を追加
+```Python
+empty_matrix[0].append(1)
+empty_matrix[1].append(2)
+empty_matrix[2].append(3)
+print(empty_matrix)
+```
+[[1], [2], [3]]
+### 2次元配列のprint
+- [Python 2次元配列(数値)の数値を半角空白で区切ってprintする](https://qiita.com/hakone_san/items/8c71917f966d7d407f11)
+### 2次元配列色々
+```Python
+for i in n:
+  kn += 1
+  for j in range(1,xy[i][0] + 1):
+    ans[xy[i][j]-1].append(kn)
+
+ll = []
+for l in n:
+  ans[l].insert(0,len(ans[l][:]))
+
+for i in n:
+    print(' '.join(list(map(str,ans[i]))))
+```
 # Setの基本
 - セット（集合）は、リストと同様に複数の要素から構成されるデータです。
 - ただし、セットはリストと異なり要素の重複がない、また要素の順番もない
