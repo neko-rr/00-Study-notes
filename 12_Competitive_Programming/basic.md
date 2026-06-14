@@ -104,6 +104,15 @@ S = "00_sample"
 SS = list(S)  # ["0","0","_","s","a","m","p","l","e"]
 print("".join(ans))  # "00_sample"に戻る
 ```
+整数ならば
+```Python
+n = 1000
+s = [int(ch) for ch in str(n)]
+```
+## リストに2乗
+```Python
+squareSum = sum(d * d for d in s)©leetcode
+```
 ## 特定のものを特定
 ### リストの各要素の出現回数を得る
 ```Python
