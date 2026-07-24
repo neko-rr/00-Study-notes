@@ -75,7 +75,8 @@ time = "10"
 place = "会議室 A"
 print(f"{time}時から{place}で会議がおこなわれる。")
 ```
-
+# 入力早見表
+- [【Python3】paizaでよく使う入力・出力コードまとめ](https://qiita.com/teddy_bear_eng/items/12f1fc1d8dd064e1fe24)
 # 標準文の複数行の読み込み  
 .rstrip：データの行末の改行を削除する。改行が残っていると、その後の処理に悪影響を及ぼすことがあるので、ここで削除しています。
 ```Python
