@@ -185,4 +185,23 @@ for x in a:
 7
 3
 ```
+# Python選択
+- CPython は Python の公式の実装です。
+- PyPy は JIT（Just-In-Time）コンパイル機能を持っています。 JIT コンパイルにより実行時にコードを機械語に変換することで、 CPython に比べて高速になることが多いです。
 
+AtCoder における競技プログラミングでは、一部の例外を除き、基本的には PyPy で提出する方が実行時間制限の関係で有利になることが多いです。
+## PyPyの具体的使い分け
+- C問題以降は、CPythonより早い事が多い（A,B問題は、CPythonが早い）
+- PyPyの再帰関数は遅い
+  - 対策：PyPyの"おまじない"を書く
+```Python
+import pypyjit
+pypyjit.set_param("max_unroll_recursion=-1")
+```
+pypyでも再帰関数がある程度速くなると言われています。  
+再帰関数以外の時にこれを書くと実行が遅くなるなどの注意点があります。
+  - 再帰関数用デコレータを用いる
+  - [【AtCoder】Pythonで競プロをするときの注意点まとめ【競技プログラミング】](https://qiita.com/kemuniku/items/1f1537e1df2ac8180d9b)
+- decimalが遅い
+  - decimalというのは、Pythonの標準ライブラリで正確に小数を計算するためのライブラリです。デフォルトの有効桁数は28桁で、誤差を気にしないといけないような問題もdecimalを使うと簡単にACできることもある強力で便利なライブラリ
+  - 対策：整数で計算する
