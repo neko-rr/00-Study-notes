@@ -205,3 +205,9 @@ pypyでも再帰関数がある程度速くなると言われています。
 - decimalが遅い
   - decimalというのは、Pythonの標準ライブラリで正確に小数を計算するためのライブラリです。デフォルトの有効桁数は28桁で、誤差を気にしないといけないような問題もdecimalを使うと簡単にACできることもある強力で便利なライブラリ
   - 対策：整数で計算する
+- setの仕様がCpythonとPyPyで異なる
+  - PyPyではsetの中身は挿入順となっていますが、Pythonではそうとは限りません。
+  - これに限らず、PyPyとCPythonは若干仕様が異なる点があります。以下のサイトにまとまっています。
+    - [Differences between PyPy and CPython](https://doc.pypy.org/cpython_differences.html)
+- 使用可能なライブラリやバージョンが異なる（Atcoderで）
+  - [使用できる言語とライブラリの一覧](https://img.atcoder.jp/file/language-update/language-list.html)
