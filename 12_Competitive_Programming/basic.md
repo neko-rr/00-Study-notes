@@ -343,6 +343,16 @@ print(int(a*100))
 print(int(str(a).replace(".", "")))
 # 979
 ```
+## roundは四捨五入じゃない
+丸め方は、丸める桁が5より小さければ切り捨て、5より大きければ切り上げます。これだけを見ると四捨五入？と思うかもしれませんが、5と等しいときは偶数のほうに丸められます。例えばround(1.5)は2ですが、round(0.5)は0になります。
+また、小数の誤差によって予想と反する結果となる場合があります。例えば、round(2.675, 2)は2.68ではなく2.67になります。
+四捨五入をしたいときはdecimalのquantize()を用いましょう。第一引数に丸める桁を指定します。
+roundingにROUND_HALF_UPを指定すると四捨五入となります。
+```Python
+from decimal import Decimal,ROUND_HALF_UP
+print(Decimal('0.5').quantize(Decimal('1'),rounding = ROUND_HALF_UP)) #1
+print(Decimal('1.55').quantize(Decimal('1.0'),rounding = ROUND_HALF_UP)) #1.6
+```
 ## 最大公約数、最小公倍数
 ```Python
 
@@ -465,11 +475,13 @@ class Solution:
         # then 'goal' is a substring
         return doubled_string.find(goal) != -1
 ```
-
+# 型変換のコストは無視できない
+結果がfloatになるようなDPなどで、初期値を10**18などで初期化してしまうと、毎回intをfloatに変換するコストがかかってしまい、結果的に低速になります。floatで計算したいものは初めから初期値もfloatにしましょう。
 # 参考URL
 - [[Python]Atcoderで入茶するために使ったチートシート](https://zenn.dev/rabbit_penguin0/articles/bcc95f7703124a)
 - [Pythonで使う競技プログラミング用チートシート](https://qiita.com/_-_-_-_-_/items/34f933adc7be875e61d0)
 - [競プロ用チートシート（Python）](https://qiita.com/wihan23/items/8aa52bcc4d9c45334b1c)
+- [PythonのSortedContainersで一番大きい要素にアクセスしたいときは-1でアクセスした方がいい](https://qiita.com/kemuniku/items/9691f43cc81cf5271e84)
 # 理解してない
 ## Fractions
 Fractionsは有理数を扱うPythonの標準ライブラリです。割り算をしても分子と分母をもっているので誤差が生まれないので正確な計算をすることができるのですが、滅茶苦茶に遅いです。
@@ -485,6 +497,9 @@ defaultdictはその名の通り、デフォルトの設定されているdict�
 競プロではとても便利なのですが、このアクセスしようとしたときにキーがなかったら代入されるという仕様のせいで、存在しないキーの値を何回も何回も呼び出そうとすると遅くなってしまうケースがあります。(具体的には
 10**7回呼び出そうとして、TLEしたことがあります。)
 デフォルト値を呼び出す回数が多そうである場合は、そのキーがdefaultdictのキーとして設定されているかをinなどを用いて判定したほうが良いでしょう。
+## deque
+pythonでcollections.deque()はqueue.Queue()よりも高速であることから、BFSなどによく使われています。が、このdequeのランダムアクセスにかかる平均計算量はサイズをNとしてO(N)になります。このことから、C++などのdequeと同じ感覚で使うと計算量が異なることからTLEの原因となってしまいます。
+
 
 ```Python
 
