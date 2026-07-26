@@ -218,3 +218,5 @@ pypyでも再帰関数がある程度速くなると言われています。
     - [Differences between PyPy and CPython](https://doc.pypy.org/cpython_differences.html)
 - 使用可能なライブラリやバージョンが異なる（Atcoderで）
   - [使用できる言語とライブラリの一覧](https://img.atcoder.jp/file/language-update/language-list.html)
+- pypyでは64bit整数を超えない範囲と、超える範囲で大きく演算の速度に差があります。
+  - めんどくさいですが、毎回ちゃんとmodを取ってあげましょう。
