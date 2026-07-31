@@ -192,6 +192,8 @@ sys.stdin.readline()をつかって入力を行うとinputよりも速く入力�
 ```Python
 input = sys.stdin.readline
 ```
+# 無限ループ
+無限ループが発生した場合、終了コードは実行時間が長すぎることを表す 9 となります。
 # Python選択
 - CPython は Python の公式の実装です。
 - PyPy は JIT（Just-In-Time）コンパイル機能を持っています。 JIT コンパイルにより実行時にコードを機械語に変換することで、 CPython に比べて高速になることが多いです。
