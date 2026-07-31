@@ -34,6 +34,49 @@
 - [Pythonの真偽値bool型（True, False）と他の型との変換・判定](https://note.nkmk.me/python-bool-true-false-usage/)
 ## エラー
 - [【AtCoder】RE,MLEが出た時の対処法(灰色コーダー向け)【競技プログラミング】](https://qiita.com/sano192/items/2da11eaeeeea3daab944)
+# 範囲:range()
+range(a, b, c) という書き方もできこれによりいくつずつ増やすかを決めることができます  
+（c を省略したときのデフォルトは 1 なので、これまでの書き方では全て 1 ずつ増えていました）。
+よって、次のように書くことで 2 ずつ増やすことができます。  
+なお、いくつずつ増やすかを決めるときは a がたとえ 
+0 だとしても省略できないことに注意してください。つまり、上のコードで range(10, 2) と書くと異なる挙動になってしまいます。
+```Python
+for i in range(0, 10, 2):
+    print(i)
+```
+```
+0
+2
+4
+6
+8
+```
+## 昇順・降順range()
+```Python
+N = 5
+
+print("昇順")
+for i in range(N):
+    print(i)
+
+print("降順")
+for i in range(N - 1, -1, -1):
+    print(i)
+```
+```
+昇順
+0
+1
+2
+3
+4
+降順
+4
+3
+2
+1
+0
+```
 # リスト
 ## リストを出力する
 ```Python
