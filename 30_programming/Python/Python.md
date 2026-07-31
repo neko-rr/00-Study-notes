@@ -76,9 +76,27 @@ variable = "Hello, World!"
 print(variable)
 ```
 Hello, World!
+### 複数の変数への代入：Swap する
+```Python
+x = 2
+y = 3
+x, y = y, x  # x と y を入れ替える
+print(x)
+print(y)
+```
 # 型変換
 - 数値型を文字列型に変換するには「str」
 - 文字列型を数値型に変換したい場合には「int」
+## 指数表記
+float 型では指数表記による記述もできます。絶対値が大きいまたは小さい数の場合は、 print 関数で出力した結果も指数表記になります
+```Python
+x = 1.23e5
+y = 3.5e-2
+z = 2.7e-10
+print(x)  # 123000.0
+print(y)  # 0.035
+print(z)  # 2.7e-10
+```
 # 論理演算
 ```Python
 # 論理演算の基本構文
@@ -130,6 +148,26 @@ print(q)  # 2
 print(r)  # 6
 ```
 divmod(a, b) で a を b で割った商と余りのタプルを返します
+## int 型と float 型の和・差・積
+片方が int 型、片方が float 型の場合の和・差・積は float 型になります。 
+3.5×4 は数学的には整数 
+14 になりますが、 Python のプログラムは float 型として返します。
+```Python
+a = 3.5
+b = 4
+print(a + b)  # 7.5
+print(a - b)  # -0.5
+print(a * b)  # 14.0
+```
+## int 型同士のべき乗
+a と b がともに int 型のとき、 a ** b の型はどうなるでしょうか。簡単のため a はゼロではないとします。
+この場合は 
+b≥0 の場合は int 型、 
+b<0 の場合は float 型になります。
+```Python
+print(2 ** 3)  # 8
+print(2 ** -3)  # 0.125
+```
 # 比較演算
 ```Python
 a == b  # aとbが等しいかどうかを確認
