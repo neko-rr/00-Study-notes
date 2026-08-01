@@ -68,21 +68,24 @@ S = a b c d e
 - `S[l:r]` で切り出す（0-index、半開区間）
 - 「長さちょうど K の部分文字列」を全部見る
 
+```text
+【入力例】
+abcd
+2
+【出力例】
+ab
+bc
+cd
+（長さちょうど K の部分文字列を列挙）
+```
+
 ```python
-S = "abcd"
+S = input().strip()
+K = int(input())
 N = len(S)
-
-# すべての部分文字列を列挙（個数は N*(N+1)/2）
-# N<=3000 程度なら列挙自体は可能なことが多い（中身の処理次第）
-subs = []
-for l in range(N):
-    for r in range(l + 1, N + 1):
-        subs.append(S[l:r])  # S[l]..S[r-1]
-
-# 長さちょうど K の部分文字列だけ
-K = 2
+# 長さちょうど K。全部列挙するなら二重ループに変える
 for i in range(N - K + 1):
-    print(S[i:i + K])  # "ab", "bc", "cd"
+    print(S[i:i + K])
 ```
 
 ### 問題の言い回し例

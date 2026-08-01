@@ -40,15 +40,27 @@
 - **辺（エッジ）**: 点と点を結ぶ線。道・友達関係など
 - **グラフ**: 頂点と辺の集まり
 
+```text
+【入力例】（無向グラフ）
+4 3
+1 2
+2 3
+1 4
+```
+
 ```python
 # 隣接リスト（いちばんよく使う）
-N, M = 4, 3
+N, M = map(int, input().split())
 g = [[] for _ in range(N)]
-edges = [(0, 1), (1, 2), (0, 3)]
-for u, v in edges:
+for _ in range(M):
+    u, v = map(int, input().split())
+    u -= 1
+    v -= 1  # 1-index → 0-index
     g[u].append(v)
-    g[v].append(u)  # 無向なら両方
+    g[v].append(u)  # 有向ならこの行を消す
 ```
+
+入出力つきの最短路例 → [lib/graph.py](lib/graph.py)
 
 ---
 

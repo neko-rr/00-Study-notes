@@ -38,16 +38,24 @@ X が大きい → できる (OK)
 → 境界の最小 OK を探す
 ```
 
-### 実装の型
+### 実装の型＋入力例・出力例
+
+```text
+【問題】X*X >= N となる最小の正整数 X
+【入力例】
+30
+【出力例】
+6
+```
 
 ```python
-def is_ok(x: int) -> bool:
-    # x で条件を満たすなら True
-    ...
+N = int(input())
 
-# 「最小の OK」を求めるとき
-ok = 10**18   # 必ず OK な大きい値
-ng = 0        # 必ず NG な小さい値（問題に合わせる）
+def is_ok(x: int) -> bool:
+    return x * x >= N  # ← ここを問題の判定に書き換える
+
+ok = 10**18   # 必ず OK
+ng = 0        # 必ず NG
 while abs(ok - ng) > 1:
     mid = (ok + ng) // 2
     if is_ok(mid):
@@ -95,19 +103,26 @@ bisect_left(A, 6) - bisect_left(A, 3)
 
 ### 典型: 和が K 以下の最長区間
 
+```text
+【入力例】
+5 7
+1 2 3 4 5
+【出力例】
+3
+（区間 [1,2,3] の和6 ≤7 が最長）
+```
+
 ```python
-def longest_sum_at_most_k(A, K):
-    n = len(A)
-    ans = 0
-    s = 0
-    l = 0
-    for r in range(n):
-        s += A[r]
-        while l <= r and s > K:
-            s -= A[l]
-            l += 1
-        ans = max(ans, r - l + 1)
-    return ans
+N, K = map(int, input().split())
+A = list(map(int, input().split()))
+ans = s = l = 0
+for r in range(N):
+    s += A[r]
+    while l <= r and s > K:
+        s -= A[l]
+        l += 1
+    ans = max(ans, r - l + 1)
+print(ans)
 ```
 
 ### いつ使えるか

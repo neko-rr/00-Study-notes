@@ -1,21 +1,14 @@
 """
-【畳み込み（NTT: Number Theoretic Transform）】
-多い難易度: ABC E〜F（典型だと F 寄り、パターンが分かれば E もあり）
+【畳み込み（NTT）】
+多い難易度: ABC E〜F
 適する問題:
-  - 「2つの数列 a, b の畳み込み c[k] = Σ a[i]*b[k-i]」
-  - 多項式の掛け算
-  - 「個数の分布どうしを足し合わせて新しい分布を作る」
-キーワード: 畳み込み, FFT, NTT, 多項式積, 生成関数
-計算量: O((n+m) log (n+m))
-注意:
-  - この実装は mod = 998244353 専用（AtCoder で最もよく使う素数）
-  - 他の mod や整数そのままが欲しいときは別手法が必要
+  - 2つの数列の畳み込み / 多項式の積
+注意: mod = 998244353 専用
 """
 
 from typing import List
 
 MOD = 998244353
-# 998244353 = 119 * 2^23 + 1 なので、長さ 2^23 まで NTT 可能
 PRIMITIVE_ROOT = 3
 
 
@@ -54,20 +47,14 @@ def _ntt(a: List[int], invert: bool) -> None:
 
 
 def convolution(a: List[int], b: List[int], mod: int = MOD) -> List[int]:
-    """
-    c = a * b （多項式積 / 線形畳み込み）
-    戻り値の長さは len(a)+len(b)-1（片方空なら空）
-    """
     if mod != MOD:
         raise ValueError("この実装は mod=998244353 専用です")
     if not a or not b:
         return []
-
     n1, n2 = len(a), len(b)
     n = 1
     while n < n1 + n2 - 1:
         n <<= 1
-
     fa = [x % MOD for x in a] + [0] * (n - n1)
     fb = [x % MOD for x in b] + [0] * (n - n2)
     _ntt(fa, False)
@@ -79,7 +66,6 @@ def convolution(a: List[int], b: List[int], mod: int = MOD) -> List[int]:
 
 
 def convolution_naive(a: List[int], b: List[int], mod: int = MOD) -> List[int]:
-    """検算用の O(nm) 畳み込み"""
     if not a or not b:
         return []
     c = [0] * (len(a) + len(b) - 1)
@@ -90,12 +76,39 @@ def convolution_naive(a: List[int], b: List[int], mod: int = MOD) -> List[int]:
 
 
 # ============================================================
-# 使用例
+# 使用例（ミニ問題）
+# ------------------------------------------------------------
+# 【問題】多項式 A, B の積 C を 998244353 で求め、係数を空白区切りで出力。
+# 【入力】
+#   N M
+#   A0 ... A_{N-1}
+#   B0 ... B_{M-1}
+# 【入力例】
+# 3 2
+# 1 2 3
+# 4 5
+# 【出力例】
+# 4 13 22 15
+# （(1+2x+3x^2)*(4+5x)）
+# 【どこを変えるか】
+#   - 「個数の分布の畳み込み」も同じ（配列の意味だけ変わる）
+#   - mod が 998244353 以外ならこのファイルは使えない
 # ============================================================
 if __name__ == "__main__":
-    a = [1, 2, 3]
-    b = [4, 5]
-    # (1+2x+3x^2)*(4+5x) = 4 + 13x + 22x^2 + 15x^3
-    assert convolution(a, b) == [4, 13, 22, 15]
-    assert convolution(a, b) == convolution_naive(a, b)
+    from io import StringIO
+    import sys
+
+    demo = """3 2
+1 2 3
+4 5
+"""
+    sys.stdin = StringIO(demo)
+    input = sys.stdin.readline
+
+    N, M = map(int, input().split())
+    A = list(map(int, input().split()))
+    B = list(map(int, input().split()))
+    C = convolution(A, B)
+    print(*C)
+    assert C == [4, 13, 22, 15]
     print("convolution.py OK")

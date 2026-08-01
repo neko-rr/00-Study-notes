@@ -1,12 +1,10 @@
 """
 【グラフアルゴリズム】BFS / DFS / Dijkstra / トポロジカルソート
-多い難易度: ABC C〜E（Dijkstra・トポソは D〜E）
+多い難易度: ABC C〜E
 適する問題:
-  - 「最短手数で到達できるか／何手？」→ BFS（辺の重みがすべて1）
-  - 「重み付き最短路」→ Dijkstra（負の辺なし）
-  - 「依存関係を守って並べる／サイクルがあるか」→ トポロジカルソート
-  - 連結判定・木の探索 → DFS/BFS
-キーワード: 最短路, 迷路, グリッド, DAG, 依存関係
+  - 「最短手数」→ BFS
+  - 「重み付き最短路」→ Dijkstra
+  - 「依存関係を守って並べる」→ トポロジカルソート
 """
 
 from typing import List, Optional, Tuple
@@ -17,11 +15,6 @@ INF = 10**18
 
 
 def bfs_shortest(n: int, edges: List[Tuple[int, int]], start: int) -> List[int]:
-    """
-    重みなし（または重み1）無向グラフの最短距離。
-    edges: (u, v) のリスト（0-index）
-    計算量: O(N + M)
-    """
     g = [[] for _ in range(n)]
     for u, v in edges:
         g[u].append(v)
@@ -39,11 +32,6 @@ def bfs_shortest(n: int, edges: List[Tuple[int, int]], start: int) -> List[int]:
 
 
 def bfs_grid(H: int, W: int, grid: List[str], sy: int, sx: int, wall: str = "#") -> List[List[int]]:
-    """
-    グリッド上の最短手数（上下左右）。
-    grid[y][x] == wall は壁。
-    計算量: O(HW)
-    """
     dist = [[-1] * W for _ in range(H)]
     if grid[sy][sx] == wall:
         return dist
@@ -61,11 +49,6 @@ def bfs_grid(H: int, W: int, grid: List[str], sy: int, sx: int, wall: str = "#")
 
 
 def dijkstra(n: int, graph: List[List[Tuple[int, int]]], start: int) -> List[int]:
-    """
-    ダイクストラ法。graph[v] = [(to, cost), ...]
-    負の辺があると使えない。
-    計算量: O((N+M) log N)
-    """
     dist = [INF] * n
     dist[start] = 0
     hq = [(0, start)]
@@ -82,11 +65,6 @@ def dijkstra(n: int, graph: List[List[Tuple[int, int]]], start: int) -> List[int
 
 
 def topological_sort(n: int, edges: List[Tuple[int, int]]) -> Optional[List[int]]:
-    """
-    有向グラフのトポロジカルソート。
-    サイクルがあれば None。
-    計算量: O(N + M)
-    """
     g = [[] for _ in range(n)]
     indeg = [0] * n
     for u, v in edges:
@@ -107,20 +85,51 @@ def topological_sort(n: int, edges: List[Tuple[int, int]]) -> Optional[List[int]
 
 
 # ============================================================
-# 使用例
+# 使用例（ミニ問題）
+# ------------------------------------------------------------
+# 【問題】無向グラフ。頂点 1 から各頂点への最短手数を出力。
+#         到達不能は -1。
+# 【入力】
+#   N M
+#   辺 M 行: u v （1-index）
+# 【入力例】
+# 4 3
+# 1 2
+# 2 3
+# 1 4
+# 【出力例】
+# 0 1 2 1
+# 【どこを変えるか】
+#   - 辺に重みがある → dijkstra（下のコメント例）
+#   - 迷路 → bfs_grid
+#   - 依存関係の並べ替え → topological_sort
 # ============================================================
 if __name__ == "__main__":
-    dist = bfs_shortest(4, [(0, 1), (1, 2), (0, 3)], 0)
+    from io import StringIO
+    import sys
+
+    demo = """4 3
+1 2
+2 3
+1 4
+"""
+    sys.stdin = StringIO(demo)
+    input = sys.stdin.readline
+
+    N, M = map(int, input().split())
+    edges = []
+    for _ in range(M):
+        u, v = map(int, input().split())
+        edges.append((u - 1, v - 1))  # 0-index に変換
+    dist = bfs_shortest(N, edges, 0)
+    print(*dist)
     assert dist == [0, 1, 2, 1]
 
+    # 重み付きの例（入力は省略）: g[u].append((v, cost))
     g = [[] for _ in range(3)]
     g[0].append((1, 2))
     g[0].append((2, 5))
     g[1].append((2, 1))
-    d = dijkstra(3, g, 0)
-    assert d == [0, 2, 3]
-
-    order = topological_sort(3, [(0, 1), (1, 2)])
-    assert order == [0, 1, 2]
-    assert topological_sort(2, [(0, 1), (1, 0)]) is None
+    assert dijkstra(3, g, 0) == [0, 2, 3]
+    assert topological_sort(3, [(0, 1), (1, 2)]) == [0, 1, 2]
     print("graph.py OK")

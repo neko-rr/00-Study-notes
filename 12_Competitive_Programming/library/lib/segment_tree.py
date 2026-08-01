@@ -2,15 +2,9 @@
 【セグメント木（点更新・区間取得）】
 多い難易度: ABC D〜E
 適する問題:
-  - 「1点の値を更新」しつつ「区間の min / max / 和 / gcd」を聞く
-  - Fenwick では書きにくい演算（min, max, gcd など）
+  - 「1点の値を更新」しつつ「区間の min / max / 和」を聞く
 キーワード: 区間最小, 区間最大, 区間和, 点更新, RMQ
 計算量: 構築 O(N), 更新・クエリ O(log N)
-
-使い分け:
-  - 区間和だけ → Fenwick の方が短いことも多い
-  - min/max/任意のモノイド → セグメント木
-  - 区間への一括更新も必要 → lazy_segtree.py
 """
 
 from typing import Callable, List, TypeVar
@@ -19,12 +13,6 @@ T = TypeVar("T")
 
 
 class SegmentTree:
-    """
-    汎用セグ木。
-    op: 結合的な二項演算（例: min, max, 加算）
-    e : 単位元（例: min→INF, max→-INF, 和→0）
-    """
-
     def __init__(self, n: int, op: Callable[[T, T], T], e: T):
         if n < 0:
             raise ValueError("n は 0 以上")
@@ -47,7 +35,6 @@ class SegmentTree:
         return st
 
     def set(self, i: int, x: T) -> None:
-        """0-index 位置 i を x で上書き"""
         i += self.size
         self.data[i] = x
         while i > 1:
@@ -58,7 +45,7 @@ class SegmentTree:
         return self.data[i + self.size]
 
     def prod(self, l: int, r: int) -> T:
-        """半開区間 [l, r) の演算結果"""
+        """半開区間 [l, r)"""
         l += self.size
         r += self.size
         left = self.e
@@ -79,25 +66,63 @@ class SegmentTree:
 
 
 def make_rmq(a: List[int]) -> SegmentTree:
-    """区間最小用の便利コンストラクタ"""
     INF = 10**18
     return SegmentTree.from_list(a, min, INF)
 
 
 def make_rsq(a: List[int]) -> SegmentTree:
-    """区間和用の便利コンストラクタ"""
     return SegmentTree.from_list(a, lambda x, y: x + y, 0)
 
 
 # ============================================================
-# 使用例
+# 使用例（ミニ問題）
+# ------------------------------------------------------------
+# 【問題】長さ N の数列。クエリは2種類。
+#   1 i x : A_i を x に変更（1-index）
+#   2 L R : 区間 [L,R] の最小値（1-index 閉区間）
+# 【入力】
+#   N Q
+#   A1 ... AN
+#   クエリ Q 行
+# 【入力例】
+# 5 3
+# 3 1 4 1 5
+# 2 1 3
+# 1 2 10
+# 2 1 3
+# 【出力例】
+# 1
+# 3
+# 【どこを変えるか】
+#   - 区間和なら make_rsq / op=加算, e=0
+#   - 区間最大なら max と e=-INF
+#   - 区間更新が必要なら lazy_segtree.py
 # ============================================================
 if __name__ == "__main__":
-    st = make_rmq([3, 1, 4, 1, 5])
-    assert st.prod(0, 3) == 1
-    st.set(1, 10)
-    assert st.prod(0, 3) == 3
+    from io import StringIO
+    import sys
 
-    st2 = make_rsq([1, 2, 3, 4])
-    assert st2.prod(1, 4) == 9
+    demo = """5 3
+3 1 4 1 5
+2 1 3
+1 2 10
+2 1 3
+"""
+    sys.stdin = StringIO(demo)
+    input = sys.stdin.readline
+
+    N, Q = map(int, input().split())
+    A = list(map(int, input().split()))
+    st = make_rmq(A)
+    out = []
+    for _ in range(Q):
+        query = list(map(int, input().split()))
+        if query[0] == 1:
+            _, i, x = query
+            st.set(i - 1, x)
+        else:
+            _, L, R = query
+            out.append(str(st.prod(L - 1, R)))
+    print("\n".join(out))
+    assert out == ["1", "3"]
     print("segment_tree.py OK")

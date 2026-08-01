@@ -1,25 +1,16 @@
 """
 【最大流（Dinic 法）・最小カット】
-多い難易度: ABC E〜F（典型パターンが分かれば E でも出る）
+多い難易度: ABC E〜F
 適する問題:
   - 「始点から終点へ最大でどれだけ流せるか」
-  - 「最小カット」（辺を切る最小コスト = 最大流）
-  - 二部マッチング（左右を辺でつなぎ、source/sink を足す）
-キーワード: 最大流, 最小カット, マッチング, 容量, 割当
-計算量: だいたい O(V^2 E) だが、実用上かなり速い（Dinic）
-
-モデル化のコツ:
-  - 「選ぶ／選ばない」を辺の容量で表現する
-  - 二部マッチング: S→左(1), 左→右(1), 右→T(1)
+  - 二部マッチング
 """
 
-from typing import List, Optional
+from typing import List, Optional, Tuple
 from collections import deque
 
 
 class MaxFlow:
-    """Dinic 法による最大流"""
-
     class Edge:
         __slots__ = ("to", "rev", "cap")
 
@@ -35,10 +26,6 @@ class MaxFlow:
         self.g: List[List[MaxFlow.Edge]] = [[] for _ in range(n)]
 
     def add_edge(self, fr: int, to: int, cap: int) -> int:
-        """
-        fr → to に容量 cap の辺を張る。
-        戻り値: fr 側の辺インデックス（後から容量を見たいとき用）
-        """
         if cap < 0:
             raise ValueError("容量は 0 以上")
         forward = MaxFlow.Edge(to, len(self.g[to]), cap)
@@ -92,11 +79,7 @@ class MaxFlow:
         return 0
 
 
-def bipartite_matching(n_left: int, n_right: int, edges: List[tuple]) -> int:
-    """
-    二部マッチングの最大マッチング数。
-    edges: (左の頂点, 右の頂点) 0-index
-    """
+def bipartite_matching(n_left: int, n_right: int, edges: List[Tuple[int, int]]) -> int:
     S = 0
     left0 = 1
     right0 = 1 + n_left
@@ -112,10 +95,45 @@ def bipartite_matching(n_left: int, n_right: int, edges: List[tuple]) -> int:
 
 
 # ============================================================
-# 使用例
+# 使用例（ミニ問題）
+# ------------------------------------------------------------
+# 【問題】左 N 人・右 M 仕事。応募の辺が K 本。最大マッチング数は？
+# 【入力】
+#   N M K
+#   辺 K 行: a b （左 a・右 b、1-index）
+# 【入力例】
+# 2 2 3
+# 1 1
+# 1 2
+# 2 2
+# 【出力例】
+# 2
+# 【どこを変えるか】
+#   - 一般の最大流なら MaxFlow に自分で辺を張る（下のコメント）
+#   - 頂点番号・S/T の置き方を問題のモデルに合わせる
 # ============================================================
 if __name__ == "__main__":
-    # 古典的な例: 0→1(容量3), 0→2(2), 1→2(1), 1→3(2), 2→3(3)
+    from io import StringIO
+    import sys
+
+    demo = """2 2 3
+1 1
+1 2
+2 2
+"""
+    sys.stdin = StringIO(demo)
+    input = sys.stdin.readline
+
+    N, M, K = map(int, input().split())
+    edges = []
+    for _ in range(K):
+        a, b = map(int, input().split())
+        edges.append((a - 1, b - 1))
+    ans = bipartite_matching(N, M, edges)
+    print(ans)
+    assert ans == 2
+
+    # 一般最大流の小さな例
     mf = MaxFlow(4)
     mf.add_edge(0, 1, 3)
     mf.add_edge(0, 2, 2)
@@ -123,6 +141,4 @@ if __name__ == "__main__":
     mf.add_edge(1, 3, 2)
     mf.add_edge(2, 3, 3)
     assert mf.max_flow(0, 3) == 5
-
-    assert bipartite_matching(2, 2, [(0, 0), (0, 1), (1, 1)]) == 2
     print("maxflow.py OK")

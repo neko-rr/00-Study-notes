@@ -40,17 +40,27 @@
 - 「合計を K にできるか」
 - 「いくつか選んで〜」
 
-### 実装の要点
+### 実装の要点＋入力例・出力例
+
+```text
+【入力例】
+3 5
+2 3
+3 4
+4 5
+【出力例】
+7
+```
+
 ```python
-# 0-1（各品物1個）: 必ず後ろから更新
-for w, v in items:
+N, W = map(int, input().split())
+dp = [0] * (W + 1)
+for _ in range(N):
+    w, v = map(int, input().split())
+    # 0-1: 後ろから更新。個数無制限なら range(w, W+1) で前から
     for j in range(W, w - 1, -1):
         dp[j] = max(dp[j], dp[j - w] + v)
-
-# 個数無制限: 前から更新
-for w, v in items:
-    for j in range(w, W + 1):
-        dp[j] = max(dp[j], dp[j - w] + v)
+print(dp[W])
 ```
 
 詳細コード → [lib/dp_utils.py](lib/dp_utils.py)

@@ -1,25 +1,15 @@
 """
 【剰余演算・逆元・組合せ】
-多い難易度: ABC D〜E（組合せ数え上げは E も多い）
+多い難易度: ABC D〜E
 適する問題:
   - 「答えを 998244353（または 10^9+7）で割った余り」
   - 「通り数を数えよ」「組合せ nCr」
-  - 割り算が mod 上で必要（逆元）
-キーワード: 998244353, 10^9+7, nCr, 逆元, フェルマー
 """
 
 from typing import List
 
 
 class ModIntContext:
-    """
-    素数 MOD 上の演算と、前計算付き nCr。
-    計算量:
-      - 四則・pow: O(log MOD) 程度（組み込み）
-      - 前計算: O(N + log MOD)
-      - nCr クエリ: O(1)
-    """
-
     def __init__(self, mod: int = 998244353, n_max: int = 0):
         if mod <= 1:
             raise ValueError("mod は 2 以上の素数を想定")
@@ -30,7 +20,6 @@ class ModIntContext:
             self.build_fact(n_max)
 
     def build_fact(self, n_max: int) -> None:
-        """0..n_max の階乗と逆元階乗を前計算"""
         if n_max < 0:
             return
         mod = self.mod
@@ -54,7 +43,6 @@ class ModIntContext:
         return (a * b) % self.mod
 
     def div(self, a: int, b: int) -> int:
-        """a / b ≡ a * b^{-1} (mod MOD)。b と MOD が互いに素である必要あり"""
         return a * pow(b, self.mod - 2, self.mod) % self.mod
 
     def nCr(self, n: int, r: int) -> int:
@@ -62,13 +50,7 @@ class ModIntContext:
             return 0
         if not self.fact or n >= len(self.fact):
             raise ValueError("build_fact(n_max) を先に呼んでください")
-        return (
-            self.fact[n]
-            * self.inv_fact[r]
-            % self.mod
-            * self.inv_fact[n - r]
-            % self.mod
-        )
+        return self.fact[n] * self.inv_fact[r] % self.mod * self.inv_fact[n - r] % self.mod
 
     def nPr(self, n: int, r: int) -> int:
         if r < 0 or n < r:
@@ -79,11 +61,33 @@ class ModIntContext:
 
 
 # ============================================================
-# 使用例
+# 使用例（ミニ問題）
+# ------------------------------------------------------------
+# 【問題】nCr を 998244353 で割った余りを求めよ。
+# 【入力】
+#   n r
+# 【入力例】
+# 5 2
+# 【出力例】
+# 10
+# 【どこを変えるか】
+#   - MOD が 10^9+7 なら ModIntContext(10**9+7, n_max=...)
+#   - クエリが複数・n が大きいなら n_max を制約の最大に合わせて前計算
+#   - 割り算が必要なら mi.div(a, b)
 # ============================================================
 if __name__ == "__main__":
-    mi = ModIntContext(998244353, n_max=10)
-    assert mi.nCr(5, 2) == 10
+    from io import StringIO
+    import sys
+
+    demo = """5 2
+"""
+    sys.stdin = StringIO(demo)
+    input = sys.stdin.readline
+
+    n, r = map(int, input().split())
+    mi = ModIntContext(998244353, n_max=n)
+    ans = mi.nCr(n, r)
+    print(ans)
+    assert ans == 10
     assert mi.div(6, 2) == 3
-    assert mi.mul(3, 5) == 15
     print("modint.py OK")

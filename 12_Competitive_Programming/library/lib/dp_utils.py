@@ -1,26 +1,18 @@
 """
 【典型 DP の雛形】
-多い難易度: ABC C〜E（bit DP・区間 DP は E 寄り）
+多い難易度: ABC C〜E
 適する問題:
   - 「重さの上限 W までで価値を最大化」→ ナップサック
   - 「合計をちょうど K にできるか」→ 部分和 DP
-  - 「区間を分割してコスト最小」→ 区間 DP
-  - 「訪問集合をビットで持つ」→ bit DP（N≤20）
 キーワード: DP, ナップサック, 部分和, 区間DP, bit DP
 """
 
 from typing import List
 
-
 INF = 10**18
 
 
 def knapsack_01(weights: List[int], values: List[int], W: int) -> int:
-    """
-    0-1 ナップサック: 各品物は高々1個。
-    計算量: O(N * W)
-    W が大きすぎる（例: 10^9）ときは使えない → 価値側 DP や二分探索を検討
-    """
     n = len(weights)
     if n != len(values) or W < 0:
         return 0
@@ -35,10 +27,6 @@ def knapsack_01(weights: List[int], values: List[int], W: int) -> int:
 
 
 def knapsack_unbounded(weights: List[int], values: List[int], W: int) -> int:
-    """
-    個数制限なしナップサック。
-    計算量: O(N * W)
-    """
     n = len(weights)
     if n != len(values) or W < 0:
         return 0
@@ -53,10 +41,6 @@ def knapsack_unbounded(weights: List[int], values: List[int], W: int) -> int:
 
 
 def subset_sum_possible(a: List[int], K: int) -> bool:
-    """
-    部分集合の和をちょうど K にできるか。
-    計算量: O(N * K)
-    """
     if K < 0:
         return False
     dp = [False] * (K + 1)
@@ -69,10 +53,6 @@ def subset_sum_possible(a: List[int], K: int) -> bool:
 
 
 def lis_length(a: List[int]) -> int:
-    """
-    最長増加部分列（狭義）の長さ。O(N log N)
-    多い難易度: D〜E
-    """
     import bisect
 
     tails: List[int] = []
@@ -85,33 +65,50 @@ def lis_length(a: List[int]) -> int:
     return len(tails)
 
 
-def interval_dp_example(cost: List[List[int]]) -> int:
-    """
-    区間 DP の形の例（区間を結合する最小コスト）。
-    cost[l][r] は区間 [l,r) をまとめるときの追加コスト、という想定の雛形。
-    実際の問題では遷移式を問題に合わせて書き換える。
-    計算量: O(N^3)
-    """
-    n = len(cost)
-    dp = [[INF] * (n + 1) for _ in range(n + 1)]
-    for i in range(n):
-        dp[i][i + 1] = 0
-    for length in range(2, n + 1):
-        for l in range(0, n - length + 1):
-            r = l + length
-            best = INF
-            for m in range(l + 1, r):
-                best = min(best, dp[l][m] + dp[m][r] + cost[l][r - 1])
-            dp[l][r] = best
-    return dp[0][n]
-
-
 # ============================================================
-# 使用例
+# 使用例（ミニ問題）
+# ------------------------------------------------------------
+# 【問題】品物 N 個。重さ w_i・価値 v_i。容量 W で価値の最大は？
+#         （各品物は高々1個）
+# 【入力】
+#   N W
+#   w1 v1
+#   ...
+#   wN vN
+# 【入力例】
+# 3 5
+# 2 3
+# 3 4
+# 4 5
+# 【出力例】
+# 7
+# （重さ2+3、価値3+4）
+# 【どこを変えるか】
+#   - 何個でも使える → knapsack_unbounded
+#   - 「できるか」だけ → subset_sum_possible
+#   - W が大きすぎる（10^9）→ 別方針（価値側DP・二分探索など）
 # ============================================================
 if __name__ == "__main__":
-    assert knapsack_01([2, 3, 4], [3, 4, 5], 5) == 7  # 2+3
-    assert knapsack_unbounded([2, 3], [3, 4], 5) == 7
+    from io import StringIO
+    import sys
+
+    demo = """3 5
+2 3
+3 4
+4 5
+"""
+    sys.stdin = StringIO(demo)
+    input = sys.stdin.readline
+
+    N, W = map(int, input().split())
+    weights, values = [], []
+    for _ in range(N):
+        w, v = map(int, input().split())
+        weights.append(w)
+        values.append(v)
+    ans = knapsack_01(weights, values, W)
+    print(ans)
+    assert ans == 7
     assert subset_sum_possible([1, 2, 4], 6) is True
     assert lis_length([1, 3, 2, 4]) == 3
     print("dp_utils.py OK")

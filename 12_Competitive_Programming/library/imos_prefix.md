@@ -93,16 +93,39 @@ def imos_range_add(n, operations):
             continue
         B[l] += x
         B[r] -= x
-    # 累積和で展開
     for i in range(n):
         B[i + 1] += B[i]
     return B[:n]
-
-
-# 例: 長さ5、[1,4) に +3、[0,2) に +1
-print(imos_range_add(5, [(1, 4, 3), (0, 2, 1)]))
-# [1, 4, 3, 3, 0]
 ```
+
+#### 入力例・出力例つき（AtCoder 風）
+
+```text
+【問題】長さ N の配列（初期0）。区間加算を Q 回したあと、配列を出力。
+【入力】
+N Q
+Q 行: L R X   … 1-index 閉区間 [L,R] に +X
+【入力例】
+5 2
+2 4 3
+1 2 1
+【出力例】
+1 4 3 3 0
+```
+
+```python
+# 提出イメージ（1-index 閉区間 → 半開に変換）
+N, Q = map(int, input().split())
+ops = []
+for _ in range(Q):
+    L, R, X = map(int, input().split())
+    ops.append((L - 1, R, X))  # [L,R] → [L-1, R)
+print(*imos_range_add(N, ops))
+```
+
+【どこを変えるか】
+- 最後に配列全体ではなく「最大値だけ」欲しい → `max(imos_range_add(...))`
+- 途中で区間和クエリが混ざる → いもすではなく遅延セグ木
 
 ### いつ使う
 - 区間加算クエリがたくさん

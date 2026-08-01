@@ -86,9 +86,15 @@ def sieve(n: int):
 ### 何を実装するか
 約数列挙は **O(√N)** が定石。
 
+```text
+【入力例】
+12
+【出力例】
+1 2 3 4 6 12
+```
+
 ```python
 def divisors(n: int):
-    """昇順の約数リスト"""
     res = []
     i = 1
     while i * i <= n:
@@ -99,7 +105,8 @@ def divisors(n: int):
         i += 1
     return sorted(res)
 
-print(divisors(12))  # [1, 2, 3, 4, 6, 12]
+n = int(input())
+print(*divisors(n))
 ```
 
 ---

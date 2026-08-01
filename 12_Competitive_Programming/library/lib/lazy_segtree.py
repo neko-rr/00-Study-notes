@@ -1,15 +1,10 @@
 """
 【遅延評価セグメント木（Lazy Segment Tree）】
-多い難易度: ABC E〜F（標準セグ木で足りないとき）
+多い難易度: ABC E〜F
 適する問題:
-  - 「区間に一括で加算／代入」しつつ「区間の和／min／max」を聞く
-  - 点更新だけでは間に合わない区間更新クエリ
-キーワード: 区間加算, 区間更新, 遅延評価, 作用素, モノイド
-計算量: 構築 O(N), 区間更新・区間取得 O(log N)
-
-よくある組み合わせ（下に便利クラスあり）:
-  - 区間加算 + 区間和
-  - 区間加算 + 区間最小
+  - 「区間に一括で加算」しつつ「区間の和／min」を聞く
+キーワード: 区間加算, 区間更新, 遅延評価
+計算量: 区間更新・区間取得 O(log N)
 """
 
 from typing import Callable, Generic, List, TypeVar
@@ -19,17 +14,6 @@ F = TypeVar("F")
 
 
 class LazySegTree(Generic[S, F]):
-    """
-    ACL 互換に近い汎用遅延セグ木。
-
-    引数:
-      op(s, t)     : 区間のマージ
-      e()          : 単位元
-      mapping(f,s) : 作用 f をデータ s に適用
-      composition(f,g): 作用の合成（f を後から適用）
-      id()         : 作用の単位元
-    """
-
     def __init__(
         self,
         v: List[S],
@@ -75,7 +59,6 @@ class LazySegTree(Generic[S, F]):
         return self.d[p]
 
     def prod(self, l: int, r: int) -> S:
-        """半開区間 [l, r)"""
         if l == r:
             return self._e()
         l += self._size
@@ -99,7 +82,6 @@ class LazySegTree(Generic[S, F]):
         return self._op(sml, smr)
 
     def apply(self, l: int, r: int, f: F) -> None:
-        """半開区間 [l, r) に作用 f を適用"""
         if l == r:
             return
         l += self._size
@@ -140,13 +122,7 @@ class LazySegTree(Generic[S, F]):
         self.lz[k] = self._id()
 
 
-# ------------------------------------------------------------
-# 便利: 区間加算 + 区間和
-# データ S = (和, 長さ), 作用 F = 加算値
-# ------------------------------------------------------------
 def make_range_add_range_sum(a: List[int]) -> LazySegTree:
-    INF_ID = 0  # 加算の単位元は 0
-
     def op(x, y):
         return (x[0] + y[0], x[1] + y[1])
 
@@ -160,15 +136,12 @@ def make_range_add_range_sum(a: List[int]) -> LazySegTree:
         return f + g
 
     def id_():
-        return INF_ID
+        return 0
 
     v = [(val, 1) for val in a]
     return LazySegTree(v, op, e, mapping, composition, id_)
 
 
-# ------------------------------------------------------------
-# 便利: 区間加算 + 区間最小
-# ------------------------------------------------------------
 def make_range_add_range_min(a: List[int]) -> LazySegTree:
     INF = 10**18
 
@@ -191,15 +164,51 @@ def make_range_add_range_min(a: List[int]) -> LazySegTree:
 
 
 # ============================================================
-# 使用例
+# 使用例（ミニ問題）
+# ------------------------------------------------------------
+# 【問題】長さ N の数列（初期0）。クエリ2種類。
+#   1 L R x : 区間 [L,R] に +x（1-index 閉区間）
+#   2 L R   : 区間 [L,R] の和
+# 【入力】
+#   N Q
+#   クエリ Q 行
+# 【入力例】
+# 4 3
+# 1 2 3 10
+# 2 1 4
+# 2 2 3
+# 【出力例】
+# 20
+# 20
+# （配列は [0,10,10,0]）
+# 【どこを変えるか】
+#   - 区間minが欲しい → make_range_add_range_min
+#   - 初期配列が 0 でない → make_range_add_range_sum(初期A)
+#   - 「区間代入」は mapping/composition を問題に合わせて書き換える
 # ============================================================
 if __name__ == "__main__":
-    st = make_range_add_range_sum([1, 2, 3, 4])
-    st.apply(1, 3, 10)  # [1, 12, 13, 4]
-    assert st.prod(0, 4)[0] == 30
-    assert st.prod(1, 3)[0] == 25
+    from io import StringIO
+    import sys
 
-    st2 = make_range_add_range_min([5, 1, 4, 2])
-    st2.apply(0, 2, 3)  # [8, 4, 4, 2]
-    assert st2.prod(0, 4) == 2
+    demo = """4 3
+1 2 3 10
+2 1 4
+2 2 3
+"""
+    sys.stdin = StringIO(demo)
+    input = sys.stdin.readline
+
+    N, Q = map(int, input().split())
+    st = make_range_add_range_sum([0] * N)
+    out = []
+    for _ in range(Q):
+        query = list(map(int, input().split()))
+        if query[0] == 1:
+            _, L, R, x = query
+            st.apply(L - 1, R, x)  # 閉区間 → 半開
+        else:
+            _, L, R = query
+            out.append(str(st.prod(L - 1, R)[0]))
+    print("\n".join(out))
+    assert out == ["20", "20"]
     print("lazy_segtree.py OK")
