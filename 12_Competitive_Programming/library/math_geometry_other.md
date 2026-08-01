@@ -10,9 +10,11 @@
 | 数学の基礎 | [math_basics.md](math_basics.md) |
 | 整数論 | [math_number_theory.md](math_number_theory.md) |
 | 文字列 | [substring.md](substring.md) |
+| グラフ用語 | [graph_terms.md](graph_terms.md) |
+| 計算量の目安 | [complexity.md](complexity.md) |
 | bit 全探索コード | [lib/bit.py](lib/bit.py) |
 | 最短路・グラフ | [lib/graph.py](lib/graph.py) |
-| 累積和・座標圧縮 | [lib/utils.py](lib/utils.py) |
+| 累積和・座標圧縮 | [lib/utils.py](lib/utils.py) / [imos_prefix.md](imos_prefix.md) |
 
 ---
 

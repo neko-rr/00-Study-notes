@@ -10,6 +10,8 @@
 | 素因数分解・φ・中国剰余など | [math_number_theory.md](math_number_theory.md) |
 | 幾何・ビット・確率 | [math_geometry_other.md](math_geometry_other.md) |
 | 文字列用語 | [substring.md](substring.md) |
+| 計算量の目安 | [complexity.md](complexity.md) |
+| DP・通り数 | [dp_patterns.md](dp_patterns.md) |
 | 剰余・nCr の提出用コード | [lib/modint.py](lib/modint.py) |
 | bit 全探索 | [lib/bit.py](lib/bit.py) |
 

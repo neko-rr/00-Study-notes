@@ -11,6 +11,8 @@
 | 数学の基礎 | [math_basics.md](math_basics.md) |
 | 幾何・ビット・確率 | [math_geometry_other.md](math_geometry_other.md) |
 | 文字列 | [substring.md](substring.md) |
+| 計算量の目安 | [complexity.md](complexity.md) |
+| 包除と bit | [lib/bit.py](lib/bit.py) |
 | 剰余演算コード | [lib/modint.py](lib/modint.py) |
 
 ---
