@@ -1,10 +1,11 @@
 """
 【遅延評価セグメント木（Lazy Segment Tree）】
-多い難易度: ABC E〜F
+多い難易度: ABC E〜H（F 以降の定番）
 適する問題:
   - 「区間に一括で加算」しつつ「区間の和／min」を聞く
 キーワード: 区間加算, 区間更新, 遅延評価
 計算量: 区間更新・区間取得 O(log N)
+関連: data_structures_guide.md, lib/segment_tree.py
 """
 
 from typing import Callable, Generic, List, TypeVar

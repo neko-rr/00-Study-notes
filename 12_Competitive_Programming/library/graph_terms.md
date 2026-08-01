@@ -7,8 +7,13 @@
 | 行きたい内容 | リンク |
 |---|---|
 | 目次 | [README.md](README.md) |
-| BFS / Dijkstra / トポソ | [lib/graph.py](lib/graph.py) |
+| BFS / Dijkstra / Floyd / 橋 | [lib/graph.py](lib/graph.py) |
+| SCC | [lib/scc.py](lib/scc.py) |
+| LCA | [lib/lca.py](lib/lca.py) |
 | 最大流・二部マッチング | [lib/maxflow.py](lib/maxflow.py) |
+| 最小費用流 | [lib/mincostflow.py](lib/mincostflow.py) |
+| 2-SAT | [lib/twosat.py](lib/twosat.py) |
+| 全方位木 DP | [rerooting.md](rerooting.md) |
 | 連結成分（辺の追加） | [lib/union_find.py](lib/union_find.py) |
 | 計算量 | [complexity.md](complexity.md) |
 | データ構造の選び方 | [data_structures_guide.md](data_structures_guide.md) |
@@ -29,7 +34,9 @@
 | [トポロジカルソート](#8-トポロジカルソート) | D〜E | 依存関係の並べ替え |
 | [二部グラフ](#9-二部グラフ) | D〜E | 2 色で塗り分け可能 |
 | [最短路](#10-最短路) | C〜E | BFS / Dijkstra |
-| [最大流](#11-最大流最小カット) | E〜F | 流せる最大量 |
+| [最大流](#11-最大流最小カット) | E〜H | 流せる最大量 |
+| [SCC](#12-scc強連結成分) | F〜H | 互いに行き来できるかたまり |
+| [LCA](#13-lca) | E〜H | 木の最小共通祖先 |
 
 ---
 
@@ -204,7 +211,23 @@ def is_bipartite(n, edges):
 - **最小カット**: 始点側と終点側を分断する辺の容量和の最小（＝最大流）
 
 二部マッチングも流れのモデルで解けます。  
-→ [lib/maxflow.py](lib/maxflow.py)
+→ [lib/maxflow.py](lib/maxflow.py) / コスト付きは [lib/mincostflow.py](lib/mincostflow.py)
+
+---
+
+## 12. SCC（強連結成分）
+
+有向グラフで「互いに到達できる頂点のかたまり」。縮約すると DAG になり DP しやすいです。
+
+→ [lib/scc.py](lib/scc.py)
+
+---
+
+## 13. LCA
+
+木上で 2 頂点の最も深い共通祖先。距離計算にも使う。
+
+→ [lib/lca.py](lib/lca.py) / 全方位は [rerooting.md](rerooting.md)
 
 ---
 
@@ -213,9 +236,15 @@ def is_bipartite(n, edges):
 | ヒント | 使うもの |
 |---|---|
 | 手数（重みなし） | BFS |
-| 重み付き最短 | Dijkstra |
+| 重み付き最短（非負） | Dijkstra |
+| 負の辺 | Bellman-Ford |
+| 全点対・N小さい | Floyd |
 | 辺を足して同じグループ？ | Union-Find |
 | 依存関係・順番 | トポロジカルソート |
 | 2 色／左右に分けたい | 二部グラフ判定 |
 | 割当・マッチング | 最大流 |
+| 割当＋コスト | 最小費用流 |
 | 迷路 | グリッド BFS |
+| 互いに行き来できる（有向） | SCC |
+| 木上の距離・祖先 | LCA |
+| 真偽割当で条件充足 | 2-SAT |

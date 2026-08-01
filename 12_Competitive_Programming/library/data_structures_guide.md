@@ -29,7 +29,9 @@
 | 同じグループ？ 辺を追加 | Union-Find | D〜E |
 | 常に最小／最大を取り出す | `heapq` | C〜E |
 | ソート済み列への挿入位置 | `bisect` | C〜E |
+| 更新なし区間 min/max/gcd | [Sparse Table](lib/sparse_table.py) | E〜F |
 | 座標が大きすぎる | 座標圧縮 → 上記 | D〜E |
+| オフラインで区間を伸縮 | [Mo](mo.md) | F〜H |
 
 ---
 

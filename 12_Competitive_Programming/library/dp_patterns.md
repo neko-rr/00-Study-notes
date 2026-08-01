@@ -28,6 +28,8 @@
 | 訪問集合を持つ（N≤20） | bit DP | D〜E | `dp[mask][v]` |
 | 最長の増加部分 | LIS | D〜E | 長さ or `O(N log N)` |
 | 期待値を求めよ | 期待値 DP | E | `dp[状態]=期待値` |
+| N 以下の整数を数える | 桁 DP | E〜H | → [digit_dp.md](digit_dp.md) |
+| 各頂点を根にした答え | 全方位木 DP | F〜H | → [rerooting.md](rerooting.md) |
 
 コード雛形 → [lib/dp_utils.py](lib/dp_utils.py)
 

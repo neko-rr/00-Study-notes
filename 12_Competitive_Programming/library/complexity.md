@@ -26,8 +26,10 @@
 | `O(N)` / `O(N log N)` | `N ≤ 10^5`〜`10^6` |
 | `O(N √N)` | `N ≤ 10^5` ぎりぎり〜注意 |
 | `O(N^2)` | `N ≤ 3000`〜`5000` 程度 |
-| `O(N^3)` | `N ≤ 300`〜`400` |
+| `O(N^3)` | `N ≤ 300`〜`400`（Floyd もこの帯） |
+| `O((N+Q)√N)` | Mo's algorithm（F〜H） |
 | `O(2^N * poly)` | `N ≤ 20`〜`22` |
+| `O(D^3 log K)` | 行列累乗（D=行列サイズ） |
 | `O(N!)` | `N ≤ 10`〜`11` |
 
 ※ 言語・定数倍で変わるので「だいたい」です。Python は C++ より遅く感じることが多い → **PyPy** 提出が基本。
@@ -46,6 +48,10 @@
 | `N,Q ≤ 10^5` | セグ木 / Fenwick / ソート＋二分探索 | 同上 |
 | `W ≤ 10^5` でナップサック | `O(NW)` が間に合うか確認 | [dp_patterns.md](dp_patterns.md) |
 | 答えに単調性 | 二分探索で `log` を稼ぐ | [search_patterns.md](search_patterns.md) |
+| `N≤10^5` の木クエリ | LCA ダブリング | [lib/lca.py](lib/lca.py) |
+| 有向グラフのかたまり | SCC | [lib/scc.py](lib/scc.py) |
+| 区間種類数など | Mo | [mo.md](mo.md) |
+| 線形漸化式の N 項目 | 行列累乗 | [lib/matrix.py](lib/matrix.py) |
 
 ---
 

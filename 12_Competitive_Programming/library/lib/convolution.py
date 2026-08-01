@@ -1,9 +1,10 @@
 """
 【畳み込み（NTT）】
-多い難易度: ABC E〜F
+多い難易度: ABC E〜H（生成関数・多項式は G〜H 寄り）
 適する問題:
   - 2つの数列の畳み込み / 多項式の積
 注意: mod = 998244353 専用
+関連: lib/modint.py, lib/matrix.py
 """
 
 from typing import List

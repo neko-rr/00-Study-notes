@@ -1,9 +1,10 @@
 """
 【最大流（Dinic 法）・最小カット】
-多い難易度: ABC E〜F
+多い難易度: ABC E〜H（F 以降で本領）
 適する問題:
   - 「始点から終点へ最大でどれだけ流せるか」
   - 二部マッチング
+関連: lib/mincostflow.py, graph_terms.md
 """
 
 from typing import List, Optional, Tuple
