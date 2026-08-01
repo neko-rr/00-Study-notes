@@ -7,6 +7,7 @@
 | 行きたい内容 | リンク |
 |---|---|
 | 目次 | [README.md](README.md) |
+| 外部リンク集 | [useful_links.md](useful_links.md) |
 | 問題文の読み方 | [how_to_read.md](how_to_read.md) |
 | A〜C の型 | [abc_ac_patterns.md](abc_ac_patterns.md) |
 | Python テク | [python_tips.md](python_tips.md) |

@@ -7,6 +7,7 @@ AtCoder の問題を開いたら、**この順番**で読むと迷いが減り�
 | 行きたい内容 | リンク |
 |---|---|
 | 目次 | [README.md](README.md) |
+| 外部リンク集 | [useful_links.md](useful_links.md) |
 | 型の早見表 | [abc_ac_patterns.md](abc_ac_patterns.md) |
 | 制約と計算量 | [complexity.md](complexity.md) |
 | WA 対策 | [checklist_wa_tle.md](checklist_wa_tle.md) |

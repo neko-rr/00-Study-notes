@@ -21,6 +21,8 @@
 | 4 | [grid_intro.md](grid_intro.md) | グリッド・迷路入門 |
 | 5 | [checklist_wa_tle.md](checklist_wa_tle.md) | WA / TLE / RE チェックリスト |
 
+困ったときの外部サイト・公式リンク集 → **[useful_links.md](useful_links.md)**
+
 その次: [complexity.md](complexity.md) → [imos_prefix.md](imos_prefix.md) → D以降のメモ・`lib/`
 
 ---
@@ -89,9 +91,11 @@
 
 | 問題の言い回し・キーワード | 見るファイル |
 |---|---|
+| 外部サイトも含めて調べたい | [useful_links.md](useful_links.md) |
 | 問題の読み方が分からない | [how_to_read.md](how_to_read.md) |
 | A〜C で型が分からない | [abc_ac_patterns.md](abc_ac_patterns.md) |
 | WA / TLE / RE | [checklist_wa_tle.md](checklist_wa_tle.md) |
+
 | Python の書き方 | [python_tips.md](python_tips.md) |
 | マス・迷路 | [grid_intro.md](grid_intro.md) |
 | 「間に合う？」「N=10^5」 | [complexity.md](complexity.md) |

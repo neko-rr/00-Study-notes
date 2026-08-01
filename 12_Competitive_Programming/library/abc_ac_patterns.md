@@ -8,6 +8,7 @@ D以降の重いデータ構造は、ここでは使いません。
 | 行きたい内容 | リンク |
 |---|---|
 | 目次 | [README.md](README.md) |
+| 外部リンク集 | [useful_links.md](useful_links.md) |
 | 問題文の読み方 | [how_to_read.md](how_to_read.md) |
 | WA/TLE 対策 | [checklist_wa_tle.md](checklist_wa_tle.md) |
 | Python 頻出テク | [python_tips.md](python_tips.md) |
