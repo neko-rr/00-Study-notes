@@ -13,6 +13,7 @@
 | ファイル | 主な用途 | 多い難易度 |
 |---|---|---|
 | [template.py](template.py) | 提出テンプレ（高速入力・再帰） | 全難易度 |
+| [substring.md](substring.md) | 部分文字列の用語・実装まとめ | **C〜E** |
 | [lib/utils.py](lib/utils.py) | 累積和・座標圧縮・ヒープ | **C〜D** |
 | [lib/binary_search.py](lib/binary_search.py) | めぐる式二分探索 | **C〜E** |
 | [lib/bit.py](lib/bit.py) | bit 全探索・部分集合 | **C〜E** |
@@ -43,6 +44,7 @@
 | 「2 数列の畳み込み・多項式の積」 | `convolution.py` |
 | 「部分和・ナップサック」 | `dp_utils.py` |
 | 「累積和・座標が大きすぎる」 | `utils.py` |
+| 「部分文字列」「部分列」「回文」「出現」 | `substring.md` |
 
 ---
 
@@ -71,6 +73,6 @@
 
 親フォルダのメモ（入力・基本文法・習慣）とは役割が違います。
 
-- 文法・入力・環境: 親フォルダの `AtCoder.md` / `basic.md` など
-- D・E 以降のアルゴリズム部品: **この `library/` フォルダ**
-- Python 基礎: [30_programming/Python/Python.md](../../30_programming/Python/Python.md)
+- 文法・入力・環境: [12_Competitive_Programming](https://github.com/neko-rr/00-Study-notes/tree/main/12_Competitive_Programming) の `AtCoder.md` / `basic.md` など
+- D・E 以降のアルゴリズム部品: **この `library/` フォルダ**（GitHub 上）
+- Python 基礎: [Python.md](https://github.com/neko-rr/00-Study-notes/blob/main/30_programming/Python/Python.md)
