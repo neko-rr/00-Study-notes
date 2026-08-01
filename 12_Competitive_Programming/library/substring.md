@@ -3,6 +3,16 @@
 「部分文字列」と「部分列」は名前が似ていますが、**意味がまったく違います**。  
 ここを取り違えると、ほぼ確実に間違いになります。
 
+## 関連リンク
+
+| 行きたい内容 | リンク |
+|---|---|
+| 目次（ライブラリ全体） | [README.md](README.md) |
+| 数学の基礎（素数・GCD・剰余） | [math_basics.md](math_basics.md) |
+| 整数論（素因数分解・包除） | [math_number_theory.md](math_number_theory.md) |
+| 幾何・ビット・確率 | [math_geometry_other.md](math_geometry_other.md) |
+| bit 全探索（部分列の列挙など） | [lib/bit.py](lib/bit.py) |
+
 ---
 
 ## いちばん大事な違い（先に覚える）
