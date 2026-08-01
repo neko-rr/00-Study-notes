@@ -1,13 +1,27 @@
-# AtCoder D〜H 向け 競技プログラミングライブラリ（Python）
+# AtCoder 競技プログラミングライブラリ（Python）
 
 既存の学習メモ（入力・基本文法など）とは別に、**提出用コード**と**頻出用語・型の解説**です。
 
 - 想定言語: **Python / PyPy**（AtCoder）
-- 想定難易度: **ABC の D〜H**（A〜C の基礎は親フォルダのメモへ）
-- 使い方: 用語メモで方針を決め → `lib/` から必要なコードをコピペ
-- 各 `lib/*.py` の末尾に **ミニ問題（入力例・出力例・どこを変えるか）** 付きの使用例あり
-  - ローカルではそのまま実行可（`StringIO` で入力例を流している）
-  - 提出時は `demo = """..."""` 部分を消し、普通の `input()` だけにする
+- 想定難易度: **ABC の A〜H**（B/C帯の土台〜上級まで）
+- 使い方: 用語メモで方針を決め → 必要なら `lib/` からコードをコピペ
+- 各 `lib/*.py` の末尾に **ミニ問題（入力例・出力例・どこを変えるか）** 付き
+
+---
+
+## B/C帯はここから（いちばん上）
+
+茶色〜水色手前向け。先にこちらを読んでから `lib/` に進みます。
+
+| 順番 | ファイル | 内容 |
+|---|---|---|
+| 1 | [how_to_read.md](how_to_read.md) | 問題文の読み方（出力→制約→本文） |
+| 2 | [abc_ac_patterns.md](abc_ac_patterns.md) | A〜C 典型パターン早見表 |
+| 3 | [python_tips.md](python_tips.md) | Counter / deque / bisect など |
+| 4 | [grid_intro.md](grid_intro.md) | グリッド・迷路入門 |
+| 5 | [checklist_wa_tle.md](checklist_wa_tle.md) | WA / TLE / RE チェックリスト |
+
+その次: [complexity.md](complexity.md) → [imos_prefix.md](imos_prefix.md) → D以降のメモ・`lib/`
 
 ---
 
@@ -75,6 +89,11 @@
 
 | 問題の言い回し・キーワード | 見るファイル |
 |---|---|
+| 問題の読み方が分からない | [how_to_read.md](how_to_read.md) |
+| A〜C で型が分からない | [abc_ac_patterns.md](abc_ac_patterns.md) |
+| WA / TLE / RE | [checklist_wa_tle.md](checklist_wa_tle.md) |
+| Python の書き方 | [python_tips.md](python_tips.md) |
+| マス・迷路 | [grid_intro.md](grid_intro.md) |
 | 「間に合う？」「N=10^5」 | [complexity.md](complexity.md) |
 | 「N 以下の整数の個数」「桁」 | [digit_dp.md](digit_dp.md) |
 | 「各頂点を根にした答え」 | [rerooting.md](rerooting.md) |
@@ -92,9 +111,10 @@
 
 ## おすすめの読み順
 
-1. D〜E: [complexity.md](complexity.md) → [imos_prefix.md](imos_prefix.md) → [search_patterns.md](search_patterns.md) → [dp_patterns.md](dp_patterns.md) / [graph_terms.md](graph_terms.md)  
-2. E〜F: [data_structures_guide.md](data_structures_guide.md)（遅延セグ木・Sparse Table）  
-3. F〜H: [scc](lib/scc.py) / [lca](lib/lca.py) / [digit_dp.md](digit_dp.md) / [rerooting.md](rerooting.md) / [mo.md](mo.md) / 流・2-SAT・行列  
+1. **B/C**: 上の「B/C帯はここから」5ファイル  
+2. **C〜D**: [complexity.md](complexity.md) → [imos_prefix.md](imos_prefix.md) → [search_patterns.md](search_patterns.md) → [dp_patterns.md](dp_patterns.md) / [graph_terms.md](graph_terms.md)  
+3. **E〜F**: [data_structures_guide.md](data_structures_guide.md)（遅延セグ木・Sparse Table）  
+4. **F〜H**: [scc](lib/scc.py) / [lca](lib/lca.py) / [digit_dp.md](digit_dp.md) / [rerooting.md](rerooting.md) / [mo.md](mo.md) / 流・2-SAT・行列  
 
 ---
 
