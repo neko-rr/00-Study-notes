@@ -1,0 +1,192 @@
+# Cloudflare Workers Tech Talks in Osaka #3
+- [https://workers-tech.connpass.com/event/399304/](https://workers-tech.connpass.com/event/399304/)
+- 参加日：2026年8月7日（金）
+- 19:00～21:00
+- 参加形態：個人参加（プライベート）
+- オンライン
+- ハッシュタグ ：#workers_tech
+# 目次
+- 19:10 - 19:25	Cloudflare is agents（仮）	chimame	chimame_rt
+- 19:25 - 19:40	7アプリ横断で、NestJS on AWS EB環境から、Hono on Workers環境に移行した話（仮）	rdlabo	rdlabo
+- 19:40 - 19:55	Formisch・Honox・Cloudflare Workersではじめる超ミニマルなSchema駆動開発	Kanon	ysknsid25		
+- 20:05 - 20:20	動くデモサイトを作る	Yusuke Wada	yusukebe
+- 20:20 - 20:35	既存サービスで我々を苦しみから解放し、新サービスの中核を担う技術に成り上がった Cloudflare Browser Run	okady	y_okady
+- 20:35 - 20:50	それでもやっぱりMCP - Workersを使った複数のRemote MCPサーバーを開発・運用している話	岡本秀高	hidetaka_dev
+# Cloudflare is agents（仮）	chimame	chimame_rt
+- ゲームを『一緒に』楽しむ仲間が欲しい
+  - 正しい答えより、隣にいる感覚
+- デモ
+  - 画面を見つつ、話者の声を拾って、反応するAI
+- 『一緒にいるAgent』
+  - 誰のため
+  - 何のため
+- これをCloudflare Agents SDK
+  - ある程度やってくれる
+- 異なる時間軸の情報を、ひとつのAgentへ集める
+  - Tauri/React
+  - ⇒GameScreen
+  - gemini
+    - 一番成績良かった
+- Voice
+  - Cloudflareには、ない
+- Cloudflare Agents SDK
+  - Agent = Durableな主体
+    - 一時的な関数ではなく、戻ってこられる存在
+  - 固有のIdentity
+- 接続を維持したまま、Agentは眠れる
+  - Active⇒HIBERNATE⇒　⇒
+  - WebSoket
+- 今回作ったものは、まだ入り口に過ぎない
+- 画面のリアルタイム送信
+  - いくつも画像送っていて：何秒間に1回
+  - 過去から未来の時系列を持っている
+- 次に作れるもの
+  - ゲームの長期記憶
+  - 自発的な行動
+  - 失敗から回復する処理
+- Cloudflareは、何へ進化しているのか？
+  - Webを届ける⇒コードを動かす⇒状態を置く⇒モデルを動かす（AI）⇒Agentを生かす
+- 話者：CloudflareのAI高い
+# タイトル変更：7アプリ横断で、NestJS on AWS EB環境から、Hono on Workers環境に移行した話（仮）	rdlabo	rdlabo
+- AWS⇒以降
+  - 180＄⇒
+  - 31％減
+- なぜか$31ドル請求
+  - 数日で、設計判断をやり直した
+  - workersへ移行
+    - ＄３１．６４
+    - KVを棚卸
+      - 用途ごとに保存先を分ける
+      - 面倒だからとDB全部キャッシュさせていたのを整理
+  - AWSは、課金していると無料で使い放題
+  - Cloudflareは、従量課金
+- AWS
+  - ユーザー0人
+    - それでもEC2x1の固定費
+- Cloudflare
+  - アイデア⇒出す
+    - 使われたら、利用量に応じて増える
+    - 企画の数を打てる
+- 前提１：メモリは「あるもの」ではない
+  - DBで絞る
+    - 必要な行・列だけ取得
+  - pagination
+    - 一度に載せない
+  - 必要量だけ取得
+    - メモリ上の加工を減らす
+  - 例：ワインのアプリ
+    - データが多いユーザー：1人で1000件以上
+      - データ量の多いユーザーだけ失敗して分かった
+  - AWSなら普通の使い方で死ぬ
+    - イラスティックキャッシュの考え方
+- 前提２：「DBは近い」を捨てる
+  - DBのレスポンスが遅い
+    - 距離が遠くなったから、可能な限り並列しないと遅い
+  - Hyperddrive
+    - n+1が残っていたを撲滅
+  - 生成AIの提案は、答えではなく仮説
+    - 遅くなったため、Cloudflareが元へ戻した
+      - UNSUPPORTED_APPLICATION
+- 前提３：ホスト環境の暗黙の前提に依存しない
+  - 時差がずっと9時間と出ていた
+    - あくまでCloudflareという1つの設定を借りているだけAWSのLambdaとは違う
+  - 制約を、自分たちの横断基盤へ変えた
+    - 使えるかどうか調べる位ならば、自分たちで作ろう
+      - 自分たちの判断
+        - ABCの3プロダクト
+        - 共通基盤が出来た
+          - 個別実装していて、全部移転しないといけないと考えると、ライブラリ化して共通実装するきっかけに
+# Formisch・Honox・Cloudflare Workersではじめる超ミニマルなSchema駆動開発	Kanon	ysknsid25
+- valibot・Formischという便利なライブラリのメンテナーになった
+  - 1個issue立てると、8人PR出すレベル
+- Honox
+  - HonoとViteをベースにしたフルスタックWebフレームワーク
+  - BYOR
+    - 好きなUIライブラリでレンダラーを自作できます
+- Valibotとは
+  - TypeScript向けのスキーマバリデーションライブラリ
+    - 「このデータはこういう形をしているべき」というルールをコードで書くと、そのルールに沿って値を検証してくれます
+- Formisch（フォーミッシュ）
+  - フォーム状態管理ライブラリ
+  - これを利用すると、スキーマだけ作る事で簡単に進む
+- アーキテクチャ：ある時無い時比較
+  - 感想：スライド見るべき
+- 登壇駆動開発してしまった
+# 動くデモサイトを作る	Yusuke Wada	yusukebe
+- Cloudflareを紹介するためのデモサイトを作りました
+  - 沢山あるCloudflareプロダクトを紹介したい
+  - 最低限のコードを見せたかった
+    - 例：ハッカソン、ワークショップ
+- どうするか？
+  - GitHubのレポを作った
+  - demos
+    - 1個1個分けている
+  - どうせならWebページを作りたい：Workersで動かしている
+    - 各デモは、独立したWorkersプログラムになっている
+    - Dynamic Workers
+      - コードの中にコードを書ける
+- １：ブラウザからリクエスト
+- ２：親WorkersがデモWorkersを立ち上げる
+- 問題
+  - 親WorkerのBindings env.KVはそのまま渡せない
+  - デモ毎にネームスペース、データベースを分けたい
+  - デモWorker
+- 解決
+  - カスタムBindingsを作る
+- 動くデモサイトを作れた
+- 3つのRate Limiting
+- デモ見せてくれる
+# 既存サービスで我々を苦しみから解放し、新サービスの中核を担う技術に成り上がった Cloudflare Browser Run	okady	y_okady
+- ㈱シータグ　CTO
+  - 副業で、インドアのゴルフ場をやっている
+  - 会社は、kintone専用の拡張サービス
+- 会社でCloudflareを半分以上使っている
+- 受注ハックで我々を苦しめたchromedp
+  - Chromeを操作するGo言語向けライブラリ
+  - 請求書PDFを出力したい
+- 1年後
+  - 請求締め処理が動きません
+    - 調査の結果
+      - Alpineが自動アップグレードされた
+      - apk addでインストールするchromiumも自動アップグレードされた
+    - 対策
+      - バージョン固定で一時的に問題なく動作
+- 更に半年後
+  - 調査の結果
+    - 何も分からん
+    - 不安定な事だけが分かった
+  - 対策
+    - AlpineをChromedp/headless-shellに変更し、問題無く動作
+- 更に10ヶ月後
+  - 請求締め処理は、動くが、PDFが変になった
+  - 調査の結果
+    - Chromedp/headless-shellが自動アップグレードされた
+  - 対応
+    - 翌日にカッとなって置き換えた
+      - Cloudflare Browser Runに置き換えた
+      - 実は、請求書PDFは、殆ど使用されていない
+        - なら、毎回バグるくらいならば、有料で良い
+- 無料枠：12,000件/月
+  - 従量課金：0.011円/件
+- 2年半かけて現在、何も起こっていない！！
+- クイックアクションズを使用している
+# それでもやっぱりMCP - Workersを使った複数のRemote MCPサーバーを開発・運用している話	岡本秀高	hidetaka_dev
+- 普段：仕事含めて150個/年、ブログ書いている
+  - 個人開発めっちゃしている
+- API/CLIがあれば、MCP要らなくない
+  - CLIが使えるなら、MCPの設定は基本不要
+    - CLIが使えない環境は？
+      - スマホとか。シークレットID取り出せない環境
+- Remote MCP
+- 配布側のメリット
+  - Claudeなどで1クリックで可能なので、
+  - 但し、各サービスの審査が必要なので大変
+- APIラッパーよりもワークフロー
+- MCPの仕様がめちゃくちゃ変わる
+  - MCPがステートに変わる
+  - 直ちに従来のMCPが壊れる訳ではないが覚えとこう
+- 長期記憶は、D1/KV（クエリでの使い分け）
+  - ツールを使わせれば使わせるほど、AIの挙動が不安定になる
+
+
+
