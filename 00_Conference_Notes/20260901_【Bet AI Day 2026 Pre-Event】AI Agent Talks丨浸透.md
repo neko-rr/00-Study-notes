@@ -1,6 +1,6 @@
 # 【Bet AI Day 2026 Pre-Event】AI Agent Talks丨浸透
-- [https://layerx.connpass.com/event/399945/](https://layerx.connpass.com/event/399945/)
-- 参加日：2026年8月31日（月）
+- [https://layerx.connpass.com/event/399946/](https://layerx.connpass.com/event/399946/)
+- 参加日：2026年9月1日（火）
 - 12:00～13:00
 - 参加形態：個人参加（プライベート）
 - オンライン
