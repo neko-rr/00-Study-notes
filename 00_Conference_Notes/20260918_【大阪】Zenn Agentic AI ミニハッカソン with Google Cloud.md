@@ -1,4 +1,4 @@
-# AIカンファレンス「Bet AI Day 2026」
+# 【大阪】Zenn Agentic AI ミニハッカソン with Google Cloud
 - [https://zenn.dev/hackathons/google-cloud-japan-ai-hackathon-vol5](https://zenn.dev/hackathons/google-cloud-japan-ai-hackathon-vol5)
 - [https://classmethod.connpass.com/event/398580/](https://classmethod.connpass.com/event/398580/)
 - 参加日：2026年9月18日（金）
@@ -39,6 +39,26 @@
   - リポジトリ見たりまでできないので、口頭でこうすれば良くなりましたの説明
 - スポンサーのサービスを活用
   - 1つでも活用したら、平均点に0.5点を加点
+# スポンサー
+- YouCamAPI：美容系画像・動画のAPI
+  - 無料提供1000ユニット
+  - 写真等を投げるだけ2ユニット消費
+  - 診断で20～30ユニット消費
+# グーグルクラウドセッション
+- グーグルのAIエージェントの定義紹介
+- ADKの紹介
+  - オープンソースのローカル開発支援のエージェント改善UIフレーム
+- モデルの説明
+  - 社員も朝起きたら、知らないうちにリリースしていたという状況なので、皆さんと一緒に楽しんでいます
+- アンチグラビティの紹介
+- Gemini Enterprise Agent Platformの全体像
+  - 企業向け
+  - ハッカソンでは、ここまで要らないと思いますが、ハーネスとかプロンプトインジェクションを防いだり
+- グーグルクラウドのコンピューティングサービス
+  - 一番ハッカソンで時間無い時にしようするのが、Cloud Run
+- 色々クラウドの説明
+# 14時15分からピッチング
+- 15名のみ
 
 
 
